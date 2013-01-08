@@ -61,6 +61,24 @@ class VenueJustController extends Controller {
 
     }
 
+    public function detailAction($ocassion_id, $venue_id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $ocassion = $em->getRepository('Just2BackendBundle:Ocassion')->findBy(array(
+            'id' => $ocassion_id
+            ));
+
+        $venue = $em->getRepository('Just2BackendBundle:Venue')->findBy(array(
+            'id' => $venue_id
+            ));
+
+        return $this->render('Just2FrontendBundle:VenueJust:venue_details.html.twig', array(
+            'od'    => $ocassion,
+            'vd'    => $venue
+        ));
+    }
+
 
 }
 

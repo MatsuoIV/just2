@@ -59,6 +59,9 @@ class Venue {
     /** @ORM\Column(type="string", length=255, nullable=false) */
     private $contact;
 
+    /** @ORM\Column(type="string", length=255, nullable=false) */
+    private $details;
+
 
     /**
      * Constructor
@@ -261,6 +264,29 @@ class Venue {
     public function getDistrict()
     {
         return $this->district;
+    }
+
+    /**
+     * Set details
+     *
+     * @param string $details
+     * @return Venue
+     */
+    public function setDetails($details)
+    {
+        $this->details = $details;
+    
+        return $this;
+    }
+
+    /**
+     * Get details
+     *
+     * @return string
+     */
+    public function getDetails()
+    {
+        return $this->details;
     }
 
     /**

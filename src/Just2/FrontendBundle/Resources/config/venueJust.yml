@@ -5,3 +5,7 @@ venue_search:
 venue_results:
     pattern:  /search
     defaults: { _controller: Just2FrontendBundle:VenueJust:show}
+
+venue_details:
+    pattern:  /{ocassion_id}/{venue_id}/details
+    defaults: { _controller: Just2FrontendBundle:VenueJust:detail}

@@ -1,0 +1,15 @@
+{# empty Twig template #}
+{% extends 'JVJPlantillaBundle::nav2.html.twig' %}
+
+{%block navegador1%}{% include 'JVJPlantillaBundle::nav1.html.twig' with {'principal':'principal'} %}{%endblock%}
+
+{%block navegador2%}
+
+<li {%if menu=='conf_global'%} class="active"{%endif%}>   <a href="#">Configuración Global</a></li>
+<li {%if menu=='esta_general'%} class="active"{%endif%}>  <a href="#">Estadistica General</a></li>
+<li {%if menu=='back_bd'%} class="active"{%endif%}>       <a href="#">Backup BD</a></li>
+<li {%if menu=='rest_bd'%} class="active"{%endif%}>       <a href="#">Restaurar BD</a></li>
+<li {%if menu=='salir'%} class="active"{%endif%}>         <a href="#">Salir</a></li> 
+
+
+ {%endblock%}

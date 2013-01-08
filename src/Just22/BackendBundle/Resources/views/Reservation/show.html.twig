@@ -1,0 +1,40 @@
+<div class="box column-right">
+    <div class="box-header"><span class="glyph eye"></span><h1>Show</h1></div>
+    <div class="box-content">
+        <table class="record_properties">
+            <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ entity.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Codereservation</th>
+                        <td>{{ entity.codeReservation }}</td>
+                    </tr>
+                    <tr>
+                        <th>Bydate</th>
+                        <td>{{ entity.byDate|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Estate</th>
+                        <td>{{ entity.estate }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="action_bar">
+<a  class="button blue" href="{{ path('reservation_edit', { 'id': entity.id }) }}">
+    <span class="glyph pencil"></span>
+    Editar
+</a>
+<form action="{{ path('reservation_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+        <button class="eliminar_derecha button blue">
+            <span class="glyph delete"></span>
+            Eliminar
+        </button>
+</form>
+                </div>
+            </div>
+        </div>
+
+

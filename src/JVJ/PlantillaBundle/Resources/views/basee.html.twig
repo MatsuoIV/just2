@@ -1,0 +1,132 @@
+<!-- app/Resources/views/base.html.twig -->
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
+        <title>{% block title %}JVJrecoasys{% endblock %} - Systema de Recibo y Cobranza de Agua</title>
+        <!--[if lt IE 9]>
+            <script 
+src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        {% block stylesheets %}
+         <!-- Stylesheets -->
+         
+         {% stylesheets  
+'@JVJPlantillaBundle/Resources/public/css/main.css'
+'@JVJPlantillaBundle/Resources/public/css/reset.css'
+'@JVJPlantillaBundle/Resources/public/css/calendar.css'
+'@JVJPlantillaBundle/Resources/public/css/checkboxes.css'
+'@JVJPlantillaBundle/Resources/public/css/formalize.css'
+'@JVJPlantillaBundle/Resources/public/css/960.css'
+'@JVJPlantillaBundle/Resources/public/css/icons.css'
+'@JVJPlantillaBundle/Resources/public/css/jqueryui.css'
+'@JVJPlantillaBundle/Resources/public/css/portrait.css'
+'@JVJPlantillaBundle/Resources/public/css/selectboxes.css'
+'@JVJPlantillaBundle/Resources/public/css/sourcerer.css'
+'@JVJPlantillaBundle/Resources/public/css/tags.css'
+'@JVJPlantillaBundle/Resources/public/css/tipsy.css'
+'@JVJPlantillaBundle/Resources/public/css/visualize.css'
+
+filter='?yui_css'
+output='css/jvj.css' %}
+         
+         <link rel="stylesheet" href="{{ asset_url }}" />
+         {% endstylesheets %}
+        <!-- JavaScript -->
+{% javascripts 
+'@JVJPlantillaBundle/Resources/public/js/jquery.min.js'
+'@JVJPlantillaBundle/Resources/public/js/jqueryui.min.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.cookies.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.pjax.js'
+'@JVJPlantillaBundle/Resources/public/js/formalize.min.js'
+
+'@JVJPlantillaBundle/Resources/public/js/jquery.metadata.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.validate.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.checkboxes.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.chosen.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.fileinput.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.datatables.js'
+
+'@JVJPlantillaBundle/Resources/public/js/jquery.sourcerer.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.tipsy.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.calendar.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.inputtags.min.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.wymeditor.js'
+'@JVJPlantillaBundle/Resources/public/js/jquery.livequery.js'
+
+'@JVJPlantillaBundle/Resources/public/js/jquery.flot.min.js'
+'@JVJPlantillaBundle/Resources/public/js/application.js'
+
+filter='?yui_js'
+
+output='js/jvj.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+    
+    
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/excanvas.js"></script>
+    <![endif]-->
+
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+       
+
+
+   {%block nav2%} {%endblock%}
+    
+    <section id="maincontainer">
+      <div id="main" class="container_12">
+      
+    {%block acciones_arriba%}
+          
+   {#      <div class="quick-actions">
+  <a href="#quickpost" class="modal">
+    <span class="glyph new"></span>
+    Quick Post
+  </a>
+  
+  <a href="#">
+    <span class="glyph export"></span>
+    Export Table
+  </a>
+  
+  <a href="#" class="disabled">
+    <span class="glyph switch"></span>
+    Turn off
+  </a>
+</div>
+#} 
+
+{% endblock %}
+          
+          
+
+     {%block contenido%} {% endblock %}
+      
+      
+   
+ 
+ 
+          
+
+      
+      </div>
+    </section>
+    
+    <!--ipt type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-11172759-15']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </scri-->
+  </body>
+</html>

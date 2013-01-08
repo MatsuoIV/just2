@@ -1,0 +1,97 @@
+
+
+
+#
+#  User ROLE_USER
+just_user_role:
+    resource: "@Just2FrontendBundle/Resources/config/user.yml"
+    prefix:   /user/
+
+
+just_date:
+    resource: "@Just2FrontendBundle/Resources/config/dateJust.yml"
+    prefix:   /date/
+
+just_venue:
+    resource: "@Just2FrontendBundle/Resources/config/venueJust.yml"
+    prefix:   /venue/
+
+bid:
+    resource: "@Just2FrontendBundle/Resources/config/bid.yml"
+    prefix:   /
+
+Just2_frontend:
+    resource: "@Just2FrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+Just2Auction:
+    resource: "@Just2BackendBundle/Resources/config/routing/auction.yml"
+    prefix:   /admin/auction/ 
+
+Just2CategoryOcassion:
+    resource: "@Just2BackendBundle/Resources/config/routing/categoryocassion.yml"
+    prefix:   /admin/ocassion/category/ 
+
+Just2Bid:
+    resource: "@Just2BackendBundle/Resources/config/routing/bid.yml"
+    prefix:   /admin/bid/  
+    
+Just2Reservation:
+    resource: "@Just2BackendBundle/Resources/config/routing/reservation.yml"
+    prefix:   /admin/reservation/     
+    
+Just2Ocassion:
+    resource: "@Just2BackendBundle/Resources/config/routing/ocassion.yml"
+    prefix:   /admin/ocassion/ 
+    
+Just2Venue:
+    resource: "@Just2BackendBundle/Resources/config/routing/venue.yml"
+    prefix:   /admin/venue/    
+    
+Just2Date:
+    resource: "@Just2BackendBundle/Resources/config/routing/datejust.yml"
+    prefix:   /admin/date/
+    
+    
+Just2Member:
+    resource: "@Just2BackendBundle/Resources/config/routing/member.yml"
+    prefix:   /admin/member/
+
+jvj_user:
+    resource: "@JVJUserBundle/Resources/config/routing/user.yml"
+    prefix:   /admin/user/
+    
+jvj_users:
+    resource: "@JVJUserBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+jvj_role:
+    resource: "@JVJUserBundle/Resources/config/routing/role.yml"
+    prefix:   /admin/user/role/
+
+just2_backend:
+    resource: "@Just2BackendBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+JVJUtil:
+    resource: "@JVJUtilBundle/Resources/config/routing/country.yml"
+    prefix:   /admin/country/
+    
+JVJUtils:
+    resource: "@JVJUtilBundle/Resources/config/routing/department.yml"
+    prefix:   /admin/department/
+    
+JVJUtilss:
+    resource: "@JVJUtilBundle/Resources/config/routing/district.yml"
+    prefix:   /admin/district/
+
+
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal
+
+
+JVJPlantillaBundle:
+    resource: "@JVJPlantillaBundle/Resources/config/routing.yml"
+    prefix:   /

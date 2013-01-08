@@ -1,0 +1,9 @@
+{# extiende de la base html /Resources/views/base.html.twig #}
+{% extends 'JVJPlantillaBundle::base.html.twig' %}
+
+{% block title %}Principal{% endblock %}
+
+{# importante para activar el menu--2 #}
+{%block nav2%}{% include 'JVJPlantillaBundle::Navegador2/principal.html.twig' with {'menu':'conf_global'} %} {%endblock%}
+
+{% block contenido %} hola {{ name }}{% endblock %}

@@ -1,0 +1,13 @@
+{# empty Twig template #}
+{% extends 'JVJPlantilladautosBundle::base.html.twig' %}
+
+{% block titulo %}{{app.user.username   }}{%endblock%}
+
+{% block contenido %}
+<div class="cuerpo_vista"><h1>Perfil de Usuario</h1>
+
+{{ app.user.username }}</div>
+
+
+
+{%endblock%}

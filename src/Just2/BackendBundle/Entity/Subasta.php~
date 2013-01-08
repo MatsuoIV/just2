@@ -1,0 +1,176 @@
+<?php
+
+namespace Citas\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+/**
+ * @ORM\Table(name="subasta")
+ * @ORM\Entity()
+ */
+Class Subasta {
+
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Cita")
+     * @ORM\JoinColumn(name="cita_id", referencedColumnName="id")
+     */
+    private $cita;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $reservacion;
+
+    /**
+     * @ORM\Column(name="monto", type="decimal", scale=2, nullable=false)
+     * 
+     * @Assert\Regex(pattern="/^[0-9]+(\.\d{1,2})?$/",message="Monto incorrecto.")
+     * @Assert\Type(type="float")
+     * @Assert\Range(min = 0)
+     */
+    private $ofertaMaxima;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Miembro", inversedBy="subastas")
+     * @ORM\JoinColumn(name="miembro_id", referencedColumnName="id")
+     */
+    private $miembroGanador;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $estado;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set reservacion
+     *
+     * @param string $reservacion
+     * @return Subasta
+     */
+    public function setReservacion($reservacion)
+    {
+        $this->reservacion = $reservacion;
+    
+        return $this;
+    }
+
+    /**
+     * Get reservacion
+     *
+     * @return string 
+     */
+    public function getReservacion()
+    {
+        return $this->reservacion;
+    }
+
+    /**
+     * Set ofertaMaxima
+     *
+     * @param float $ofertaMaxima
+     * @return Subasta
+     */
+    public function setOfertaMaxima($ofertaMaxima)
+    {
+        $this->ofertaMaxima = $ofertaMaxima;
+    
+        return $this;
+    }
+
+    /**
+     * Get ofertaMaxima
+     *
+     * @return float 
+     */
+    public function getOfertaMaxima()
+    {
+        return $this->ofertaMaxima;
+    }
+
+    /**
+     * Set cita
+     *
+     * @param Citas\BackendBundle\Entity\Cita $cita
+     * @return Subasta
+     */
+    public function setCita(\Citas\BackendBundle\Entity\Cita $cita = null)
+    {
+        $this->cita = $cita;
+    
+        return $this;
+    }
+
+    /**
+     * Get cita
+     *
+     * @return Citas\BackendBundle\Entity\Cita 
+     */
+    public function getCita()
+    {
+        return $this->cita;
+    }
+
+    /**
+     * Set miembroGanador
+     *
+     * @param Citas\BackendBundle\Entity\Miembro $miembroGanador
+     * @return Subasta
+     */
+    public function setMiembroGanador(\Citas\BackendBundle\Entity\Miembro $miembroGanador = null)
+    {
+        $this->miembroGanador = $miembroGanador;
+    
+        return $this;
+    }
+
+    /**
+     * Get miembroGanador
+     *
+     * @return Citas\BackendBundle\Entity\Miembro 
+     */
+    public function getMiembroGanador()
+    {
+        return $this->miembroGanador;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param boolean $estado
+     * @return Subasta
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return boolean 
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+}

@@ -1,0 +1,7 @@
+venue_search:
+    pattern:  /
+    defaults: { _controller: Just2FrontendBundle:VenueJust:index}
+
+venue_results:
+    pattern:  /search
+    defaults: { _controller: Just2FrontendBundle:VenueJust:show}

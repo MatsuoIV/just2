@@ -1,0 +1,83 @@
+{# empty Twig template #}
+{% extends 'JVJPlantilladautosBundle::base.html.twig' %}
+
+{% block titulo %}Identificate{%endblock%}
+
+{% block contenido %}
+<div class="cuerpo_vista">
+<form action="{{ path('usuario_registro') }}" method="post" {{ form_enctype(formulario) }}>
+    <div class="column-left">
+        <div class="box-arriba"><h1>Registrate</h1></div>
+        <div class="box-content">
+    {{ form_errors(formulario) }}
+                <p>
+                {{ form_errors(formulario.nombres) }}{{ form_errors(formulario.apellidos)}}
+{{ form_label(formulario.nombres) }}
+                    </p>
+                <div class="combined">
+                    
+                    <p class="medium">
+                        
+                    {{ form_widget(formulario.nombres, { 'attr': { 'placeholder': 'Nombres' } } ) }}
+                    </p>
+                    <p class="medium">
+                    {{ form_widget(formulario.apellidos, { 'attr': { 'placeholder': 'Apellidos' } } ) }}
+                    </p>                    
+                    
+                </div>
+
+                <p>
+            {{ form_label(formulario.username, 'Nombre de Usuario') }}
+            {{ form_errors(formulario.username) }}
+            {{ form_widget(formulario.username, { 'attr': { 'class': '{validate:{required:true, minlength:3}}' } } ) }}
+                    </p>
+
+                    <p>
+            {{ form_label(formulario.password.first) }}
+            {{ form_errors(formulario.password.first) }}
+            {{ form_widget(formulario.password.first, { 'attr': { 'class': '{validate:{required:true, minlength:3}}' } } ) }}
+                        </p>
+                        <p>
+            {{ form_label(formulario.password.second) }}
+            {{ form_errors(formulario.password.second) }}
+            {{ form_widget(formulario.password.second, { 'attr': { 'class': "{validate:{equalTo: '#frontend_usuario_password_first'}}" } }) }}
+                            </p>
+
+    {{ form_rest(formulario) }}
+
+
+
+                        </div>
+                    <div class="action_bar_jvj">
+                            <input class="button blue" value="Registrar" type="submit" />
+                            
+                    </div>
+                    </div>
+                </form>
+
+
+<form name="login" action="{{ path("usuario_login_check") }}" method="post">
+                    <div class="column-right">
+                        <div class="box-arriba"><h1>Iniciar Sesion</h1></div>
+                        <div class="box-content">
+  {% if error %}
+                                <div class="error_login">{{ error.message | trans}}</div>
+    {% endif %}
+
+                                <input type="hidden" id="remember_me" name="_remember_me" value="off" />
+                                <p>
+                                    <label for="username" class=" required">Nombre de usuario</label>
+                                    <input type="text" class="{validate: {required: true}}" placeholder="Nombre de usuario o email" id="username" name="_username" value="{{ last_username }}" /><span class="icon tick valid"></span></p>
+                                <p>
+                                    <label for="password" class=" required">Contraseña</label>
+                                    <input type="password" class="{validate: {required: true}}" placeholder="Contraseña" id="password" name="_password" /><span class="icon tick valid"></span></p>
+                            </div>
+                            <div class="action_bar_jvj">
+                                <input type="submit"  class="button blue" name="login" value="Iniciar Sesion" />
+
+                            </div>
+
+                        </div>
+    </form></div>
+
+{%endblock%}

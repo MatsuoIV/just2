@@ -1,0 +1,37 @@
+<?php
+
+namespace JVJ\UtilBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * @ORM\Table(name="jvj_district")
+ * @ORM\Entity()
+ */
+class District {
+
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=200)
+     */
+    private $name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="JVJ\UtilBundle\Entity\Department")
+     */
+    private $Department;
+
+    public function __toString() {
+        return $this->getName();
+    }
+
+  
+}

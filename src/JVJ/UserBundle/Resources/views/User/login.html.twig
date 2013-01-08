@@ -1,0 +1,42 @@
+{% extends 'Just2FrontendBundle::Theme/base.html.twig' %}
+
+{% block titulo %}Login{%endblock%}
+
+     {%block content%}
+	<div class="container">
+              {% if error %}
+                                <div class="error_login">{{ error.message | trans}}</div>
+    {% endif %}
+		<div class="center">
+			<legend>Member Login</legend>
+			<form name="login" action="{{ path("usuario_login_check") }}" method="post">
+                            <input type="hidden" id="remember_me" name="_remember_me" value="off" />
+				<div class="control-group">
+					<label class="control-label">Your User ID:</label>
+					<div class="controls">
+						<input type="text" placeholder="Your User ID.." id="username" name="_username">
+						<span class="help-block"><a href="#">Forgotten my User ID</a></span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">Your User Password:</label>
+					<div class="controls">
+						<input type="password" placeholder="Your User Password.." id="password" name="_password">
+						<span class="help-block"><a href="#">Forgotten my Password</a></span>
+					</div>
+				</div>
+				<div class="span3">
+                                    <label class="checkbox"><input type="checkbox" id="remember_me" name="_remember_me" value="off" />Remember me on this computer</label>
+				</div>
+				<button type="submit" class="btn btn-danger">Submit</button>
+			</form>
+		<div>
+
+		
+	</div>
+
+
+
+
+
+ {% endblock %}

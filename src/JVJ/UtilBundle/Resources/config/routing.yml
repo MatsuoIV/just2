@@ -1,0 +1,3 @@
+JVJUtilBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: JVJUtilBundle:Default:index }

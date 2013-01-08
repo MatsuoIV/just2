@@ -1,0 +1,75 @@
+{# register.html.twig #}
+
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+{% block title %}View {{date.id}}{% endblock %}
+
+
+{% block content %}
+{%if info%}
+<div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Info!</strong> 
+{{info}}
+
+</div>{%endif%}
+
+
+<div class="row offset2 span8" style="border:solid 1px #000; border-radius: 8px">
+    <div class="row  " style="margin-top:5px">
+        <div class="span3 form-inline"><label style="padding:3px">Current bid:</label> 
+            <b>{%if highestBid%}{{highestBid.price}}{%else%}{{date.minprice}}{%endif%}</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span3" style="padding:3px"> Venue</div>
+        <div class="span4">: Revealed to winning bidder</div>
+    </div>
+    <div class="row">
+        <div class="span3" style="padding:3px"> Occasion</div>
+        <div class="span4">: {{date.ocassion.name}}</div>
+    </div>
+    <div class="row">
+        <div class="span3" style="padding:3px"> When</div>
+        <div class="span4">: {{date.dateEnd | date()}}</div>
+    </div>
+    <div class="row">
+        <div class="span3" style="padding:3px"> Bid end date</div>
+        <div class="span4">: Revealed to winning bidder</div>
+    </div> 
+
+    <div class="row">
+        <div class="span3" style="padding:3px"> Location</div>
+        <div class="span4">: {{date.venue.country.name}}, {{date.venue.department.name}}</div>
+    </div>         
+    <div class="row">
+        <div class="span3" style="padding:3px"> Bids</div>
+        <div class="span4">: {{totalbids}}</div>
+    </div>          
+</div>
+
+
+
+<div class="span8 offset2 row">
+    <table class="table table-bordered" style="margin-top: 15px">
+        <thead>
+            <tr><th>Member</th><th>Bid</th><th>Estate</th><th>Actions</th></tr>
+        </thead>
+{% for bid in bids %}
+        <tr>
+            <td>{{bid.member}}</td>
+            <td>$ {{bid.price}}.00</td>
+            <td>{# estatebid(bid.estate)#}</td>
+            <td>
+    {%if bid.estate == 2 %}
+
+                    <a  class="btn btn-success" href="{{ path('bids_date_acepted', { 'id': bid.id })}}">aceptar</a> 
+                    <a class="btn btn-danger"  href="{{ path('bids_date_rejectered', { 'id': bid.id })}}">rechazar</a>
+    {%else%} Acepted or rejectered  {%endif%}  </td> 
+            </tr>
+
+{% endfor %}
+        </table>
+    </div>
+
+{%endblock%}

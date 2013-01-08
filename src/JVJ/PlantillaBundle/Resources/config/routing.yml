@@ -1,0 +1,6 @@
+JVJPlantillaBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: JVJPlantillaBundle:Default:index }
+JVJPlantillaBundle_homepage:
+    pattern:  /ayuda
+    defaults: { _controller: JVJPlantillaBundle:Default:help }

@@ -1,0 +1,27 @@
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+{% block script %}
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+{% endblock %}
+
+{% block title %}Venue Search - {{ parent() }}{% endblock %}
+
+
+
+{% block content %}
+<!-- <form action="/app_dev.php/venue" method="POST" {{ form_enctype(form) }}> -->
+<form {{ form_enctype(form) }} action="/app_dev.php/venue" method='post'>
+	
+	{{ form_widget(form.name) }}
+
+	{{ dump(formSearch) }}
+
+	<fieldset>
+        <div class="form-actions">            
+            <input type="submit" value="Submit" class="btn btn-danger">
+        </div>
+    </fieldset>
+</form>
+{% endblock %}

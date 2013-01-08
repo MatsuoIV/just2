@@ -1,0 +1,15 @@
+{# empty Twig template #}
+{% extends 'JVJPlantillaBundle::nav2.html.twig' %}
+{%block navegador1%}{% include 'JVJPlantillaBundle::nav1.html.twig' with {'principal':'usuario'} %}{%endblock%}
+
+{%block navegador2%}
+
+<li {%if menu=='perf_usuario'%} class="active"{%endif%}>   <a href="{{ path('usuario_registro') }}">Perfil de Usuario</a></li>
+<li {%if menu=='edit_usuario'%} class="active"{%endif%}>  <a href="{{ path('usuario_registro') }}"{%if menu=='esta_general'%} class="active"{%endif%}>Editar Perfil</a></li>
+<li {%if menu=='regi_usuario'%} class="active"{%endif%}>       <a href="{{ path('usuario_registro') }}">Registrar Usuario</a></li>
+
+<li {%if menu=='gest_usuario'%} class="active"{%endif%}>       <a href="{{ path('usuario_registro') }}">Gestion de Usuarios</a></li>
+
+
+
+ {%endblock%}

@@ -1,0 +1,16 @@
+## YAML Template.
+bid_create_for_user:
+    pattern:  /bid/create
+    defaults: { _controller: Just2FrontendBundle:Bid:bid }
+    
+bids_date:
+    pattern:  /date/view/{id}
+    defaults: { _controller: Just2FrontendBundle:User:adminDateBids }
+    
+bids_date_acepted:
+    pattern:  /date/view/{id}/acepted
+    defaults: { _controller: Just2FrontendBundle:User:adminDateBidsAcepted }
+    
+bids_date_rejectered:
+    pattern:  /date/view/{id}/rejectered
+    defaults: { _controller: Just2FrontendBundle:User:adminDateBidsRejectered }

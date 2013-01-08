@@ -1,0 +1,105 @@
+<html lang="en">
+
+    <head>
+        <link rel="stylesheet" href="{{ asset('bundles/just2frontend/css/bootstrap.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/just2frontend/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/just2frontend/css/jquery.timepicker.css') }}" />
+
+        <!-- JavaScript -->
+        <script src="{{ asset('bundles/just2frontend/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('bundles/just2frontend/js/bootstrap.min.js') }}"></script>
+
+        <title>{% block title %}Just2{% endblock %}</title>
+    </head>
+    <body>
+	{# header #}
+            <header>
+                <div class="navbar">
+                    <div class="navbar-inner">			
+                        <div class="pull-right">				
+                            <ul class="nav">
+                                <li><a href="#">Categories</a></li>
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Jobs</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Site Map</a></li>
+                            </ul>
+                        </div>			
+                    </div>
+                    <div class="navbar-inner">			
+                        <div class="pull-right navbar-text ">
+                            {% if app.user %}
+                                <ul class="nav">
+                                    <li>
+                                        <a>Welcome! {{app.user}}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('usuario_logout') }}">
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                                {%else%}
+                                <ul class="nav">
+                                    <li><a href="{{ path('usuario_login') }}">Member Login</a></li>
+                                    <li><a href="{{ path('usuario_register') }}">Register</a></li>
+                                </ul>
+                                {%endif%}
+                            </div>
+                            <div class="navbar-text pull-right">1,129,978 members</div> 
+                        </div>
+                    </div>
+                </header>
+	{# end header #}
+
+	{# container #}
+                <div class="container">
+		{# banner #}
+                        <div class="row hero-unit">
+                            <div class="span2" style="text-align: right">
+                                <img src="img/just2_logo.png" height="200" width="200">
+                            </div>
+                            <div class="span8">
+                                <div class="row">
+                                    <div class="span9"><h1>Date someone real Have Fun</h1></div>
+                                </div>
+                                <div class="row">
+                                    <div class="span8">
+                                        <p>&nbsp;</p>
+                                        <ul class="nav nav-pills">						
+                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="#">Date Search</a></li>
+                                            <li><a href="#">Venue Search</a></li>
+                                            <li><a href="#">My Account</a></li>
+                                            <li><a href="#">Dating Service</a></li>				  			
+                                        </ul>
+                                    </div>	
+                                </div>
+                            </div>
+                        </div>
+		{# end banner #}
+
+
+		{# content #}
+		{% block content %}{% endblock %}
+		{# end content #}
+
+
+                    </div>
+	{# end container #}
+
+	{# advertisement #}
+	{% block advertisement %}{% endblock %}
+	{# end advertisement #}
+
+	{# footer #}
+                    <div class="container">
+                        <footer>
+                            <div class="row">			
+                                <a href="#">Register</a> | <a href="#">My Account</a> | <a href="#">Community</a> | <a href="#">Terms & Conditions</a> | <a href="#">Profile</a> | <a href="#">Quick date search</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Pending Acceptance</a> | <a href="#">Pending Acceptance</a> | <a href="#">Bid Declined</a> | <a href="#">Member Login</a> | <a href="#">id Accepted</a> | <a href="#">Winning bid</a> | <a href="#">Winning bid</a>
+                            </div>
+                        </footer>
+                    </div>
+	{# end footer #}
+                </body>
+            </html>

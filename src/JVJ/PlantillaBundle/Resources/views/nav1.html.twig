@@ -1,0 +1,49 @@
+{# empty Twig template #}
+
+<nav id="primary">
+    <ul>
+        <li{%if principal=='principal'%} class="active"{%endif%}>
+            <a href="dashboard" rel="Inicio" original-title="/">
+                <span class="glyph home"></span>
+
+            </a>
+        </li>
+        <li{%if principal=='usuario'%} class="active"{%endif%} >
+            <a rel="tooltip" original-title="Usuarios de sistema" href="admin/persona">
+                <span class="glyph user"></span>
+
+            </a>
+        </li>
+        <li {%if principal=='backend'%} class="active"{%endif%}>
+            <a rel="tooltip" original-title="Administrar"  href="/">
+                <span class="glyph cog"></span>
+
+            </a>
+        </li>
+
+        <li {%if principal=='reportes'%} class="active"{%endif%}>
+            <a rel="tooltip" original-title="Reportes"  href="/admin/reportes">
+                <span class="glyph print"></span>
+
+            </a>
+        </li>
+        <li {%if principal=='reportes'%} class="active"{%endif%}>
+            <a rel="tooltip" original-title="Datos de la empresa"  href="/admin/empresa">
+                <span class="glyph tools"></span>
+
+            </a>
+        </li>
+        <li {%if principal=='ayuda'%} class="active"{%endif%}>
+            <a rel="tooltip" original-title="Ayuda"  href="/help">
+                <span class="glyph help"></span>
+
+            </a>
+        </li>
+        <li  class="bottom">
+            <a rel="tooltip" original-title="salir del sistema" href="">
+                <span class="glyph quit"></span>
+                Salir
+            </a>
+        </li>
+    </ul>
+</nav>

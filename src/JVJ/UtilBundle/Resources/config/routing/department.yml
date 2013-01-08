@@ -1,0 +1,30 @@
+department:
+    pattern:  /
+    defaults: { _controller: "JVJUtilBundle:Department:index" }
+
+department_show:
+    pattern:  /{id}/ver
+    defaults: { _controller: "JVJUtilBundle:Department:show" }
+
+department_new:
+    pattern:  /nuevo
+    defaults: { _controller: "JVJUtilBundle:Department:new" }
+
+department_create:
+    pattern:  /create
+    defaults: { _controller: "JVJUtilBundle:Department:create" }
+    requirements: { _method: post }
+
+department_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "JVJUtilBundle:Department:edit" }
+
+department_update:
+    pattern:  /{id}/cambiar
+    defaults: { _controller: "JVJUtilBundle:Department:update" }
+    requirements: { _method: post }
+
+department_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "JVJUtilBundle:Department:delete" }
+    requirements: { _method: post }

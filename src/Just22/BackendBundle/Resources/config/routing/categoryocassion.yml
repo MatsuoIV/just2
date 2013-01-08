@@ -1,0 +1,30 @@
+categoryocassion:
+    pattern:  /
+    defaults: { _controller: "Just2BackendBundle:CategoryOcassion:index" }
+
+categoryocassion_show:
+    pattern:  /{id}/ver
+    defaults: { _controller: "Just2BackendBundle:CategoryOcassion:show" }
+
+categoryocassion_new:
+    pattern:  /nuevo
+    defaults: { _controller: "Just2BackendBundle:CategoryOcassion:new" }
+
+categoryocassion_create:
+    pattern:  /create
+    defaults: { _controller: "Just2BackendBundle:CategoryOcassion:create" }
+    requirements: { _method: post }
+
+categoryocassion_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "Just2BackendBundle:CategoryOcassion:edit" }
+
+categoryocassion_update:
+    pattern:  /{id}/cambiar
+    defaults: { _controller: "Just2BackendBundle:CategoryOcassion:update" }
+    requirements: { _method: post }
+
+categoryocassion_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "Just2BackendBundle:CategoryOcassion:delete" }
+    requirements: { _method: post }

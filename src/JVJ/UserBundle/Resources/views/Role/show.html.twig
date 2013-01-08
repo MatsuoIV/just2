@@ -1,0 +1,36 @@
+<div class="box column-right">
+    <div class="box-header"><span class="glyph eye"></span><h1>Show</h1></div>
+    <div class="box-content">
+        <table class="record_properties">
+            <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ entity.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ entity.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Role</th>
+                        <td>{{ entity.role }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="action_bar">
+<a  class="button blue" href="{{ path('role_edit', { 'id': entity.id }) }}">
+    <span class="glyph pencil"></span>
+    Editar
+</a>
+<form action="{{ path('role_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+        <button class="eliminar_derecha button blue">
+            <span class="glyph delete"></span>
+            Eliminar
+        </button>
+</form>
+                </div>
+            </div>
+        </div>
+
+

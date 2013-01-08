@@ -1,0 +1,30 @@
+ocassion:
+    pattern:  /
+    defaults: { _controller: "Just2BackendBundle:Ocassion:index" }
+
+ocassion_show:
+    pattern:  /{id}/ver
+    defaults: { _controller: "Just2BackendBundle:Ocassion:show" }
+
+ocassion_new:
+    pattern:  /nuevo
+    defaults: { _controller: "Just2BackendBundle:Ocassion:new" }
+
+ocassion_create:
+    pattern:  /create
+    defaults: { _controller: "Just2BackendBundle:Ocassion:create" }
+    requirements: { _method: post }
+
+ocassion_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "Just2BackendBundle:Ocassion:edit" }
+
+ocassion_update:
+    pattern:  /{id}/cambiar
+    defaults: { _controller: "Just2BackendBundle:Ocassion:update" }
+    requirements: { _method: post }
+
+ocassion_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "Just2BackendBundle:Ocassion:delete" }
+    requirements: { _method: post }

@@ -1,0 +1,30 @@
+district:
+    pattern:  /
+    defaults: { _controller: "JVJUtilBundle:District:index" }
+
+district_show:
+    pattern:  /{id}/ver
+    defaults: { _controller: "JVJUtilBundle:District:show" }
+
+district_new:
+    pattern:  /nuevo
+    defaults: { _controller: "JVJUtilBundle:District:new" }
+
+district_create:
+    pattern:  /create
+    defaults: { _controller: "JVJUtilBundle:District:create" }
+    requirements: { _method: post }
+
+district_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "JVJUtilBundle:District:edit" }
+
+district_update:
+    pattern:  /{id}/cambiar
+    defaults: { _controller: "JVJUtilBundle:District:update" }
+    requirements: { _method: post }
+
+district_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "JVJUtilBundle:District:delete" }
+    requirements: { _method: post }

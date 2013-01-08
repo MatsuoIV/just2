@@ -1,0 +1,60 @@
+<div class="box column-right">
+    <div class="box-header"><span class="glyph eye"></span><h1>Ver</h1></div>
+    <div class="box-content">
+        <table class="record_properties">
+            <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ entity.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Firstname</th>
+                        <td>{{ entity.firstName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Lastname</th>
+                        <td>{{ entity.lastName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Street</th>
+                        <td>{{ entity.street }}</td>
+                    </tr>
+                    <tr>
+                        <th>Postcode</th>
+                        <td>{{ entity.postCode }}</td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td>{{ entity.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile</th>
+                        <td>{{ entity.mobile }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dateofbirth</th>
+                        <td>{{ entity.dateOfBirth|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Gender</th>
+                        <td>{{ entity.gender }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="action_bar">
+<a  class="button blue" href="{{ path('member_edit', { 'id': entity.id }) }}">
+    <span class="glyph pencil"></span>
+    Editar
+</a>
+<form action="{{ path('member_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+        <button class="eliminar_derecha button blue">
+            <span class="glyph delete"></span>
+            Eliminar
+        </button>
+</form>
+                </div>
+            </div>
+        </div>
+
+

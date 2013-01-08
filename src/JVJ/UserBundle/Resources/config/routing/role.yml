@@ -1,0 +1,30 @@
+role:
+    pattern:  /
+    defaults: { _controller: "JVJUserBundle:Role:index" }
+
+role_show:
+    pattern:  /{id}/ver
+    defaults: { _controller: "JVJUserBundle:Role:show" }
+
+role_new:
+    pattern:  /nuevo
+    defaults: { _controller: "JVJUserBundle:Role:new" }
+
+role_create:
+    pattern:  /create
+    defaults: { _controller: "JVJUserBundle:Role:create" }
+    requirements: { _method: post }
+
+role_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "JVJUserBundle:Role:edit" }
+
+role_update:
+    pattern:  /{id}/cambiar
+    defaults: { _controller: "JVJUserBundle:Role:update" }
+    requirements: { _method: post }
+
+role_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "JVJUserBundle:Role:delete" }
+    requirements: { _method: post }

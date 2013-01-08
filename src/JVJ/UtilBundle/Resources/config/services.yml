@@ -1,0 +1,7 @@
+parameters:
+#    jvj_util.example.class: JVJ\UtilBundle\Example
+
+services:
+#    jvj_util.example:
+#        class: %jvj_util.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

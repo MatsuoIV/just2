@@ -1,0 +1,30 @@
+country:
+    pattern:  /
+    defaults: { _controller: "JVJUtilBundle:Country:index" }
+
+country_show:
+    pattern:  /{id}/ver
+    defaults: { _controller: "JVJUtilBundle:Country:show" }
+
+country_new:
+    pattern:  /nuevo
+    defaults: { _controller: "JVJUtilBundle:Country:new" }
+
+country_create:
+    pattern:  /create
+    defaults: { _controller: "JVJUtilBundle:Country:create" }
+    requirements: { _method: post }
+
+country_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "JVJUtilBundle:Country:edit" }
+
+country_update:
+    pattern:  /{id}/cambiar
+    defaults: { _controller: "JVJUtilBundle:Country:update" }
+    requirements: { _method: post }
+
+country_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "JVJUtilBundle:Country:delete" }
+    requirements: { _method: post }

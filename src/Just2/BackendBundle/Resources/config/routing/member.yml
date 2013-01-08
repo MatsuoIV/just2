@@ -1,0 +1,30 @@
+member:
+    pattern:  /
+    defaults: { _controller: "Just2BackendBundle:Member:index" }
+
+member_show:
+    pattern:  /{id}/ver
+    defaults: { _controller: "Just2BackendBundle:Member:show" }
+
+member_new:
+    pattern:  /nuevo
+    defaults: { _controller: "Just2BackendBundle:Member:new" }
+
+member_create:
+    pattern:  /create
+    defaults: { _controller: "Just2BackendBundle:Member:create" }
+    requirements: { _method: post }
+
+member_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "Just2BackendBundle:Member:edit" }
+
+member_update:
+    pattern:  /{id}/cambiar
+    defaults: { _controller: "Just2BackendBundle:Member:update" }
+    requirements: { _method: post }
+
+member_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "Just2BackendBundle:Member:delete" }
+    requirements: { _method: post }

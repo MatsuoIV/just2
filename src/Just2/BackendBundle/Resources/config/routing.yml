@@ -1,0 +1,3 @@
+just2_backend_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: Just2BackendBundle:Default:index }

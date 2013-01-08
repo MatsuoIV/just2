@@ -1,0 +1,33 @@
+
+{# JVJsoftware CRUD-Symfony2- #}
+
+{% extends 'JVJPlantillaBundle::base.html.twig' %}
+
+{%block titulo %}Editar User{%endblock%}
+
+{%-block nav2%}{%- include 'JVJPlantillaBundle::Navegador2/backend.html.twig' with {'menu':'User'}%}{%- endblock%}
+{%- block contenido %}
+
+<form action="{{ path('user_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <div class="box">
+        <div class="box-header"><h1>{{block('titulo')}}</h1></div>
+        <div class="box-content">
+    {{ form_widget(edit_form) }}
+            </div>
+            <div class="action_bar">
+                <button class="button blue" type="submit"><span class="glyph inbox"></span>Guardar</button>
+                                        <form action="{{ path('user_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+        <button class="eliminar_derecha button blue">
+            <span class="glyph delete"></span>
+            Eliminar
+        </button>
+</form>
+
+
+            </div>
+        </div>
+    </form>
+{%endblock%}
+
+

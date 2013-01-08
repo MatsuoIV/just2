@@ -1,0 +1,30 @@
+bid:
+    pattern:  /
+    defaults: { _controller: "Just2BackendBundle:Bid:index" }
+
+bid_show:
+    pattern:  /{id}/ver
+    defaults: { _controller: "Just2BackendBundle:Bid:show" }
+
+bid_new:
+    pattern:  /nuevo
+    defaults: { _controller: "Just2BackendBundle:Bid:new" }
+
+bid_create:
+    pattern:  /create
+    defaults: { _controller: "Just2BackendBundle:Bid:create" }
+    requirements: { _method: post }
+
+bid_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "Just2BackendBundle:Bid:edit" }
+
+bid_update:
+    pattern:  /{id}/cambiar
+    defaults: { _controller: "Just2BackendBundle:Bid:update" }
+    requirements: { _method: post }
+
+bid_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "Just2BackendBundle:Bid:delete" }
+    requirements: { _method: post }

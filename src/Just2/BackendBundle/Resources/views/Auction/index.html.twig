@@ -1,0 +1,52 @@
+
+{# JVJsoftware CRUD-Symfony2- #}
+
+{% extends 'JVJPlantillaBundle::base.html.twig' %}
+
+{%block titulo %}List  Auction{%endblock%}
+
+{%block nav2%}{%- include 'JVJPlantillaBundle::Navegador2/backend.html.twig' with {'menu':'Auction'}%}{%- endblock%}
+{% block contenido %}
+<div id="ventana_normal" class="box">
+    <div class="box-header"><h1>{{block('titulo')}}</h1></div>
+
+    <table class="datatable">
+        <thead>
+            <tr>
+                    <th>Id</th>
+                    <th>Reservation</th>
+                    <th>Winningbid</th>
+                    <th>State</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+    {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('auction_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.reservation }}</td>
+                        <td>{{ entity.winningBid }}</td>
+                        <td>{{ entity.state }}</td>
+                        <td>
+                <ul>
+                     <a class="button small"  onclick="abreventana(this.href); return false;" rel="tooltip_s" original-title="show" href="{{ path('auction_show', { 'id': entity.id }) }}"><span class="glyph show"></span></a>
+                     <a class="button small"  onclick="abreventana(this.href); return false;" rel="tooltip_s" original-title="edit" href="{{ path('auction_edit', { 'id': entity.id }) }}"><span class="glyph edit"></span></a>
+                </ul>
+                            </td>
+                        </tr>
+    {% endfor %}
+                    </tbody>
+                </table>
+
+
+                <div class="action_bar">
+                    <a id='accion_nuevo' class="button blue" href="#"><span class="glyph plus2"></span><font id="muestra_crear">New </font> Auction</a>
+                </div>
+
+            </div>
+
+            <div id="ventana_derecha">
+            </div>
+
+
+{%- endblock%}

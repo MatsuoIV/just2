@@ -1,0 +1,30 @@
+venue:
+    pattern:  /
+    defaults: { _controller: "Just2BackendBundle:Venue:index" }
+
+venue_show:
+    pattern:  /{id}/ver
+    defaults: { _controller: "Just2BackendBundle:Venue:show" }
+
+venue_new:
+    pattern:  /nuevo
+    defaults: { _controller: "Just2BackendBundle:Venue:new" }
+
+venue_create:
+    pattern:  /create
+    defaults: { _controller: "Just2BackendBundle:Venue:create" }
+    requirements: { _method: post }
+
+venue_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "Just2BackendBundle:Venue:edit" }
+
+venue_update:
+    pattern:  /{id}/cambiar
+    defaults: { _controller: "Just2BackendBundle:Venue:update" }
+    requirements: { _method: post }
+
+venue_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "Just2BackendBundle:Venue:delete" }
+    requirements: { _method: post }

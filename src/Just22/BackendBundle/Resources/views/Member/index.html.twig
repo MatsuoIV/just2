@@ -1,0 +1,62 @@
+
+{# JVJsoftware CRUD-Symfony2- #}
+
+{% extends 'JVJPlantillaBundle::base.html.twig' %}
+
+{%block titulo %}Lista de  Member{%endblock%}
+
+{%block nav2%}{%- include 'JVJPlantillaBundle::Navegador2/backend.html.twig' with {'menu':'Member'}%}{%- endblock%}
+{% block contenido %}
+<div id="ventana_normal" class="box">
+    <div class="box-header"><h1>{{block('titulo')}}</h1></div>
+
+    <table class="datatable">
+        <thead>
+            <tr>
+                    <th>Id</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Street</th>
+                    <th>Postcode</th>
+                    <th>Phone</th>
+                    <th>Mobile</th>
+                    <th>Dateofbirth</th>
+                    <th>Gender</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+    {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('member_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.firstName }}</td>
+                        <td>{{ entity.lastName }}</td>
+                        <td>{{ entity.street }}</td>
+                        <td>{{ entity.postCode }}</td>
+                        <td>{{ entity.phone }}</td>
+                        <td>{{ entity.mobile }}</td>
+                        <td>{% if entity.dateOfBirth %}{{ entity.dateOfBirth|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ entity.gender }}</td>
+                        <td>
+                <ul>
+                     <a class="button small"  onclick="abreventana(this.href); return false;" rel="tooltip_s" original-title="show" href="{{ path('member_show', { 'id': entity.id }) }}"><span class="glyph show"></span></a>
+                     <a class="button small"  onclick="abreventana(this.href); return false;" rel="tooltip_s" original-title="edit" href="{{ path('member_edit', { 'id': entity.id }) }}"><span class="glyph edit"></span></a>
+                </ul>
+                            </td>
+                        </tr>
+    {% endfor %}
+                    </tbody>
+                </table>
+
+
+                <div class="action_bar">
+                    <a id='accion_nuevo' class="button blue" href="#"><span class="glyph plus2"></span><font id="muestra_crear">Crear </font> Member</a>
+                </div>
+
+            </div>
+
+            <div id="ventana_derecha">
+            </div>
+
+
+{%- endblock%}

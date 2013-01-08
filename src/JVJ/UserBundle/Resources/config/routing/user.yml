@@ -1,0 +1,52 @@
+user:
+    pattern:  /
+    defaults: { _controller: "JVJUserBundle:User:index" }
+
+user_show:
+    pattern:  /{id}/ver
+    defaults: { _controller: "JVJUserBundle:User:show" }
+
+user_new:
+    pattern:  /nuevo
+    defaults: { _controller: "JVJUserBundle:User:new" }
+
+user_create:
+    pattern:  /create
+    defaults: { _controller: "JVJUserBundle:User:create" }
+    requirements: { _method: post }
+
+user_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "JVJUserBundle:User:edit" }
+
+user_update:
+    pattern:  /{id}/cambiar
+    defaults: { _controller: "JVJUserBundle:User:update" }
+    requirements: { _method: post }
+
+user_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "JVJUserBundle:User:delete" }
+    requirements: { _method: post }
+
+    
+    
+
+usuario_registro:
+    pattern:  /register
+    defaults: { _controller: JVJUsuarioBundle:Default:registro }
+# Ruta para la acción que comprueba el login del frontend
+
+
+usuario_login_check:
+    pattern:   /login_check
+
+# Ruta para la acción de logout de los usuarios del frontend extranet
+usuario_logout:
+    pattern:   /logout
+    
+    
+usuario_login:
+    pattern:  /login
+    defaults: { _controller: JVJUserBundle:Default:login }
+    

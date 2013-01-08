@@ -1,0 +1,13 @@
+usuario_register:
+    pattern:  /register
+    defaults: { _controller: Just2FrontendBundle:User:register }
+    
+
+usuario_account_activate:
+    pattern:  /activation/{email}/{codeActivate}
+    defaults: { _controller: Just2FrontendBundle:User:userActive}    
+    
+    
+just2_frontend_homepage:
+    pattern:  /
+    defaults: { _controller: Just2FrontendBundle:Default:index }

@@ -1,0 +1,30 @@
+auction:
+    pattern:  /
+    defaults: { _controller: "Just2BackendBundle:Auction:index" }
+
+auction_show:
+    pattern:  /{id}/ver
+    defaults: { _controller: "Just2BackendBundle:Auction:show" }
+
+auction_new:
+    pattern:  /nuevo
+    defaults: { _controller: "Just2BackendBundle:Auction:new" }
+
+auction_create:
+    pattern:  /create
+    defaults: { _controller: "Just2BackendBundle:Auction:create" }
+    requirements: { _method: post }
+
+auction_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "Just2BackendBundle:Auction:edit" }
+
+auction_update:
+    pattern:  /{id}/cambiar
+    defaults: { _controller: "Just2BackendBundle:Auction:update" }
+    requirements: { _method: post }
+
+auction_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "Just2BackendBundle:Auction:delete" }
+    requirements: { _method: post }

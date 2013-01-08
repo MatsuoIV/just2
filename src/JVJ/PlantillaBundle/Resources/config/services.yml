@@ -1,0 +1,7 @@
+parameters:
+#    jvj_plantilla.example.class: JVJ\PlantillaBundle\Example
+
+services:
+#    jvj_plantilla.example:
+#        class: %jvj_plantilla.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,7 @@
+parameters:
+#    jvj_user.example.class: JVJ\UserBundle\Example
+
+services:
+#    jvj_user.example:
+#        class: %jvj_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

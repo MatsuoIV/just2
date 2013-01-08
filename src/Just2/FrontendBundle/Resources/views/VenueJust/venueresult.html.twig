@@ -1,0 +1,102 @@
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+{% block script %}
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script src="js/jquery.timepicker.js"></script>
+
+    <script>
+    $(function() {
+        $( "#datepicker" ).datepicker({
+            showOn: "button",
+            buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+            buttonImageOnly: true
+        });
+    });
+    $(function() {
+        $( "#datepicker2" ).datepicker({
+            showOn: "button",
+            buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+            buttonImageOnly: true
+        });
+    });
+    $(function() {
+    	$('#timepicker').timepicker();
+    });
+    </script>
+
+{% endblock %}
+
+{% block title %}Venue id Results - {{ parent() }}{% endblock %}
+
+
+{% block content %}
+
+{# dump(vs) #}
+
+	{% for id in vs %}			
+		<div class="row">
+			<table class="table table-bordered">
+				<tr>
+					<th><label class="checkbox"><input type="checkbox">Add to watch list</label></th>
+				</tr>
+				<tr>
+					<td rowspan="7" class="span6" style="text-align: center">
+						<img src="img/img_vp_1.png">
+					</td>
+					<td>
+						<div class="span3">Venue:</div>
+						<div class="span3">{{ id.venue.name }}</div>
+					</td>
+				</tr>
+				<tr>					
+					<td>
+						<div class="span3">Occasion:</div>
+						<div class="span3">{{ id.ocassion.name }}</div>
+					</td>
+				</tr>
+				<tr>					
+					<td>
+						<div class="span3">When:</div>
+						<div class="span3"><input type="text" id="datepicker" class="span2"></div>
+					</td>
+				</tr>
+				<tr>					
+					<td>
+						<div class="span3">Time:</div>
+						<div class="span3"><input type="text" id="timepicker" class="span1"></div>
+					</td>
+				</tr>
+				<tr>					
+					<td>
+						<div class="span3">Bid Start:</div>
+						<div class="span3"><input type="text" id="datepicker2" class="span2"></div>
+					</td>
+				</tr>
+				<tr>					
+					<td>
+						<div class="span3">Location:</div>
+						<div class="span3">{{ id.venue.address }}</div>
+					</td>
+				</tr>
+				<tr>					
+					<td>
+						<div class="span3">Seat price:</div>
+						<div class="span3">${{ id.ocassion.price }} AU</div>
+					</td>
+				</tr>				
+				<tr>					
+					<td style="text-align: center">
+						<div><button type="submit" class="btn btn-primary">More details</button></div>
+					</td>
+					<td>
+						<div class="span3 offset3"><button type="submit" class="btn btn-primary">Reserve</button></div>
+					</td>
+				</tr>
+			</table>
+		</div>	
+	{% endfor %}
+
+{% endblock %}

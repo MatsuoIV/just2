@@ -1,0 +1,14 @@
+<form action="{{ path('ocassion_create') }}" method="post" {{ form_enctype(form) }}>
+    <div class="box column-right">
+        <div class="box-header"><span class="glyph plus"></span><h1>New</h1></div>
+        <div class="box-content">
+    {{ form_widget(form) }}
+            </div>
+            <div class="action_bar">
+                <button class="button blue" type="submit"><span class="glyph inbox"></span>Save</button>
+                <a class="cierraventanita button red" onclick="cerrarventanita(); return false;">Close</a>
+                                        
+
+            </div>
+        </div>
+    </form>

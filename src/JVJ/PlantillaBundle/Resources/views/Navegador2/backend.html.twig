@@ -1,0 +1,19 @@
+{# empty Twig template #}
+{% extends 'JVJPlantillaBundle::nav2.html.twig' %}
+{%block navegador1%}{% include 'JVJPlantillaBundle::nav1.html.twig' with {'principal':'backend'} %}{%endblock%}
+
+{%block navegador2%}
+
+<li {%if menu=='Bid'%} class="active"{%endif%}><a href="/admin/bid">Bid</a></li>
+<li {%if menu=='Marca'%} class="active"{%endif%}><a href="/admin/auction">Auction</a></li>
+<li {%if menu=='Clases'%} class="active"{%endif%}><a href="/admin/reservation">Reservation</a></li>
+<li {%if menu=='Modelo'%} class="active"{%endif%}><a href="/admin/date">Date</a></li>
+<li {%if menu=='Modelo'%} class="active"{%endif%}><a href="/admin/ocassion">Ocassion</a></li>
+<li {%if menu=='Modelo'%} class="active"{%endif%}><a href="/admin/ocassion/category">Categoria Ocassion</a></li>
+<li {%if menu=='Modelo'%} class="active"{%endif%}><a href="/admin/venue">Venue</a></li>
+
+
+<li {%if menu=='Departamento'%} class="active"{%endif%}><a href="/admin/country">Country</a></li>
+<li {%if menu=='Distritos'%} class="active"{%endif%}><a href="/admin/department">Department</a></li>
+<li {%if menu=='Distritos'%} class="active"{%endif%}><a href="/admin/district">District</a></li>
+ {%endblock%}

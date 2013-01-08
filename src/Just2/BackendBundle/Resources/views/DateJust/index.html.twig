@@ -1,0 +1,56 @@
+
+{# JVJsoftware CRUD-Symfony2- #}
+
+{% extends 'JVJPlantillaBundle::base.html.twig' %}
+
+{%block titulo %}Lista de  DateJust{%endblock%}
+
+{%block nav2%}{%- include 'JVJPlantillaBundle::Navegador2/backend.html.twig' with {'menu':'DateJust'}%}{%- endblock%}
+{% block contenido %}
+<div id="ventana_normal" class="box">
+    <div class="box-header"><h1>{{block('titulo')}}</h1></div>
+
+    <table class="datatable">
+        <thead>
+            <tr>
+                    <th>Id</th>
+                    <th>Detaildate</th>
+                    <th>Minprice</th>
+                    <th>Createdat</th>
+                    <th>Updatedat</th>
+                    <th>Estate</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+    {% for entity in entities %}
+                    <tr>
+                        <td><a href="{{ path('datejust_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                        <td>{{ entity.detailDate }}</td>
+                        <td>{{ entity.minPrice }}</td>
+                        <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ entity.estate }}</td>
+                        <td>
+                <ul>
+                     <a class="button small"  onclick="abreventana(this.href); return false;" rel="tooltip_s" original-title="show" href="{{ path('datejust_show', { 'id': entity.id }) }}"><span class="glyph show"></span></a>
+                     <a class="button small"  onclick="abreventana(this.href); return false;" rel="tooltip_s" original-title="edit" href="{{ path('datejust_edit', { 'id': entity.id }) }}"><span class="glyph edit"></span></a>
+                </ul>
+                            </td>
+                        </tr>
+    {% endfor %}
+                    </tbody>
+                </table>
+
+
+                <div class="action_bar">
+                    <a id='accion_nuevo' class="button blue" href="#"><span class="glyph plus2"></span><font id="muestra_crear">Crear </font> DateJust</a>
+                </div>
+
+            </div>
+
+            <div id="ventana_derecha">
+            </div>
+
+
+{%- endblock%}

@@ -1,0 +1,21 @@
+{% extends 'JVJPlantillaBundle::login.html.twig' %}
+
+{% block titulo %}Login{%endblock%}
+
+{% block login %}
+   {% if error %}
+        <div>{{ error.message }}</div>
+    {% endif %}
+<form action="{{ path("usuario_login_check") }}" method="post" novalidate="novalidate">
+<input type="hidden" id="remember_me" name="_remember_me" value="off" />
+ <p><input type="text" class="{validate: {required: true}} error" placeholder="Nombre de usuario o email" id="username" name="_username" value="{{ last_username }}" /><span class="icon tick valid"></span></p>
+ <p><input type="password" class="{validate: {required: true}} error" placeholder="Contraseña" id="password" name="_password" /><span class="icon tick valid"></span></p>
+ 
+  <button class="button blue" type="submit"><span class="glyph key"></span>Login</button>
+
+</form>
+{% endblock%}
+
+
+
+

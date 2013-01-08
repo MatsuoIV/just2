@@ -1,0 +1,138 @@
+{# register.html.twig #}
+
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+{% block title %}Member profile - {{ parent() }}{% endblock %}
+
+{% block content %}
+
+
+    
+    <div class="row">
+        <div class="span3">
+            <h3>About Me</h3>
+        </div>
+        </div>
+        <div class="row">
+            <form class="form-horizontal" action="{{ path('member_delete', { 'id': entity.id }) }}" method="post">
+                <div class="span3">
+                    <div class="row" style="text-align:center">
+                        <img src="{{ app.request.getBaseURL() }}/img/user.png">                        
+                    </div>
+                    <div class="row" style="text-align:center">
+                        <p><a href="#">Upload Photo</a></p>
+                    </div>
+                    <div class="row" style="text-align:center">
+                        <p>{{ entity.firstName }} {{ entity.lastName }}</p>
+                    </div>
+                    <div class="row" style="text-align:center">
+                        <p>ID: {{ entity.id }}</p>
+                    </div>
+                </div>
+                <div class="span9">
+                    <fieldset>
+                        <legend>My profile</legend>
+                        <!--gender-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Gender</div>
+                            <div class="span3">{{ entity.gender }}</div><br /><br />
+                        </div>
+                        <!--DOB-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">DOB</div>
+                            <div class="span3">{{ entity.dateOfBirth|date('Y-m-d H:i:s') }}</div><br /><br />   
+                        </div>
+                        <!--age-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Age</div>
+                            <div class="span3">38</div><br /><br />
+                        </div>
+                        <!--height-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Height</div>
+                            <div class="span3">{{ entity.height }} cm</div><br /><br />
+                        </div>
+                        <!--eye colour-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Eye colour</div>
+                            <div class="span3">{{ entity.eyeColour }}</div><br /><br />
+                        </div>
+                        <!--hair colour-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Hair colour</div>
+                            <div class="span3">{{ entity.hairColour }}</div><br /><br />                      
+                        </div>
+                        <!--nationality-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Nationality</div>
+                            <div class="span3">{{ entity.nationality }}</div><br /><br />
+                        </div>
+                        <!--location-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Location/State</div>
+                            <div class="span3">{{ entity.state }}</div><br /><br />
+                        </div>
+                        <!--country-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Country</div>
+                            <div class="span3">{{ entity.country }}</div><br /><br />
+                        </div>
+                        <!--country-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Question</div>
+                            <div class="span3">{{ entity.question }}</div><br /><br />
+                        </div>
+
+                        <legend>About me...</legend>
+                        <!--date preference-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Date preference</div>
+                            <div class="span3">{{ entity.datePreference }}</div><br /><br />
+                        </div>
+                        <!--smoker-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Smoker</div>
+                            <div class="span3">{{ entity.smoker }}</div><br /><br />
+                        </div>
+                        <!--children-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Children</div>
+                            <div class="span3">{{ entity.children }}</div><br /><br />
+                        </div>
+                        <!--relationship-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Relationship</div>
+                            <div class="span3">{{ entity.relationship }}</div><br /><br />
+                        </div>
+                        <!--profession-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Profession</div>
+                            <div class="span3">{{ entity.profession }}</div><br /><br />
+                        </div>
+                        <!--personality-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Personality</div>
+                            <div class="span4">{{ entity.personality }}</div><br /><br /><br />
+                        </div>
+                        <!--interests-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Interests</div>
+                            <div class="span4">{{ entity.interests }}</div><br /><br />
+                        </div>
+                        <div class="row">
+                            <div class="form-actions">
+                                <div class="span1">
+                                    <a href="{{ path('member_edit', { 'id': entity.id }) }}" class="btn btn-danger">Edit</a>
+                                </div>
+                                {{ form_widget(delete_form, { 'attr': {'class': 'span1'} } ) }}
+                                <button class="btn btn-danger">
+                                    <span class="glyph delete">Delete</span>                    
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>              
+            </form>
+        </div>
+
+{% endblock %}

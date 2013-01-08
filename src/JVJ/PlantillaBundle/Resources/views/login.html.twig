@@ -1,0 +1,71 @@
+<!-- app/Resources/views/base.html.twig -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html"; charset=utf-8" />
+        <title>{% block titulo %}JVJrecoasys{% endblock %} - Systema de Recibo y Cobranza de Agua</title>
+        <!--[if lt IE 9]>
+            <script 
+src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+                       {% block stylesheets %}
+
+         <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/reset.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/icons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/formalize.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/checkboxes.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/sourcerer.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/jqueryui.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/tipsy.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/calendar.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/tags.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/visualize.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/fonts.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/selectboxes.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/960.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/jvjplantilla/css/main.css') }}" />
+    <link rel="stylesheet" media="all and (orientation:portrait)" href="{{ asset('bundles/jvjplantilla/css/portrait.css') }}" />
+    <link rel="apple-touch-icon" href="{{ asset('bundles/jvjplantilla/apple-touch-icon-precomposed.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('bundles/jvjplantilla/favicon.ico" type="image/x-icon') }}" />
+    
+    
+    
+        <!-- JavaScript -->
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jqueryui.min.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.cookies.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.pjax.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/formalize.min.js') }}"></script>
+
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.metadata.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.validate.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.checkboxes.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.chosen.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.fileinput.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.datatables.js') }}"></script>
+
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.sourcerer.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.tipsy.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.calendar.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.inputtags.min.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.wymeditor.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.livequery.js') }}"></script>
+
+    <script src="{{ asset('bundles/jvjplantilla/js/jquery.flot.min.js') }}"></script>
+    <script src="{{ asset('bundles/jvjplantilla/js/application.js') }}"></script>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/excanvas.js"></script>
+    <![endif]-->
+
+        {% endblock %}
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body  id="login">
+        <div id="login_container">
+            <div id="login_form">
+                {%block login%}{%endblock%}
+            </div>
+        </div>
+  </body>
+</html>

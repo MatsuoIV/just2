@@ -1,0 +1,165 @@
+<?php
+
+namespace Citas\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
+/**
+ * @ORM\Table(name="miembro")
+ * @ORM\Entity()
+ */
+class Miembro {
+
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Cita", mappedBy="responsable")
+     */
+    protected $citas;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Oferta", mappedBy="miembro")
+     */
+    protected $ofertas;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Subasta", mappedBy="miembroGanador")
+     */
+    protected $subastas;
+
+    /**
+     * @ORM\OneToOne(targetEntity="JVJ\UsuarioBundle\Entity\Usuario")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     */
+    private $usuario;
+    
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->citas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ofertas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->subastas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Add citas
+     *
+     * @param Citas\BackendBundle\Entity\Cita $citas
+     * @return Miembro
+     */
+    public function addCita(\Citas\BackendBundle\Entity\Cita $citas)
+    {
+        $this->citas[] = $citas;
+    
+        return $this;
+    }
+
+    /**
+     * Remove citas
+     *
+     * @param Citas\BackendBundle\Entity\Cita $citas
+     */
+    public function removeCita(\Citas\BackendBundle\Entity\Cita $citas)
+    {
+        $this->citas->removeElement($citas);
+    }
+
+    /**
+     * Get citas
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getCitas()
+    {
+        return $this->citas;
+    }
+
+    /**
+     * Add ofertas
+     *
+     * @param Citas\BackendBundle\Entity\Oferta $ofertas
+     * @return Miembro
+     */
+    public function addOferta(\Citas\BackendBundle\Entity\Oferta $ofertas)
+    {
+        $this->ofertas[] = $ofertas;
+    
+        return $this;
+    }
+
+    /**
+     * Remove ofertas
+     *
+     * @param Citas\BackendBundle\Entity\Oferta $ofertas
+     */
+    public function removeOferta(\Citas\BackendBundle\Entity\Oferta $ofertas)
+    {
+        $this->ofertas->removeElement($ofertas);
+    }
+
+    /**
+     * Get ofertas
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getOfertas()
+    {
+        return $this->ofertas;
+    }
+
+    /**
+     * Add subastas
+     *
+     * @param Citas\BackendBundle\Entity\Subasta $subastas
+     * @return Miembro
+     */
+    public function addSubasta(\Citas\BackendBundle\Entity\Subasta $subastas)
+    {
+        $this->subastas[] = $subastas;
+    
+        return $this;
+    }
+
+    /**
+     * Remove subastas
+     *
+     * @param Citas\BackendBundle\Entity\Subasta $subastas
+     */
+    public function removeSubasta(\Citas\BackendBundle\Entity\Subasta $subastas)
+    {
+        $this->subastas->removeElement($subastas);
+    }
+
+    /**
+     * Get subastas
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSubastas()
+    {
+        return $this->subastas;
+    }
+
+
+
+
+}

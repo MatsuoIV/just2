@@ -1,0 +1,23 @@
+
+{# JVJsoftware CRUD-Symfony2- #}
+{% extends 'JVJPlantillaBundle::base.html.twig' %}
+
+{%block titulo %}Nuevo CategoryOcassion{%endblock%}
+
+{%-block nav2%}{%- include 'JVJPlantillaBundle::Navegador2/backend.html.twig' with {'menu':'CategoryOcassion'}%}{%- endblock%}
+{%- block contenido %}
+
+<form action="{{ path('categoryocassion_create') }}" method="post" {{ form_enctype(form) }}>
+    <div class="box">
+        <div class="box-header"><h1>{{block('titulo')}}</h1></div>
+        <div class="box-content">
+    {{ form_widget(form) }}
+            </div>
+            <div class="action_bar">
+                <button class="button blue" type="submit"><span class="glyph inbox"></span>Save</button>
+                                        
+
+            </div>
+        </div>
+    </form>
+{%endblock%}

@@ -1,0 +1,168 @@
+{# register.html.twig #}
+
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+{% block title %}Registration - {{ parent() }}{% endblock %}
+
+
+{% block content %}
+{%if info%}
+<div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Info!</strong> 
+{{info}}
+
+</div>{%endif%}
+<div class="row">
+    <div class="span3">
+        <h3>Registration</h3>
+    </div>
+</div>
+
+	{# begin form #}
+<form {{ form_enctype(formUser) }} method="POST" action="/app_dev.php/register">
+
+            {{ form_errors(formUser) }}
+    <fieldset>
+        <legend>Your Details:</legend>
+
+        <div class="row">
+            <div class="span3">
+					{{ form_label(formUser.member.firstName, 'First Name: *') }}
+                    <div class="error">{{ form_errors(formUser.member.firstName) }}</div>
+					{{ form_widget(formUser.member.firstName, { 'attr': {
+						'placeholder' : 'Type your name...',
+						
+						} }) }}
+                </div>
+                <div class="span3">
+					{{ form_label(formUser.member.lastName, 'Last Name: *') }}
+                        <div class="error">{{ form_errors(formUser.member.lastName) }}</div>					
+					{{ form_widget(formUser.member.lastName, { 'attr': {
+						'placeholder' : 'Type your last name...',
+						'class' : 'span3',
+						} }) }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="span4">
+					{{ form_label(formUser.email, 'Email address: *') }}
+                            <div class="error">{{ form_errors(formUser.email) }}</div>					
+					{{ form_widget(formUser.email, { 'attr': {
+						'placeholder' : 'Type your Email...',
+						'class' : 'span4',
+						} }) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span3">
+					{{ form_label(formUser.member.street, 'Street: *') }}					
+					{{ form_widget(formUser.member.street, { 'attr': {
+						'placeholder' : 'Type your street...',
+						'class' : 'span3',
+						} }) }}		
+                                <div class="error">{{ form_errors(formUser.member.street) }}</div>
+                            </div>
+
+                            <div class="span2">
+					{{ form_label(formUser.member.postCode, 'Post code: *') }}
+					{{ form_widget(formUser.member.postCode, { 'attr': {
+						'class' : 'span2',
+						} }) }}		
+                                    <div class="error">{{ form_errors(formUser.member.postCode) }}</div>					
+                                </div>
+                                <div class="span2">
+					{{ form_label(formUser.member.country, 'Country or region: *') }}					
+					{{ form_widget(formUser.member.country, { 'attr': {
+						'class' : 'span2',
+						} }) }}
+                                        <div class="error">{{ form_errors(formUser.member.country) }}</div>
+                                    </div>
+                                    <div class="span3">
+					{{ form_label(formUser.member.state, 'State or territory: *') }}
+					{{ form_widget(formUser.member.state, { 'attr': {
+						'class' : 'span3',
+						} }) }}		
+                                            <div class="error">{{ form_errors(formUser.member.state) }}</div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="span2">
+					{{ form_label(formUser.member.phone, 'Phone Number: *') }}
+					{{ form_widget(formUser.member.phone, { 'attr': {
+						'class' : 'span2',
+						} }) }}		
+                                                <div class="error">{{ form_errors(formUser.member.phone) }}</div>					
+                                            </div>
+                                            <div class="span2">
+					{{ form_label(formUser.member.mobile, 'Mobile Number: *') }}
+					{{ form_widget(formUser.member.mobile, { 'attr': {
+						'class' : 'span2',
+						} }) }}		
+                                                    <div class="error">{{ form_errors(formUser.member.mobile) }}</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="span12">
+					{{ form_label(formUser.member.dateOfBirth, 'Date of birth: *')}}
+					{{ form_widget(formUser.member.dateOfBirth) }}						
+                                                        <div class="error">{{ form_errors(formUser.member.dateOfBirth) }}</div>
+                                                    </div>
+                                                </div>
+
+                                            </fieldset>
+
+                                            <fieldset>
+                                                <legend>User ID and Password:</legend>
+                                                <div class="row">
+                                                    <div class="span3">
+					{{ form_label(formUser.username, 'Create your User ID: *') }}
+					{{ form_widget(formUser.username, { 'attr': {
+						'placeholder' : 'Your user ID...',
+						'class' : 'span3',
+						} }) }}		
+                                                            <div class="error">{{ form_errors(formUser.username) }}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="span3">
+					{{ form_label(formUser.password, 'Type your password: *') }}
+					{{ form_widget(formUser.password, { 'attr': {
+						'placeholder' : 'Your password...',
+						'class' : 'span3',
+						} }) }}		
+                                                                <div class="error">{{ form_errors(formUser.password) }}</div>
+                                                            </div>
+                                                        </div>
+
+                                                    </fieldset>
+
+            {{ form_rest(formUser) }}
+
+                                                    <fieldset>
+                                                        <legend>Membership Option:</legend>
+                                                    </fieldset>
+
+                                                    <fieldset>
+                                                        <legend>Payment Option:</legend>
+                                                    </fieldset>
+
+                                                    <fieldset>
+                                                        <legend>Terms and Conditions:</legend>
+                                                    </fieldset>
+
+                                                    <fieldset>
+                                                        <div class="form-actions">
+                                                            <input type="submit" value="Submit" class="btn btn-danger">
+                                                        </div>
+                                                    </fieldset>
+
+                                                </form>
+
+{% endblock %}

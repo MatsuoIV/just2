@@ -17,6 +17,7 @@ class DateJustController extends Controller {
 
 
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
+            
             if ($date->getMember()->getId() == $this->get('security.context')->getToken()->getUser()->getMember()->getId()) {
 
 

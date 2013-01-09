@@ -67,6 +67,63 @@ class Member {
     /** @ORM\Column(type="string", length=255) */
     private $gender;
 
+    /** @ORM\Column(type="integer") */
+    private $height;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $eyeColour;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $hairColour;
+
+    /**
+     * @var string $datePreference
+     *
+     * @ORM\Column(name="datePreference", type="string", length=255)
+     */
+    private $datePreference;
+
+    /**
+     * @var string $smoker
+     *
+     * @ORM\Column(name="smoker", type="string", length=255)
+     */
+    private $smoker;
+
+    /**
+     * @var string $children
+     *
+     * @ORM\Column(name="children", type="string", length=255)
+     */
+    private $children;
+
+    /**
+     * @var string $relationship
+     *
+     * @ORM\Column(name="relationship", type="string", length=255)
+     */
+    private $relationship;
+
+    /**
+     * @var string $profession
+     *
+     * @ORM\Column(name="profession", type="string", length=255)
+     */
+    private $profession;
+
+    /**
+     * @var string $personality
+     *
+     * @ORM\Column(name="personality", type="text")
+     */
+    private $personality;
+
+    /**
+     * @var string $interests
+     *
+     * @ORM\Column(name="interests", type="text")
+     */
+
     /**
      * @ORM\OneToOne(targetEntity="\JVJ\UserBundle\Entity\User", mappedBy="member")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -404,6 +461,206 @@ class Member {
         return $this->dateJusts;
     }
 
+    /**
+     * Set height
+     *
+     * @param integer $height
+     * @return Member
+     */
+    public function setHeight($height) {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * Get height
+     *
+     * @return integer 
+     */
+    public function getHeight() {
+        return $this->height;
+    }
+
+    /**
+     * Set eyeColour
+     *
+     * @param string $eyeColour
+     * @return Member
+     */
+    public function setEyeColour($eyeColour) {
+        $this->eyeColour = $eyeColour;
+
+        return $this;
+    }
+
+    /**
+     * Get eyeColour
+     *
+     * @return string 
+     */
+    public function getEyeColour() {
+        return $this->eyeColour;
+    }
+
+    /**
+     * Set hairColour
+     *
+     * @param string $hairColour
+     * @return Member
+     */
+    public function setHairColour($hairColour) {
+        $this->hairColour = $hairColour;
+
+        return $this;
+    }
+
+    /**
+     * Get hairColour
+     *
+     * @return string 
+     */
+    public function getHairColour() {
+        return $this->hairColour;
+    }
+
+    /**
+     * Set datePreference
+     *
+     * @param string $datePreference
+     * @return Attributes
+     */
+    public function setDatePreference($datePreference)
+    {
+        $this->datePreference = $datePreference;
+    
+        return $this;
+    }
+
+    /**
+     * Get datePreference
+     *
+     * @return string 
+     */
+    public function getDatePreference()
+    {
+        return $this->datePreference;
+    }
+
+    /**
+     * Set smoker
+     *
+     * @param string $smoker
+     * @return Attributes
+     */
+    public function setSmoker($smoker)
+    {
+        $this->smoker = $smoker;
+    
+        return $this;
+    }
+
+    /**
+     * Get smoker
+     *
+     * @return string 
+     */
+    public function getSmoker()
+    {
+        return $this->smoker;
+    }
+
+    /**
+     * Set children
+     *
+     * @param string $children
+     * @return Attributes
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+    
+        return $this;
+    }
+
+    /**
+     * Get children
+     *
+     * @return string 
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set relationship
+     *
+     * @param string $relationship
+     * @return Attributes
+     */
+    public function setRelationship($relationship)
+    {
+        $this->relationship = $relationship;
+    
+        return $this;
+    }
+
+    /**
+     * Get relationship
+     *
+     * @return string 
+     */
+    public function getRelationship()
+    {
+        return $this->relationship;
+    }
+
+    /**
+     * Set profession
+     *
+     * @param string $profession
+     * @return Attributes
+     */
+    public function setProfession($profession)
+    {
+        $this->profession = $profession;
+    
+        return $this;
+    }
+
+    /**
+     * Get profession
+     *
+     * @return string 
+     */
+    public function getProfession()
+    {
+        return $this->profession;
+    }
+
+    /**
+     * Set personality
+     *
+     * @param string $personality
+     * @return Attributes
+     */
+    public function setPersonality($personality)
+    {
+        $this->personality = $personality;
+    
+        return $this;
+    }
+
+    /**
+     * Get personality
+     *
+     * @return string 
+     */
+    public function getPersonality()
+    {
+        return $this->personality;
+    }
 
     /**
      * Set user

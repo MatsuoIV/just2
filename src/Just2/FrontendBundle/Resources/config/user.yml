@@ -1,4 +1,18 @@
 ## YAML Template.
+user_view_show:
+    pattern:  /{id}/view
+    defaults: { _controller: Just2FrontendBundle:Member:show }
+    
+user_view_edit:
+    pattern: /{id}/edit
+    defaults: { _controller: Just2FrontendBundle:Member:edit }
+    
+user_view_update:
+    pattern: /{id}/update
+    defaults: { _controller: Just2FrontendBundle:Member:update }
+    requirements:
+        _method: GET
+    
 bid_create_for_user:
     pattern:  /bid/create
     defaults: { _controller: Just2FrontendBundle:Bid:bid }

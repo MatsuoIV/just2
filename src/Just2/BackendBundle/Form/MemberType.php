@@ -37,9 +37,9 @@ class MemberType extends AbstractType{
                                 ->orderBy('u.name', 'ASC');
                     }
                 ))            
-            ->add('nationality', 'entity', array(
-                    'class' => 'JVJUtilBundle:Nationality',
-                ))
+            // ->add('nationality', 'entity', array(
+            //         'class' => 'JVJUtilBundle:Nationality',
+            //     ))
             ->add('height','number')
             ->add('question', 'entity', array(
                     'class' => 'JVJUtilBundle:Question',

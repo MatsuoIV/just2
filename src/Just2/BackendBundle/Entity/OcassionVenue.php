@@ -8,8 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Just2\BackendBundle\Entity\OcassionVenue
  *
  * @ORM\Table(name="ocassionvenue")
- * @ORM\Entity
- * @ORM\Entity(repositoryClass="Just2\BackendBundle\Entity\OcassionVenueRepository") 
+ * @ORM\Entity 
  */
 class OcassionVenue
 {

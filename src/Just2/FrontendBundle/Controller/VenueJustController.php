@@ -46,7 +46,7 @@ class VenueJustController extends Controller {
 
                 // print_r($repo->getVenue());
 
-                return $this->render('Just2FrontendBundle:VenueJust:venue_result.html.twig', array(
+                return $this->render('Just2FrontendBundle:VenueJust:venue_result.html.twig', array(                
                     'vs'    => $repo,
                 ));
             } else {
@@ -72,6 +72,9 @@ class VenueJustController extends Controller {
         $venue = $em->getRepository('Just2BackendBundle:Venue')->findBy(array(
             'id' => $venue_id
             ));
+
+        // print_r($ocassion);
+        // print_r($venue);
 
         return $this->render('Just2FrontendBundle:VenueJust:venue_details.html.twig', array(
             'od'    => $ocassion,

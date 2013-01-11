@@ -60,6 +60,9 @@ class Venue {
     private $contact;
 
     /** @ORM\Column(type="string", length=255, nullable=false) */
+    private $image;
+
+    /** @ORM\Column(type="string", length=255, nullable=false) */
     private $details;
 
 
@@ -264,6 +267,29 @@ class Venue {
     public function getDistrict()
     {
         return $this->district;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Venue
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**

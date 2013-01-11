@@ -16,7 +16,7 @@
             </div>
             <div class="action_bar">
                 <button class="button blue" type="submit"><span class="glyph inbox"></span>Guardar</button>
-                                        <form action="{{ path('member_delete', { 'id': entity.id }) }}" method="post">
+            <form action="{{ path('member_delete', { 'id': entity.id }) }}" method="post">
             {{ form_widget(delete_form) }}
         <button class="eliminar_derecha button blue">
             <span class="glyph delete"></span>

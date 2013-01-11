@@ -82,6 +82,6 @@ class MemberType extends AbstractType{
 
     public function getName()
     {
-        return 'just2_backendbundle_membertype';
+        return 'just2_frontendbundle_membertype';
     }
 }

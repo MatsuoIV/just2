@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-01-2013 a las 16:00:48
+-- Tiempo de generación: 11-01-2013 a las 19:10:23
 -- Versión del servidor: 5.5.27
 -- Versión de PHP: 5.4.7
 
@@ -100,8 +100,9 @@ CREATE TABLE IF NOT EXISTS `date_just` (
   `minPrice` decimal(10,2) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `estate` smallint(6) NOT NULL,
   `endBid` datetime NOT NULL,
+  `estate` smallint(6) NOT NULL,
+  `dateEnd` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_544174247597D3FE` (`member_id`),
   KEY `IDX_54417424505C875F` (`ocassion_id`),
@@ -112,8 +113,8 @@ CREATE TABLE IF NOT EXISTS `date_just` (
 -- Volcado de datos para la tabla `date_just`
 --
 
-INSERT INTO `date_just` (`id`, `member_id`, `ocassion_id`, `venue_id`, `detailDate`, `minPrice`, `createdAt`, `updatedAt`, `estate`, `endBid`) VALUES
-(1, 6, 1, 1, 'cena para dos con cosas', 100.00, '2012-12-22 00:00:00', '2012-12-27 16:13:20', 2, '2013-01-15 14:00:00');
+INSERT INTO `date_just` (`id`, `member_id`, `ocassion_id`, `venue_id`, `detailDate`, `minPrice`, `createdAt`, `updatedAt`, `endBid`, `estate`, `dateEnd`) VALUES
+(1, 6, 1, 1, 'cena para dos con cosas', 100.00, '2012-12-22 00:00:00', '2013-01-14 20:27:40', '2013-01-15 14:00:00', 2, '2013-01-15 14:00:00');
 
 -- --------------------------------------------------------
 
@@ -218,20 +219,17 @@ CREATE TABLE IF NOT EXISTS `jvj_user` (
   UNIQUE KEY `UNIQ_144AFB78F85E0677` (`username`),
   UNIQUE KEY `UNIQ_144AFB78E7927C74` (`email`),
   UNIQUE KEY `UNIQ_144AFB787597D3FE` (`member_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
 
 --
 -- Volcado de datos para la tabla `jvj_user`
 --
 
 INSERT INTO `jvj_user` (`id`, `username`, `salt`, `password`, `email`, `codeActivation`, `is_active`, `face`, `member_id`) VALUES
-(7, 'jhanice', 'c414b50843e59213722f18d353abb3c2', '9c1dcee0282e63d439557bfca42fbfb556379234', 'javiervilcapazsa@gmail.com', 'ze65lfbwhqhz59aczm8v89smdshi9y1lpyhrz0mv', 1, NULL, 6),
+(7, 'test', 'c414b50843e59213722f18d353abb3c2', 'test', NULL, 'ze65lfbwhqhz59aczm8v89smdshi9y1lpyhrz0mv', 1, NULL, 6),
 (8, 'mar', '3cf3fe64c34c28a779bf02dcd107752e', 'fc417051e6cb225f14827a48170362d195e0aa86', 'marasdfasdf@gmail.com', 'bkroxriypaloa89old53ns46drlo4u5wdmjr1mv4', 1, NULL, 7),
 (9, 'mari', 'e8a692ca88c66123798ab6803b864e41', '238a83dcf8884b11588771cdcb43b13eb8c3a9ad', 'marasdfiasdf@gmail.com', 'yyqtjt3fvevjkbdwobicz53t6s608db4jlzj3anj', 1, NULL, 8),
-(10, 'wsegurar', '686eec3c473459c58aead1ca4089939f', '0a40771d59c42aecf4a5a5a5cf67fe184bc0ed11', 'wsegurar@gmail.com', '5kdc524il9775wvcbvnis2yh3iy18nlmmi6cju5p', 1, NULL, 9),
-(11, 'jha', '718e6a5d4602cd98c86b82333dab2298', '4c06a308d4397bb9a0cda2c16353c6a51e9d8c5a', 'jhanices@gmail.com', '0a3vovetvvft2ltg1r1216nt24cqw60n6xa80brk', 1, NULL, 10),
-(12, 'jhannii', '5356791cfff64e933487b277a0a50857', 'd7a35adf4f045b483c773c0fd67a87098835ae71', 'jhanicess@gmail.com', '1e9wnlr29ibn32lp10fawglbnekxv9a8dwu3rz1o', 1, NULL, 11),
-(21, 'maris', '8f38e523c8557cf41c0217e098b6939c', 'c1c84a7a88a08121a99b9f9dbc066e31470b6617', 'jhanice@gmail.com', 'mhx83a2dl5m54w4avahkz9xogzrdvyqqr9w1s3ih', 1, NULL, 20);
+(20, 'javier', '4d63510ff96dcebeab464bb49f94baea', '75d519b0da06e7e9e80f26c48e1c2784b329854b', 'jhanice@gmail.com', '5y4v1jxrlum50x0y004zg1n4kavr81pv678wyurn', 1, NULL, 19);
 
 -- --------------------------------------------------------
 
@@ -252,24 +250,30 @@ CREATE TABLE IF NOT EXISTS `member` (
   `dateOfBirth` datetime NOT NULL,
   `gender` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `height` int(11) NOT NULL,
+  `eyeColour` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `hairColour` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `datePreference` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `smoker` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `children` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `relationship` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `profession` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `personality` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_70E4FA78A76ED395` (`user_id`),
   KEY `IDX_70E4FA785D83CC1` (`state_id`),
   KEY `IDX_70E4FA78F92F3E70` (`country_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
 
 --
 -- Volcado de datos para la tabla `member`
 --
 
-INSERT INTO `member` (`id`, `state_id`, `country_id`, `firstName`, `lastName`, `street`, `postCode`, `phone`, `mobile`, `dateOfBirth`, `gender`, `user_id`) VALUES
-(6, 1, 1, 'jah', 'jah', 'hola', '2323', '7978', '87867', '1922-01-01 00:00:00', 'M', 7),
-(7, 1, 1, 'mar', 'mar', 'jsjd', '2323', '2323', '232323', '1927-01-01 00:00:00', 'm', 8),
-(8, 1, 1, 'mar', 'mar', 'jsjd', '2323', '2323', '232323', '1927-01-01 00:00:00', 'm', 9),
-(9, 1, 1, 'wilmer', 'segura ramirez', 'san juan de miraflores', 'lima29', '45454', '45454', '1981-01-11 00:00:00', 'm', 10),
-(10, 1, 1, 'jav', 'jav', 'jjjs', '89', '878', '7878', '1920-01-01 00:00:00', 'm', 11),
-(11, 1, 1, 'jav', 'jav', 'jjjs', '89', '878', '7878', '1920-01-01 00:00:00', 'm', 12),
-(20, 1, 1, 'sd', 'jkl', 'jkl', 'jkl', 'lkjl', 'kj', '1920-01-01 00:00:00', 'm', 21);
+INSERT INTO `member` (`id`, `state_id`, `country_id`, `firstName`, `lastName`, `street`, `postCode`, `phone`, `mobile`, `dateOfBirth`, `gender`, `user_id`, `height`, `eyeColour`, `hairColour`, `datePreference`, `smoker`, `children`, `relationship`, `profession`, `personality`) VALUES
+(6, NULL, NULL, '', '', '', '', '', '', '0000-00-00 00:00:00', '', 7, 0, '', '', '', '', '', '', '', ''),
+(7, 1, 1, 'mar', 'mar', 'jsjd', '2323', '2323', '232323', '1927-01-01 00:00:00', 'm', 8, 0, '', '', '', '', '', '', '', ''),
+(8, 1, 1, 'mar', 'mar', 'jsjd', '2323', '2323', '232323', '1927-01-01 00:00:00', 'm', 9, 0, '', '', '', '', '', '', '', ''),
+(19, 1, 1, 'javier', 'javier', 'lkjj', 'lkj', 'kl', 'lk', '1920-01-01 00:00:00', 'm', 20, 0, '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -291,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `ocassion` (
 --
 
 INSERT INTO `ocassion` (`id`, `name`, `price`, `categoryOcassion_id`) VALUES
-(1, 'cena para dos', 15.00, 1),
+(1, 'cena', 15.00, 1),
 (2, 'buffet', 20.00, 1),
 (3, 'tour Lima', 35.00, 2),
 (4, 'menu marino', 20.00, 1);
@@ -364,10 +368,7 @@ INSERT INTO `user_group` (`user_id`, `group_id`) VALUES
 (8, 1),
 (8, 2),
 (9, 2),
-(10, 2),
-(11, 2),
-(12, 2),
-(21, 2);
+(20, 2);
 
 -- --------------------------------------------------------
 
@@ -399,6 +400,7 @@ CREATE TABLE IF NOT EXISTS `venue` (
   `mail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `contact` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `details` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_91911B0D5126AC48` (`mail`),
@@ -411,11 +413,11 @@ CREATE TABLE IF NOT EXISTS `venue` (
 -- Volcado de datos para la tabla `venue`
 --
 
-INSERT INTO `venue` (`id`, `country_id`, `department_id`, `district_id`, `name`, `address`, `mail`, `phone`, `contact`, `details`) VALUES
-(1, 1, 1, 1, 'Rustica', 'Jr kuie', 'rusticachorillos@gmail.com', '3245623', 'Juan Villegas', 'venue1.png'),
-(2, 1, 1, 1, 'Rokys', 'asdf', 'rokys@terra.pe', '4584564', 'Moises Oscanoa', 'venue2.png'),
-(3, 1, 1, 1, 'Boulevard 99', 'Wong', 'boulevard99@outlook.com', '7715145', 'Diego Quiroz', 'venue3.png'),
-(4, 1, 1, 1, 'MiraBus', 'Miraflores', 'mirabus@hotmail.es', '2245411', 'Renzo Loli', 'venue4.png');
+INSERT INTO `venue` (`id`, `country_id`, `department_id`, `district_id`, `name`, `address`, `mail`, `phone`, `contact`, `image`, `details`) VALUES
+(1, 1, 1, 1, 'Rustica', 'Jr kuie', 'rusticachorillos@gmail.com', '3245623', 'Juan Villegas', 'img1.png', 'venue1.png'),
+(2, 1, 1, 1, 'Rokys', 'asdf', 'rokys@terra.pe', '4584564', 'Moises Oscanoa', 'img2.png', 'venue2.png'),
+(3, 1, 1, 1, 'Boulevard 99', 'Wong', 'boulevard99@outlook.com', '7715145', 'Diego Quiroz', 'img3.png', 'venue3.png'),
+(4, 1, 1, 1, 'MiraBus', 'Miraflores', 'mirabus@hotmail.es', '2245411', 'Renzo Loli', 'img4.png', 'venue4.png');
 
 --
 -- Restricciones para tablas volcadas

@@ -4,6 +4,7 @@ namespace Just2\FrontendBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Just2\BackendBundle\Entity\Member;
 use Just2\FrontendBundle\Form\MemberType;
 
@@ -73,11 +74,18 @@ class MemberController extends Controller {
 
         $editForm = $this->createForm(new MemberType(), $entity);  
         $request = $this->getRequest();
-        $editForm->bindRequest($request);
 
-        // print_r($editForm->getErrors());
+        $editForm->bindRequest($request);        
         
         if ($editForm->isValid()) {
+
+            $fileName = $id.'.png';
+
+
+            if($editForm['file']->getData() != NULL){
+                $editForm['file']->getData()->move('images_user', $fileName);
+            }
+
             $em->persist($entity);            
             $em->flush();
 

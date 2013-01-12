@@ -17,10 +17,14 @@
             <form action="{{ path('user_view_update', { 'id': entity.id }) }}" method='post' {{ form_enctype(edit_form) }}>          
                 <div class="span3">
                     <div class="row" style="text-align:center">
-                        <img src="{{ app.request.getBaseURL() }}/img/user.png">                        
+                        {% if entity.file is null %}
+                            <img src="/images_user/{{ entity.id }}.png">
+                        {% else %}
+                            <img src="/images_user/user.png">                            
+                        {% endif %}
                     </div>
                     <div class="row" style="text-align:center">
-                        <p><a href="#">Upload Photo</a></p>
+                        {{ form_widget(edit_form.file) }}
                     </div>
                     <div class="row" style="text-align:center">
                         <p>{{ entity.firstName }} {{ entity.lastName }}</p>
@@ -116,6 +120,7 @@
                             <div class="span2" style="text-align: right">Interests</div>
                             <div class="span4">{{ form_widget(edit_form.interest) }}</div><br /><br />
                         </div>
+                        
                         {{ form_widget(edit_form._token) }}
                         <div class="row">
                             <div class="form-actions">

@@ -5,6 +5,7 @@ namespace Just2\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use JVJ\UserBundle\Entity\User;
 
 /**
@@ -128,6 +129,16 @@ class Member {
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
+    /**
+    * @ORM\Column(name="image", type="string", length=255)
+    */
+    private $image;
+
+    /**
+    * @Assert\File(maxSize="6000000")
+    */
+    private $file;
 
     public function __toString() {
         return $this->getFirstName();
@@ -680,6 +691,39 @@ class Member {
      */
     public function getInterest() {
         return $this->interest;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Member
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+ 
+    public function setFile($file)
+    {
+        $this->file = $file;
     }
 
     /**

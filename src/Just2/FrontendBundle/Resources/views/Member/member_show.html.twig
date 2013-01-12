@@ -14,13 +14,14 @@
         </div>
         </div>
         <div class="row">
-            <form class="form-horizontal" action="{{ path('member_delete', { 'id': entity.id }) }}" method="post">
+            
                 <div class="span3">
                     <div class="row" style="text-align:center">
-                        <img src="{{ app.request.getBaseURL() }}/img/user.png">                        
-                    </div>
-                    <div class="row" style="text-align:center">
-                        <p><a href="#">Upload Photo</a></p>
+                        {% if entity.file is null %}
+                            <img src="/images_user/{{ entity.id }}.png">
+                        {% else %}
+                            <img src="/images_user/user.png">                            
+                        {% endif %}
                     </div>
                     <div class="row" style="text-align:center">
                         <p>{{ entity.firstName }} {{ entity.lastName }}</p>
@@ -119,7 +120,7 @@
                         
                     </fieldset>
                 </div>              
-            </form>
+            
         </div>
 
 {% endblock %}

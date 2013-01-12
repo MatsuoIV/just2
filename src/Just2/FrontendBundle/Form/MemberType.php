@@ -5,6 +5,7 @@ namespace Just2\FrontendBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use JVJ\UserBundle\Form\UserType;
 use Doctrine\ORM\EntityRepository; 
 
@@ -103,14 +104,28 @@ class MemberType extends AbstractType{
                     'class' =>  'Just2BackendBundle:Interest',
                     'multiple'  =>  'true'
                 ))
+            // ->add('image','hidden',array(
+            //         'data'  =>  $options['id'].'.png'
+            //     ))
+            ->add('file','file',array(
+                    'required'  =>  false
+                ))
             
         ;
     }
 
+    // public function getDefaultOptions(array $options)
+    // {
+    //     return array(
+    //         'id' => '',
+    //     );
+    // }
+
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Just2\BackendBundle\Entity\Member'
+            'data_class' => 'Just2\BackendBundle\Entity\Member',
+            'id' => '',
         ));
     }
 

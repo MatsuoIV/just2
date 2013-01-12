@@ -20,10 +20,15 @@ class MemberType extends AbstractType{
             ->add('phone')
             ->add('mobile')
             ->add('dateOfBirth', 'date', array('years' => range(1920, date('Y'))))
-            ->add('gender')
+            ->add('gender','choice',array(
+                    'choices'   =>  array(
+                        'male' =>  'Male',
+                        'female' =>  'Female',
+                        'nope' =>  "Don't specify"                        
+                        ),
+                    'required'  =>  true,
+                ))
             ->add('user')
-            // ->add('state')
-            // ->add('country')
             // campos añadidos
             ->add('country', 'entity', array(
                     'class' => 'JVJUtilBundle:Country',
@@ -42,15 +47,38 @@ class MemberType extends AbstractType{
             //     ))
             ->add('height','number')
             
-            ->add('eyeColour')
-            ->add('hairColour')
+            ->add('eyeColour','choice',array(
+                    'choices'   =>  array(
+                        'black' =>  'Black',
+                        'brown' =>  'Brown',
+                        'blue' =>  'Blue',
+                        'green' =>  'Green',
+                        ),
+                    'required'  =>  true,
+                ))
+            ->add('hairColour','choice',array(
+                    'choices'   =>  array(
+                        'black' =>  'Black',
+                        'brown' =>  'Brown',
+                        'blond' =>  'Blond',
+                        'red' =>  'Red',
+                        ),
+                    'required'  =>  true,
+                ))
             ->add('datePreference')
             ->add('smoker','choice',array(
-                    'choices' => array('yes' => 'Yes', 'no' => 'No', 'doubt' => "Don't specify"),
+                    'choices' => array(
+                        'yes' => 'Yes',
+                        'no' => 'No',
+                        'doubt' => "Don't specify"
+                        ),
                     'required' => true,
                 ))
             ->add('children','choice',array(
-                    'choices' => array('yes' => 'Yes', 'no' => 'No', 'tba' => "To be announced"),
+                    'choices' => array('yes' => 'Yes',
+                        'no' => 'No',
+                        'tba' => "To be announced"
+                        ),
                     'required' => true,
                 ))
             ->add('relationship','choice',array(
@@ -64,12 +92,18 @@ class MemberType extends AbstractType{
                     'required' => true,
                 ))
             ->add('profession','choice',array(
-                'choices' => array('-' => '-','tba' => "To be announced"),
+                'choices' => array(
+                    '-' => '-',
+                    'tba' => "To be announced"
+                    ),
                 'required' => true,
                 ))
             ->add('personality','textarea')
-            // ->add('interests','textarea')
-            ->add('user', new UserType())
+            ->add('interest','entity',array(
+                    'class' =>  'Just2BackendBundle:Interest',
+                    'multiple'  =>  'true'
+                ))
+            
         ;
     }
 

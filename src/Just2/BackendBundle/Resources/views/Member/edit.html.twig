@@ -12,22 +12,17 @@
     <div class="box">
         <div class="box-header"><h1>{{block('titulo')}}</h1></div>
         <div class="box-content">
-    {{ form_widget(edit_form) }}
-            </div>
-            <div class="action_bar">
-                <button class="button blue" type="submit"><span class="glyph inbox"></span>Guardar</button>
-            <form action="{{ path('member_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-        <button class="eliminar_derecha button blue">
-            <span class="glyph delete"></span>
-            Eliminar
-        </button>
-</form>
-
-
-            </div>
+            {{ form_widget(edit_form) }}
         </div>
-    </form>
+        <div class="action_bar">
+            <button class="button blue" type="submit"><span class="glyph inbox"></span>Guardar</button>
+            <form action="{{ path('member_delete', { 'id': entity.id }) }}" method="post">
+                {{ form_widget(delete_form) }}
+                <button class="eliminar_derecha button blue"><span class="glyph delete"></span>Eliminar</button>
+            </form>
+        </div>
+    </div>
+</form>
 {%endblock%}
 
 

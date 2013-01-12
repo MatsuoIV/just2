@@ -11,7 +11,7 @@ user_view_update:
     pattern: /{id}/update
     defaults: { _controller: Just2FrontendBundle:Member:update }
     requirements:
-        _method: GET
+        _method: POST
     
 bid_create_for_user:
     pattern:  /bid/create

@@ -114,13 +114,14 @@
                         <!--interests-->
                         <div class="row">
                             <div class="span2" style="text-align: right">Interests</div>
-                            <div class="span4">{# entity.interests #}</div><br /><br />
+                            <div class="span4">{{ form_widget(edit_form.interest) }}</div><br /><br />
                         </div>
                         {{ form_widget(edit_form._token) }}
                         <div class="row">
                             <div class="form-actions">
                                 <div class="span1">
-                                    <a href="{{ path('user_view_update', { 'id': entity.id }) }}" class="btn btn-danger">Save</a>
+                                    <button class="btn btn-danger" type="submit">Update</button>
+                                    <!-- <a href="{{ path('user_view_update', { 'id': entity.id }) }}" class="btn btn-danger">Save</a> -->
                                 </div>
                             </div>
                         </div>

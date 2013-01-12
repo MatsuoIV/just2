@@ -119,10 +119,9 @@ class Member {
     private $personality;
 
     /**
-     * @var string $interests
-     *
-     * @ORM\Column(name="interests", type="text")
+     * @ORM\ManyToMany(targetEntity="Just2\BackendBundle\Entity\Interest")
      */
+    private $interest;
 
     /**
      * @ORM\OneToOne(targetEntity="\JVJ\UserBundle\Entity\User", mappedBy="member")
@@ -660,6 +659,27 @@ class Member {
     public function getPersonality()
     {
         return $this->personality;
+    }
+
+    /**
+     * Set interest
+     *
+     * @param \Just2\BackendBundle\Entity\Interest $interest
+     * @return Member
+     */
+    public function setInterest(\Just2\BackendBundle\Entity\Interest $interest = null) {
+        $this->interest = $interest;
+
+        return $this;
+    }
+
+    /**
+     * Get interest
+     *
+     * @return \Just2\BackendBundle\Entity\Interest 
+     */
+    public function getInterest() {
+        return $this->interest;
     }
 
     /**

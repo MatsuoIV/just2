@@ -11,6 +11,7 @@ use JVJ\UserBundle\Entity\User;
 /**
  * @ORM\Table(name="member")
  * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks
  */
 class Member {
 
@@ -134,6 +135,11 @@ class Member {
     * @ORM\Column(name="image", type="string", length=255)
     */
     private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public $path;
 
     /**
     * @Assert\File(maxSize="6000000")
@@ -716,6 +722,51 @@ class Member {
         return $this->image;
     }
 
+
+
+    /**
+     * file
+     */
+    // public function getAbsolutePath()
+    // {
+    //     return null === $this->path
+    //         ? null
+    //         : $this->getUploadRootDir().'/'.$this->id.'.'.$this->path;
+    // }
+
+
+    // public function getWebPath()
+    // {
+    //     return null === $this->path
+    //         ? null
+    //         : $this->getUploadDir().'/'.$this->path;
+    // }
+
+    // protected function getUploadRootDir()
+    // {
+    //     // the absolute directory path where uploaded
+    //     // documents should be saved
+    //     return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    // }
+
+    // protected function getUploadDir()
+    // {
+    //     // get rid of the __DIR__ so it doesn't screw up
+    //     // when displaying uploaded doc/image in the view.
+    //     return 'uploads/documents';
+    // }
+
+    public function getPath()
+    {
+        return $this->path;
+    }
+ 
+    public function setPath($path)
+    {
+        $this->path = $path;
+        return $this;
+    }
+
     public function getFile()
     {
         return $this->file;
@@ -724,6 +775,51 @@ class Member {
     public function setFile($file)
     {
         $this->file = $file;
+    }
+
+    // a property used temporarily while deleting
+    private $filenameForRemove;
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // do whatever you want to generate a unique name
+            $filename = $this->id;
+            $this->path = $filename.'.'.$this->file->guessExtension();
+            // $this->path = $filename.'.png';
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->file->move('images_user', $this->path);
+
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
     }
 
     /**

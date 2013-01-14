@@ -17,14 +17,14 @@
             
                 <div class="span3">
                     <div class="row" style="text-align:center">
-                        {% if entity.file is null %}
-                            <img src="/images_user/{{ entity.id }}.png">
-                        {% else %}
-                            <img src="/images_user/user.png">                            
-                        {% endif %}
+                        <p>{{ entity.firstName }} {{ entity.lastName }}</p>
                     </div>
                     <div class="row" style="text-align:center">
-                        <p>{{ entity.firstName }} {{ entity.lastName }}</p>
+                        {% if entity.path == "" %}
+                            <img src="/images_user/user.png">
+                        {% else %}
+                            <img src="/images_user/{{ entity.path }}">
+                        {% endif %}
                     </div>
                     <div class="row" style="text-align:center">
                         <p>ID: {{ entity.id }}</p>

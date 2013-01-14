@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use JVJ\UserBundle\Form\UserType;
 use Doctrine\ORM\EntityRepository; 
 
 class MemberType extends AbstractType{
@@ -14,12 +13,6 @@ class MemberType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName')
-            ->add('lastName')
-            ->add('street')
-            ->add('postCode')
-            ->add('phone')
-            ->add('mobile')
             ->add('dateOfBirth', 'date', array('years' => range(1920, date('Y'))))
             ->add('gender','choice',array(
                     'choices'   =>  array(
@@ -28,8 +21,7 @@ class MemberType extends AbstractType{
                         'nope' =>  "Don't specify"                        
                         ),
                     'required'  =>  true,
-                ))
-            ->add('user')
+                ))            
             // campos añadidos
             ->add('country', 'entity', array(
                     'class' => 'JVJUtilBundle:Country',
@@ -104,9 +96,10 @@ class MemberType extends AbstractType{
                     'class' =>  'Just2BackendBundle:Interest',
                     'multiple'  =>  'true'
                 ))
-            // ->add('image','hidden',array(
-            //         'data'  =>  $options['id'].'.png'
-            //     ))
+            ->add('image','hidden',array(
+                    'data'  =>  $options['id']
+                ))
+            // ->add('path')
             ->add('file','file',array(
                     'required'  =>  false
                 ))

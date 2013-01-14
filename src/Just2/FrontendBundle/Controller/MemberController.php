@@ -19,12 +19,20 @@ class MemberController extends Controller {
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Member entity.');
         }
-        // $deleteForm = $this->createDeleteForm($id);
+        
+        if ($this->get('security.context')->isGranted('ROLE_USER')) {
+
+            if($this->get('security.context')->getToken()->getUser()->getMember()->getId() == $id){
+
+                return $this->render('Just2FrontendBundle:Member:member_show2.html.twig', array(
+                            'entity' => $entity
+                        ));
+            }
+        }
 
         return $this->render('Just2FrontendBundle:Member:member_show.html.twig', array(
-                    'entity' => $entity,
-                    // 'delete_form' => $deleteForm->createView(),
-                ));
+                            'entity' => $entity
+                        ));
     }
 
     public function editAction($id) {
@@ -72,27 +80,18 @@ class MemberController extends Controller {
             throw $this->createNotFoundException('Unable to find Member entity.');
         }
 
-        $editForm = $this->createForm(new MemberType(), $entity);  
+        $editForm = $this->createForm(new MemberType(), $entity, array('id' => $id));  
         $request = $this->getRequest();
 
         $editForm->bindRequest($request);        
         
         if ($editForm->isValid()) {
 
-            $fileName = $id.'.png';
-
-
-            if($editForm['file']->getData() != NULL){
-                $editForm['file']->getData()->move('images_user', $fileName);
-            }
-
             $em->persist($entity);            
             $em->flush();
 
             return $this->redirect($this->generateUrl('user_view_show',array('id' => $id)));
             
-        }
-
-        
+        }        
     }
 }

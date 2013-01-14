@@ -17,17 +17,17 @@
             <form action="{{ path('user_view_update', { 'id': entity.id }) }}" method='post' {{ form_enctype(edit_form) }}>          
                 <div class="span3">
                     <div class="row" style="text-align:center">
-                        {% if entity.file is null %}
-                            <img src="/images_user/{{ entity.id }}.png">
+                        <p>{{ entity.firstName }} {{ entity.lastName }}</p>
+                    </div>
+                    <div class="row" style="text-align:center">                        
+                        {% if entity.path == "" %}
+                            <img src="/images_user/user.png">
                         {% else %}
-                            <img src="/images_user/user.png">                            
+                            <img src="/images_user/{{ entity.path }}">
                         {% endif %}
                     </div>
                     <div class="row" style="text-align:center">
                         {{ form_widget(edit_form.file) }}
-                    </div>
-                    <div class="row" style="text-align:center">
-                        <p>{{ entity.firstName }} {{ entity.lastName }}</p>
                     </div>
                     <div class="row" style="text-align:center">
                         <p>ID: {{ entity.id }}</p>
@@ -126,7 +126,6 @@
                             <div class="form-actions">
                                 <div class="span1">
                                     <button class="btn btn-danger" type="submit">Update</button>
-                                    <!-- <a href="{{ path('user_view_update', { 'id': entity.id }) }}" class="btn btn-danger">Save</a> -->
                                 </div>
                             </div>
                         </div>

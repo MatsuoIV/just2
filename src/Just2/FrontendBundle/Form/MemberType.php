@@ -38,7 +38,7 @@ class MemberType extends AbstractType{
             // ->add('nationality', 'entity', array(
             //         'class' => 'JVJUtilBundle:Nationality',
             //     ))
-            ->add('height','number')
+            ->add('height')
             
             ->add('eyeColour','choice',array(
                     'choices'   =>  array(

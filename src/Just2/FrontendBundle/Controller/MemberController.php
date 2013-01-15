@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Just2\BackendBundle\Entity\Member;
-use Just2\FrontendBundle\Form\MemberType;
+use Just2\FrontendBundle\Form\ProfileType;
 
 class MemberController extends Controller {
 
@@ -15,6 +15,12 @@ class MemberController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         
         $entity = $em->getRepository('Just2BackendBundle:Member')->find($id);
+        // $interest = $em->getRepository('Just2BackendBundle:Member')->getInterestsByMember($id);
+
+        $interest = $entity->getInterest();
+
+        // echo "<pre>".print_r($em->getRepository('Just2BackendBundle:MemberRepository')->getInterestsByUser($id))."</pre>";
+        
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Member entity.');
@@ -25,13 +31,15 @@ class MemberController extends Controller {
             if($this->get('security.context')->getToken()->getUser()->getMember()->getId() == $id){
 
                 return $this->render('Just2FrontendBundle:Member:member_show2.html.twig', array(
-                            'entity' => $entity
+                            'entity' => $entity,
+                            'interest' => $interest
                         ));
             }
         }
 
         return $this->render('Just2FrontendBundle:Member:member_show.html.twig', array(
-                            'entity' => $entity
+                            'entity' => $entity,
+                            'interest' => $interest
                         ));
     }
 
@@ -49,7 +57,7 @@ class MemberController extends Controller {
                     throw $this->createNotFoundException('Unable to find Member entity.');
                 }
 
-                $editForm = $this->createForm(new MemberType(), $entity);
+                $editForm = $this->createForm(new ProfileType(), $entity);
 
                 $request = $this->get('request');
 
@@ -80,7 +88,7 @@ class MemberController extends Controller {
             throw $this->createNotFoundException('Unable to find Member entity.');
         }
 
-        $editForm = $this->createForm(new MemberType(), $entity, array('id' => $id));  
+        $editForm = $this->createForm(new ProfileType(), $entity, array('id' => $id));  
         $request = $this->getRequest();
 
         $editForm->bindRequest($request);        

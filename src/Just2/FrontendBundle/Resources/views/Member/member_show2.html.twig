@@ -115,7 +115,11 @@
                         <!--interests-->
                         <div class="row">
                             <div class="span2" style="text-align: right">Interests</div>
-                            <div class="span4">{# entity.interests #}</div><br /><br />
+                            <div class="span4">
+                                {% for i in interest %}
+                                    {{ i.interest }}<br />
+                                {% endfor %}
+                            </div><br /><br />
                         </div>
                         <div class="row">
                             <div class="form-actions">

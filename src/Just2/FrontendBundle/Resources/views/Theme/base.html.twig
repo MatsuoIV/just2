@@ -14,7 +14,10 @@
                 .navbar-inner.nav-one li a {
                     padding: 5px 10px;
                 }
-                
+                .title_row{
+                    font-weight: bold
+                }
+
             </style>
         </head>
         <body style="background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#D29EFA), to(white));">
@@ -40,12 +43,12 @@
                     <header>
 
                         <div class="navbar" style="position: absolute;top: 27px;right: 0px;">
-                            <div class="navbar-inner">			
+                            <div class="navbar-inner" style="background: rgb(255, 188, 87)">			
                                 <div class="pull-right navbar-text ">
                             {% if app.user %}
                                         <ul class="nav">
                                             <li>
-                                                <a>Welcome! {{app.user}} {{app.user.member.id}}</a>
+                                                <a href="{{ path('user_view_show', { 'id': app.user.member.id }) }}">Welcome! {{app.user}} </a>
                                             </li>
                                             <li>
                                                 <a href="{{ path('usuario_logout') }}">
@@ -70,13 +73,13 @@
 	{# container #}
 
 		{# banner #}
-                        <div class="row ">
+                        <div class="row " style="margin-bottom: 15px">
                             <div class="span2" style="text-align: right">
-                                <img src="/img/just2_logo.png" height="200" width="200">
+                                <img src="{{ asset( '/bundles/just2frontend/images/logo.png' ) }}" height="120" width="120" />
                             </div>
                             <div class="span8">
                                 <div class="row">
-                                    <div class="span10" style="padding-top: 30px"><h1>Date someone real Have Fun</h1></div>
+                                    <div class="span10" style="padding-top: 30px"><h1 style="color: rgb(255, 255, 255);">Date someone real Have Fun</h1></div>
                                 </div>
                                 <div class="row">
                                     <div class="span10">
@@ -85,16 +88,25 @@
                                                 <ul class="nav">						
                                                     <li><a href="index.html">Home</a></li>
                                                     <li><a href="#">Date Search</a></li>
-                                                    <li><a href="#">Venue Search</a></li>
-                                                    <li><a href="#">My Account</a></li>
-                                                    <li><a href="#">Dating Service</a></li>				  			
-                                                </ul>
+                                                    <li><a href={{ path('venue_search')}}>Venue Search</a></li>
+
+                                                                                    {% if app.user %}
+                                                    <li><a href="{{ path('user_view_show', { 'id': app.user.member.id }) }}">My Account</a></li>
+{%endif%}
+
+
+
+
+
+
+                                                        <li><a href="#">Dating Service</a></li>				  			
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>	
+                                        </div>	
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 		{# end banner #}
 
 
@@ -112,13 +124,13 @@
 
 	{# footer #}
 
-                        <footer>
-                            <div class="row span12">			
-                                <a href="#">Register</a> | <a href="#">My Account</a> | <a href="#">Community</a> | <a href="#">Terms & Conditions</a> | <a href="#">Profile</a> | <a href="#">Quick date search</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Pending Acceptance</a> | <a href="#">Pending Acceptance</a> | <a href="#">Bid Declined</a> | <a href="#">Member Login</a> | <a href="#">id Accepted</a> | <a href="#">Winning bid</a> | <a href="#">Winning bid</a>
-                            </div>
-                        </footer>
+                            <footer>
+                                <div class="row span12">			
+                                    <a href="#">Register</a> | <a href="#">My Account</a> | <a href="#">Community</a> | <a href="#">Terms & Conditions</a> | <a href="#">Profile</a> | <a href="#">Quick date search</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Pending Acceptance</a> | <a href="#">Pending Acceptance</a> | <a href="#">Bid Declined</a> | <a href="#">Member Login</a> | <a href="#">id Accepted</a> | <a href="#">Winning bid</a> | <a href="#">Winning bid</a>
+                                </div>
+                            </footer>
 
-                    </div>
+                        </div>
 	{# end footer #}
-                </body>
-            </html>
+                    </body>
+                </html>

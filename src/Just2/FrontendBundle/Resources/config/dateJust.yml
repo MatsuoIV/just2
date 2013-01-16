@@ -3,6 +3,10 @@
 date_view:
     pattern:  /view/{id}
     defaults: { _controller: Just2FrontendBundle:DateJust:view}
+
+date_search:
+    pattern:  /search
+    defaults: { _controller: Just2FrontendBundle:DateJust:search}
  #   requirements:
 #      _method:  GET
       

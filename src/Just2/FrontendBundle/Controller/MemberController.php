@@ -39,7 +39,7 @@ class MemberController extends Controller {
 
         return $this->render('Just2FrontendBundle:Member:member_show.html.twig', array(
                             'entity' => $entity,
-                            'interest' => $interest
+                            // 'interest' => $interest
                         ));
     }
 
@@ -84,6 +84,12 @@ class MemberController extends Controller {
 
         $entity = $em->getRepository('Just2BackendBundle:Member')->find($id);
 
+        $user = $em->getRepository('JVJUserBundle:User')->find($entity->getUser()->getId());
+
+        // if($entity->getImage() == "") {
+        //     $user->setFace($id.'.png');
+        // }
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Member entity.');
         }
@@ -95,7 +101,10 @@ class MemberController extends Controller {
         
         if ($editForm->isValid()) {
 
-            $em->persist($entity);            
+            $em->persist($entity);
+            $em->flush();
+            $user->setFace($entity->getPath());
+            $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('user_view_show',array('id' => $id)));

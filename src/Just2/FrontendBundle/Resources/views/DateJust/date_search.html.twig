@@ -1,0 +1,37 @@
+{#form_widget(form)#}
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+{% block content %}
+<form {{ form_enctype(form) }} action="" method='post'>
+	<fieldset>
+		<legend>Dates</legend>
+		<div class="span5">
+			<legend>Date Search:</legend>
+			<div class="row">
+				<div class="span1">
+					<label>I am a</label>
+					{{ form_widget(form.interested, { 'attr': {
+						'class' : 'input-small',
+						} }) }}
+				</div>
+				<div class="span2">
+					<label>Seeking</label>
+					{{ form_widget(form.gender, { 'attr': {
+						'class' : 'input-small',
+						} }) }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="span5"><p>{{ message }}</p></div>
+			</div>
+			{{ form_widget(form._token) }}
+			<div class="row">
+				<div class="span5 form-actions" style="text-align: right">
+					<input type="submit" value="Submit" class="btn btn-danger">
+				</div>
+			</div>
+		</div>
+    </fieldset>
+	
+</form>
+{% endblock %}

@@ -1,0 +1,56 @@
+{# register.html.twig #}
+
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+
+{% block title %}View{% endblock %}
+
+
+{% block content %}
+
+{% for d in date %}
+
+<div class="row offset2 span8" style="border:solid 1px #000; border-radius: 8px">
+    <div class="row  " style="margin-top:5px">
+        <div class="span3 form-inline"><label style="padding:3px">Current bid:</label> 
+            <b>{#%if highestBid%}{{highestBid.price}}{%else%}{{date.minprice}}{%endif%#}</b>
+        </div>
+        <div class="span4">
+            {#<form class="form-inline" action="{{ path('bid_create_for_user') }}" method="post" {{ form_enctype(formbid) }}>#}
+
+                <label>Enter your bid (${#%if highestBid%}{{highestBid.price+5}}{%else%}{{date.minprice+5}}{%endif%#} or more):</label>$          {# form_widget(formbid.price, { 'attr': {'class' : 'span1'} }) }}{{ form_widget(formbid.dateJust, { 'attr': {'style' : 'display:none'} }) }}{{ form_rest(formbid) }#}
+                <button type="submit" class="btn">Place bid</button>
+
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span3" style="padding:3px"> Venue</div>
+        <div class="span4">: Revealed to winning bidder</div>
+    </div>
+    <div class="row">
+        <div class="span3" style="padding:3px"> Occasion</div>
+        <div class="span4">: {{d.ocassion.name}}</div>
+    </div>
+    <div class="row">
+        <div class="span3" style="padding:3px"> When</div>
+        <div class="span4">: {{d.dateEnd | date()}}</div>
+    </div>
+    <div class="row">
+        <div class="span3" style="padding:3px"> Bid end date</div>
+        <div class="span4">: Revealed to winning bidder</div>
+    </div> 
+        
+    <div class="row">
+        <div class="span3" style="padding:3px"> Location</div>
+        <div class="span4">: {{d.venue.country.name}}, {{d.venue.department.name}}</div>
+    </div>         
+    <div class="row">
+        <div class="span3" style="padding:3px"> Bids</div>
+        <div class="span4">: {#{totalbids}#}</div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

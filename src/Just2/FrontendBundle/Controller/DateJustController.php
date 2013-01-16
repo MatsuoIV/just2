@@ -5,15 +5,21 @@ namespace Just2\FrontendBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Just2\BackendBundle\Entity\Bid;
+use Just2\BackendBundle\Entity\Member;
 use Just2\FrontendBundle\Form\BidType;
+use Just2\FrontendBundle\Form\DateSearchType;
 
 class DateJustController extends Controller {
 
     public function viewAction($id) {
+        $em = $this->getDoctrine()->getEntityManager();
+
         $date = $this->getDoctrine()
                 ->getRepository('Just2BackendBundle:DateJust')
                 ->find($id);
 
+                print_r($date->getMember()->getUser()->getFace());
+                return;
 
 
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
@@ -52,7 +58,8 @@ class DateJustController extends Controller {
                         'highestBid' => $highestBid,
                         'info' => $info,
                         'totalbids' => $totalbidsfordate,
-                        'mybiddate' => $memberBidsForDate
+                        'mybiddate' => $memberBidsForDate,
+                        'user' => $date->getMember()->getUser()->getFace()
                     ));
         } else {
 
@@ -77,9 +84,54 @@ class DateJustController extends Controller {
                         'highestBid' => $highestBid,
                         'info' => $info,
                         'totalbids' => $totalbidsfordate,
-                        'mybiddate' => $memberBidsForDate = null
+                        'mybiddate' => $memberBidsForDate = null,
+                        'user' => $date->getMember()->getUser()->getFace()
                     ));
         }
+    }
+
+    public function searchAction() {
+              
+        $form = $this->createForm(new DateSearchType());
+        $request = $this->getRequest();
+        $message = "";
+
+        if ($request->isMethod('POST')) {
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+                
+                $em = $this->getDoctrine()->getEntityManager();
+
+                $date = $em->getRepository('Just2BackendBundle:DateJust')->searchDates($form["interested"]->getData(), $form["gender"]->getData());
+                
+                if($date != NULL) {
+                    if ($this->get('security.context')->isGranted('ROLE_USER')) {                    
+                        //:v
+                    } else {
+
+                        return $this->render('Just2FrontendBundle:DateJust:date_results.html.twig', array(
+                                'date' => $date,
+                                // 'formbid' => $formBid->createView(),
+                                // 'highestBid' => $highestBid,
+                                // 'info' => $info,
+                                // 'totalbids' => $totalbidsfordate,
+                                // 'mybiddate' => $memberBidsForDate = null
+                            ));
+                    }
+                } else {
+                    $message = "No results";
+                }
+            } else {
+                //:v
+            }           
+
+        }
+        return $this->render('Just2FrontendBundle:DateJust:date_search.html.twig', array(
+            'form'    => $form->createView(),
+            'message' => $message
+        ));
+
     }
 
 }

@@ -27,7 +27,7 @@ class VenueJustController extends Controller {
             //$form->bind($request);
             $form->bindRequest($request);
 
-            if (!$form->isValid()) {                
+            if ($form->isValid()) {                
 
                 $params = $this->getRequest()->request->all();
                 $my_params = $params['just2_backendbundle_ocassiontype'];

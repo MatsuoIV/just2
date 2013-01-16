@@ -1,29 +1,134 @@
+{# register.html.twig #}
 
-{# JVJsoftware CRUD-Symfony2- #}
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
 
-{% extends 'JVJPlantillaBundle::base.html.twig' %}
+{% block title %}Member profile - {{ parent() }}{% endblock %}
 
-{%block titulo %}Editar Member{%endblock%}
-
-{%-block nav2%}{%- include 'JVJPlantillaBundle::Navegador2/backend.html.twig' with {'menu':'Member'}%}{%- endblock%}
-{%- block contenido %}
-
-<form action="{{ path('member_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
-    <div class="box">
-        <div class="box-header"><h1>{{block('titulo')}}</h1></div>
-        <div class="box-content">
-    {{ form_widget(edit_form) }}
-            </div>
-            <div class="action_bar">
-                <button class="button blue" type="submit"><span class="glyph inbox"></span>Guardar</button>
-                                        <form action="{{ path('member_delete', { 'id': entity.id }) }}" method="post">
-            
-</form>
+{% block content %}
 
 
-            </div>
+    
+    <div class="row">
+        <div class="span3">
+            <h3>About Me</h3>
         </div>
-    </form>
-{%endblock%}
+        </div>
+        <div class="row">
+            <form action="{{ path('user_view_update', { 'id': entity.id }) }}" method='post' {{ form_enctype(edit_form) }}>          
+                <div class="span3">
+                    <div class="row" style="text-align:center">
+                        <img src="{{ app.request.getBaseURL() }}/img/user.png">                        
+                    </div>
+                    <div class="row" style="text-align:center">
+                        <p><a href="#">Upload Photo</a></p>
+                    </div>
+                    <div class="row" style="text-align:center">
+                        <p>{{ entity.firstName }} {{ entity.lastName }}</p>
+                    </div>
+                    <div class="row" style="text-align:center">
+                        <p>ID: {{ entity.id }}</p>
+                    </div>
+                </div>
+                <div class="span9">
+                    <fieldset>
+                        <legend>My profile</legend>
+                        <!--gender-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Gender</div>
+                            <div class="span3">{{ form_widget(edit_form.gender) }}</div><br /><br />
+                        </div>
+                        <!--DOB-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">DOB</div>
+                            <div class="span3">{{ form_widget(edit_form.dateOfBirth) }}</div><br /><br />   
+                        </div>
+                        <!--age-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Age</div>
+                            <div class="span3">38</div><br /><br />
+                        </div>
+                        <!--height-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Height</div>
+                            <div class="span3">{{ form_widget(edit_form.height) }} cm</div><br /><br />
+                        </div>
+                        <!--eye colour-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Eye colour</div>
+                            <div class="span3">{{ form_widget(edit_form.eyeColour) }}</div><br /><br />
+                        </div>
+                        <!--hair colour-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Hair colour</div>
+                            <div class="span3">{{ form_widget(edit_form.hairColour) }}</div><br /><br />                      
+                        </div>
+                        <!--nationality-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Nationality</div>
+                            <div class="span3">{# entity.nationality #}</div><br /><br />
+                        </div>
+                        <!--location-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Location/State</div>
+                            <div class="span3">{{ form_widget(edit_form.state) }}</div><br /><br />
+                        </div>
+                        <!--country-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Country</div>
+                            <div class="span3">{{ form_widget(edit_form.country) }}</div><br /><br />
+                        </div>
+                        <!--country-->
+                        
 
+                        <legend>About me...</legend>
+                        <!--date preference-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Date preference</div>
+                            <div class="span3">{{ form_widget(edit_form.datePreference) }}</div><br /><br />
+                        </div>
+                        <!--smoker-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Smoker</div>
+                            <div class="span3">{{ form_widget(edit_form.smoker) }}</div><br /><br />
+                        </div>
+                        <!--children-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Children</div>
+                            <div class="span3">{{ form_widget(edit_form.children) }}</div><br /><br />
+                        </div>
+                        <!--relationship-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Relationship</div>
+                            <div class="span3">{{ form_widget(edit_form.relationship) }}</div><br /><br />
+                        </div>
+                        <!--profession-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Profession</div>
+                            <div class="span3">{{ form_widget(edit_form.profession) }}</div><br /><br />
+                        </div>
+                        <!--personality-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Personality</div>
+                            <div class="span4">{{ form_widget(edit_form.personality) }}</div><br /><br /><br />
+                        </div>
+                        <!--interests-->
+                        <div class="row">
+                            <div class="span2" style="text-align: right">Interests</div>
+                            <div class="span4">{{ form_widget(edit_form.interest) }}</div><br /><br />
+                        </div>
+                        {{ form_widget(edit_form._token) }}
+                        <div class="row">
+                            <div class="form-actions">
+                                <div class="span1">
+                                    <button class="btn btn-danger" type="submit">Update</button>
+                                    <!-- <a href="{{ path('user_view_update', { 'id': entity.id }) }}" class="btn btn-danger">Save</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </fieldset>
+                </div>              
+            </form>
+        </div>
 
+{% endblock %}

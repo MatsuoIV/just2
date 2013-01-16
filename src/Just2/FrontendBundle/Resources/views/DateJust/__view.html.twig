@@ -1,0 +1,84 @@
+{# register.html.twig #}
+
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+{% block title %}View {{date.id}}{% endblock %}
+
+
+{% block content %}
+{%if info%}
+<div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Info!</strong> 
+{{info}}
+
+</div>{%endif%}
+<div class="row">
+    <div class="span2" style="text-align: center">
+        {% if user %}
+
+        <img src="/images_user/{{ user }}"  style="padding-top: 20px;" />
+
+        {%else%}
+            <img src="/images_user/default.png"  style="padding-top: 20px;" />
+        {%endif%}
+
+        </div>
+
+        <div class="span8" style="background: rgba(255, 255, 255, 0.39); margin-bottom: 15px" >
+            <div class="row  " style="margin-top:5px">
+                <div class="span3 form-inline"><label style="padding:3px">Current bid:</label> 
+                    <b>{%if highestBid%}{{highestBid.price}}{%else%}{{date.minprice}}{%endif%}</b>
+                </div>
+                <div class="span4">
+            {%if date.estate == 2%}
+                        <form class="form-inline" action="{{ path('bid_create_for_user') }}" method="post" {{ form_enctype(formbid) }}>
+
+                            <label>Enter your bid (${%if highestBid%}{{highestBid.price+5}}{%else%}{{date.minprice+5}}{%endif%} or more):</label>$          {{ form_widget(formbid.price, { 'attr': {'class' : 'span1'} }) }}{{ form_widget(formbid.dateJust, { 'attr': {'style' : 'display:none'} }) }}{{ form_rest(formbid) }}
+                            <button type="submit" class="btn btn-success" >Place bid</button>
+
+                        </form>
+                {%endif%}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span3 title_row" style="padding:3px"> Venue :</div>
+                    <div class="span4"> Revealed to winning bidder</div>
+                </div>
+                <div class="row">
+                    <div class="span3 title_row" style="padding:3px"> Occasion :</div>
+                    <div class="span4"> {{date.ocassion.name}}</div>
+                </div>
+                <div class="row">
+                    <div class="span3 title_row"  style="padding:3px"> When :</div>
+                    <div class="span4"> {{date.dateEnd | date()}}</div>
+                </div>
+                <div class="row">
+                    <div class="span3 title_row" style="padding:3px"> <b>Bid end date :</b></div>
+                    <div class="span4"> <b>{{date.dateEnd|time_ago }}</b></div>
+                </div> 
+
+                <div class="row">
+                    <div class="span3 title_row" style="padding:3px"> Location :</div>
+                    <div class="span4"> {{date.venue.country.name}}, {{date.venue.department.name}}</div>
+                </div>         
+                <div class="row">
+                    <div class="span3 title_row" style="padding:3px"> Bids :</div>
+                    <div class="span4"> {{totalbids}}</div>
+                </div>          
+            </div>
+
+{%if not mybiddate%}{%else%}
+            <div class="span2" >
+                <div style="margin-top:10">
+                    <b>Your Bid</b>        <br>
+                    Date: {{mybiddate.createdAt  | date()}} <br>
+                    Bid : $ {{mybiddate.price}}.00 <br>
+                    Estate: {{estatebid(mybiddate.estate)}}
+
+                </div>
+            </div>
+{%endif%}
+        </div>
+{%endblock%}
+

@@ -9,6 +9,7 @@ use Just2\BackendBundle\Entity\Member;
 use Just2\FrontendBundle\Form\BidType;
 use Just2\FrontendBundle\Form\DateSearchType;
 
+
 class DateJustController extends Controller {
 
     public function viewAction($id) {
@@ -100,16 +101,6 @@ class DateJustController extends Controller {
                 $em = $this->getDoctrine()->getEntityManager();
 
                 $date = $em->getRepository('Just2BackendBundle:DateJust')->searchDates($form["interested"]->getData(), $form["gender"]->getData());
-
-                // $id = 0;
-
-                // foreach ($date as $d) {
-                    
-                //     $bid = new Bid();
-                //     $bid->setDateJust($d);
-                //     $formBid[$id] = $this->createForm(new BidType(), $d);
-                //     $id++;
-                // }
                 
                 if($date != NULL) {
                     if ($this->get('security.context')->isGranted('ROLE_USER')) {                    
@@ -133,11 +124,15 @@ class DateJustController extends Controller {
             }           
 
         }
-        return $this->render('Just2FrontendBundle:DateJust:date_search.html.twig', array(
+        return $this->render('Just2FrontendBundle:DateJust:test.html.twig', array(
             'form'    => $form->createView(),            
             'message' => $message
         ));
 
+    }
+
+    public function testAction() {
+        return $this->render('Just2FrontendBundle:DateJust:prueba.html.twig');
     }
 
 }

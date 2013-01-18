@@ -26,7 +26,7 @@ class VenueJustController extends Controller {
         if ($request->isMethod('POST')) {
             //$form->bind($request);
             $form->bindRequest($request);
-
+            // echo 'aaaaaaa';
             if ($form->isValid()) {                
 
                 $params = $this->getRequest()->request->all();

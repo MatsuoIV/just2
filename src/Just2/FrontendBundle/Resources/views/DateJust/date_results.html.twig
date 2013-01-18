@@ -3,8 +3,7 @@
 {% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
 
 
-{% block title %}View{% endblock %}
-
+{% block title %}Date Search Results {{ parent() }}{% endblock %}
 
 {% block content %}
 
@@ -16,9 +15,9 @@
             <b>{#%if highestBid%}{{highestBid.price}}{%else%}{{date.minprice}}{%endif%#}</b>
         </div>
         <div class="span4">
-            {#<form class="form-inline" action="{{ path('bid_create_for_user') }}" method="post" {{ form_enctype(formbid) }}>#}
+            {<form class="form-inline" action="{{ path('bid_create_for_user') }}" method="post" {{ form_enctype(formbid) }}>}
 
-                <label>Enter your bid (${#%if highestBid%}{{highestBid.price+5}}{%else%}{{date.minprice+5}}{%endif%#} or more):</label>$          {# form_widget(formbid.price, { 'attr': {'class' : 'span1'} }) }}{{ form_widget(formbid.dateJust, { 'attr': {'style' : 'display:none'} }) }}{{ form_rest(formbid) }#}
+                <label>Enter your bid (${#%if highestBid%}{{highestBid.price+5}}{%else%}{{date.minprice+5}}{%endif%#} or more):</label>$          { form_widget(formbid.price, { 'attr': {'class' : 'span1'} }) }}{{ form_widget(formbid.dateJust, { 'attr': {'style' : 'display:none'} }) }}{{ form_rest(formbid) }}
                 <button type="submit" class="btn">Place bid</button>
 
             </form>

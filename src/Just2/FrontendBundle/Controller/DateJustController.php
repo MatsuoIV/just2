@@ -18,10 +18,6 @@ class DateJustController extends Controller {
                 ->getRepository('Just2BackendBundle:DateJust')
                 ->find($id);
 
-                print_r($date->getMember()->getUser()->getFace());
-                return;
-
-
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
             
             if ($date->getMember()->getId() == $this->get('security.context')->getToken()->getUser()->getMember()->getId()) {
@@ -104,6 +100,16 @@ class DateJustController extends Controller {
                 $em = $this->getDoctrine()->getEntityManager();
 
                 $date = $em->getRepository('Just2BackendBundle:DateJust')->searchDates($form["interested"]->getData(), $form["gender"]->getData());
+
+                // $id = 0;
+
+                // foreach ($date as $d) {
+                    
+                //     $bid = new Bid();
+                //     $bid->setDateJust($d);
+                //     $formBid[$id] = $this->createForm(new BidType(), $d);
+                //     $id++;
+                // }
                 
                 if($date != NULL) {
                     if ($this->get('security.context')->isGranted('ROLE_USER')) {                    
@@ -128,7 +134,7 @@ class DateJustController extends Controller {
 
         }
         return $this->render('Just2FrontendBundle:DateJust:date_search.html.twig', array(
-            'form'    => $form->createView(),
+            'form'    => $form->createView(),            
             'message' => $message
         ));
 

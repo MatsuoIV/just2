@@ -4,24 +4,40 @@ namespace Just2\BackendBundle\Entity;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
 
-class OcassionVenueRepository extends EntityRepository  {
+class OcassionRepository extends EntityRepository  {
     
-    public function getVenueList($id){
+    // public function getInterestsByMember($id) {
+    //     $q = $this
+    //             ->createQueryBuilder('m')                
+    //             ->select('m', 'i')
+    //             // ->from('Just2BackendBundle:Member', 'm')
+    //             ->leftJoin('m.interest', 'i')
+    //             ->where('m.id = :id')
+    //             ->setParameter('id', $id)
+    //             ->getQuery()
+    //     ;
+    //     return $q->getSingleResult();
         
-        
-//        $dates = date('d-m-Y');
-//        
-//        $date=date('Y/m/d H:m:s',strtotime("-1 day"));
-        
-        
-                $q = $this
+    // }
+
+    public function getVenueDetails($ocassion) {
+
+        $q = $this
                 ->createQueryBuilder('b')
-                ->where('b.id = :id')   //2 => in bet
-                ->setParameter('id', $id)
+                ->leftJoin('b.member', 'i')
+                ->where('i.gender = :gender AND i.datePreference = :interested')   //2 => in bet
+                ->setParameter('interested', $interested)
+                ->setParameter('gender', $gender)
                 ->getQuery();
-                
-                return $q->getSingleResult();
-        
+
+        try {
+            // $return = $q->getSingleResult();
+            $return = $q->getResult();
+
+        } catch (NoResultException $e) {
+            $return = null;
+        }
+
+        return $return;
     }
 }
-

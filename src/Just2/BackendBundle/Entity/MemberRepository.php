@@ -19,4 +19,25 @@ class MemberRepository extends EntityRepository  {
         return $q->getSingleResult();
         
     }
+
+    public function getUserImage($interested, $gender) {
+
+        $q = $this
+                ->createQueryBuilder('b')
+                ->leftJoin('b.member', 'i')
+                ->where('i.gender = :gender AND i.datePreference = :interested')   //2 => in bet
+                ->setParameter('interested', $interested)
+                ->setParameter('gender', $gender)
+                ->getQuery();
+
+        try {
+            // $return = $q->getSingleResult();
+            $return = $q->getResult();
+
+        } catch (NoResultException $e) {
+            $return = null;
+        }
+
+        return $return;
+    }
 }

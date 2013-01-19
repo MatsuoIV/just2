@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Just2\BackendBundle\Entity\Ocassion;
 use Just2\BackendBundle\Entity\OcassionVenue;
 use Just2\BackendBundle\Form\OcassionType;
+use Just2\FrontendBundle\Form\VenueSearchType;
 
 class VenueJustController extends Controller {
 
@@ -14,8 +15,11 @@ class VenueJustController extends Controller {
     public function indexAction() {
               
         // $em = $this->getDoctrine()->getEntityManager();
-        $ocassion = new Ocassion();
-        $form = $this->createForm(new OcassionType(), $ocassion);
+        // $ocassion = new Ocassion();
+        // $form = $this->createForm(new OcassionType(), $ocassion);
+        // $request = $this->getRequest();
+
+        $form = $this->createForm(new VenueSearchType());
         $request = $this->getRequest();
 
         // $formSearch->bindRequest($peticion);
@@ -23,21 +27,29 @@ class VenueJustController extends Controller {
         // $formData = $peticion->request->get('just2_backendbundle_ocassiontype');        
         //var_dump($peticion->request->all());
 
-        if ($request->isMethod('POST')) {
-            //$form->bind($request);
-            $form->bindRequest($request);
-            // echo 'aaaaaaa';
-            if ($form->isValid()) {                
+        if ($request->isMethod('POST')) {            
+            $form->bindRequest($request);           
 
-                $params = $this->getRequest()->request->all();
-                $my_params = $params['just2_backendbundle_ocassiontype'];
-                $my_id = (int) $my_params['name'];
+            if (!$form->isValid()) {                
+
+                // $params = $this->getRequest()->request->all();
+                // $my_params = $params['just2_backendbundle_ocassiontype'];
+                // $my_id = (int) $my_params['name'];
 
                 $em = $this->getDoctrine()->getEntityManager();
 
-                $repo = $em->getRepository('Just2BackendBundle:OcassionVenue')->findBy(array(
-                    'ocassion' => $my_id
-                    ));               
+                // $repo = $em->getRepository('Just2BackendBundle:OcassionVenue')->findBy(array(
+                //     'ocassion' => $my_id
+                //     ));
+                if($form["suburb"]->getData() == NULL){
+                    $repo = $em->getRepository('Just2BackendBundle:OcassionVenue')->getVenueNoSuburb($form["ocassion"]->getData()->getId());
+                } else {
+                    if($form["distance"]->getData() == NULL){
+                        $repo = $em->getRepository('Just2BackendBundle:OcassionVenue')->getVenueSuburb($form["ocassion"]->getData()->getId(),$form["suburb"]->getData()->getId()); 
+                    } else {                        
+                        $repo = $em->getRepository('Just2BackendBundle:OcassionVenue')->getVenueSuburbDistance($form["ocassion"]->getData()->getId(),$form["suburb"]->getData()->getId(),$form["distance"]->getData()); 
+                    }
+                }
 
                 return $this->render('Just2FrontendBundle:VenueJust:venue_result.html.twig', array(                
                     'vs'    => $repo,

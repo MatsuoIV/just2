@@ -40,4 +40,22 @@ class OcassionRepository extends EntityRepository  {
 
         return $return;
     }
+
+    // public function getVenues($ocassion) {
+
+    //     $q = $this
+    //         ->createQueryBuilder('b')
+    //         ->leftJoin('b.venue', 'i')
+    //         ->where('b.ocassion = :ocassion AND i.')
+    //         ->setParameter('ocassion', $ocassion)            
+    //         ->getQuery();
+
+    //     try {            
+    //         $return = $q->getResult();
+    //     } catch (NoResultException $e) {
+    //         $return = null;
+    //     }
+        
+    //     return $return;        
+    // }
 }

@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="ocassion")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Just2\BackendBundle\Entity\OcassionRepository")
  */
 class Ocassion {
 
@@ -42,10 +42,20 @@ class Ocassion {
     protected $dateJusts;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Just2\BackendBundle\Entity\Venue")
+     * @ORM\JoinTable(name="ocassion_venue",
+     *      joinColumns={@ORM\JoinColumn(name="ocassion_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="venue_id", referencedColumnName="id")}
+     *      )
+     */
+    private $venue; 
+
+    /**
      * Constructor
      */
     public function __construct() {
         $this->dates = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->venue = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function __toString()
@@ -164,4 +174,25 @@ class Ocassion {
     {
         return $this->dateJusts;
     }
+
+    /**
+     * Set venue
+     *
+     * @param \Acme\DemoBundle\Entity\Venue $venue
+     * @return Ocassion
+     */
+    public function setVenue(\Acme\DemoBundle\Entity\Venue $venue = null) {
+        $this->venue = $venue;
+
+        return $this;
+    }
+
+    /**
+     * Get venue
+     *
+     * @return \Acme\DemoBundle\Entity\Venue
+     */
+    public function getVenue() {
+        return $this->venue_id;
+    }    
 }

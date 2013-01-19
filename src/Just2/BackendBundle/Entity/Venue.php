@@ -42,6 +42,11 @@ class Venue {
      */
     private $district;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="JVJ\UtilBundle\Entity\Suburb")
+     */
+    private $suburb;
+
     /** @ORM\Column(type="string", length=255, nullable=false) */
     private $address;
 
@@ -65,6 +70,11 @@ class Venue {
     /** @ORM\Column(type="string", length=255, nullable=false) */
     private $details;
 
+    /** @ORM\Column(type="float") */
+    private $lat;
+
+    /** @ORM\Column(type="float") */
+    private $long;
 
     /**
      * Constructor
@@ -270,6 +280,29 @@ class Venue {
     }
 
     /**
+     * Set suburb
+     *
+     * @param \JVJ\UtilBundle\Entity\Suburb $suburb
+     * @return Venue
+     */
+    public function setSuburb(\JVJ\UtilBundle\Entity\Suburb $suburb = null)
+    {
+        $this->suburb = $suburb;
+    
+        return $this;
+    }
+
+    /**
+     * Get suburb
+     *
+     * @return \JVJ\UtilBundle\Entity\Suburb 
+     */
+    public function getSuburb()
+    {
+        return $this->suburb;
+    }
+
+    /**
      * Set image
      *
      * @param string $image
@@ -346,5 +379,51 @@ class Venue {
     public function getDateJusts()
     {
         return $this->dateJusts;
+    }
+
+    /**
+     * Set lat
+     *
+     * @param float $lat
+     * @return Venue
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+    
+        return $this;
+    }
+
+    /**
+     * Get lat
+     *
+     * @return float 
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set long
+     *
+     * @param float $long
+     * @return Venue
+     */
+    public function setLong($long)
+    {
+        $this->long = $long;
+    
+        return $this;
+    }
+
+    /**
+     * Get long
+     *
+     * @return float 
+     */
+    public function getLong()
+    {
+        return $this->long;
     }
 }

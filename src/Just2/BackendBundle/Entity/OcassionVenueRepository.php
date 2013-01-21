@@ -12,13 +12,13 @@ class OcassionVenueRepository extends EntityRepository {
        $q = $this
             ->createQueryBuilder('b')
             ->innerJoin('b.venue', 'v')
-            ->leftJoin('v.suburb', 's')            
-            ->where('b.ocassion = :ocassion_id AND (v.suburb = :suburb_id AND sqrt((s.lat-v.lat)*(s.lat-v.lat)+(s.long-v.long)*(s.long-v.long)) <= :distance )')
+            ->leftJoin('v.suburb', 's')
+            // ->where('b.ocassion = :ocassion_id AND (v.suburb = :suburb_id AND sqrt((s.lat-v.lat)*(s.lat-v.lat)+(s.long-v.long)*(s.long-v.long)) <= :distance )')
+            ->where('b.ocassion = :ocassion_id AND v.suburb = :suburb_id AND DEGREES(ACOS(SIN(RADIANS(v.lat)) * SIN(RADIANS(s.lat)) + COS(RADIANS(v.lat)) * COS(RADIANS(s.lat)) * COS(RADIANS(v.long-s.long)))*111.189576 < :distance')
             ->setParameter('ocassion_id', $ocassion_id)
             ->setParameter('suburb_id', $suburb_id)
             ->setParameter('distance', $distance)
-            ->getQuery();
-
+            ->getQuery();  
         try {            
             $return = $q->getResult();
         } catch (NoResultException $e) {

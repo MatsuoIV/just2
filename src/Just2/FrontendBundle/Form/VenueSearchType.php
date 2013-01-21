@@ -23,6 +23,7 @@ class VenueSearchType extends AbstractType
                 ))
             ->add('distance','choice',array(
                     'choices' => array(
+                        0.4 => '0.4',
                         5  => '5',
                         10 => '10',
                         20 => '20',

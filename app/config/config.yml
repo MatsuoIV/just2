@@ -47,10 +47,17 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
-
-    
-
+        entity_managers:
+            default:
+                auto_mapping: true
+                dql:
+                    numeric_functions:
+                        DEGREES: \Just2\BackendBundle\DQL\Degrees
+                        ACOS: \Just2\BackendBundle\DQL\Acos
+                        COS: \Just2\BackendBundle\DQL\Cos
+                        SIN: \Just2\BackendBundle\DQL\Sin
+                        RADIANS: \Just2\BackendBundle\DQL\Radians
+                        
 # Swiftmailer Configuration
 jms_security_extra:
     secure_all_services: false
@@ -62,7 +69,22 @@ swiftmailer:
     auth_mode: login
     host: smtp.gmail.com
     username: jvjsoftware@gmail.com
-    password: asdf
+    password: jhanice3
     
+# Config Timestempable 
 
+stof_doctrine_extensions:
+    default_locale: en
+    orm:
+        default:
+            timestampable: true
+            
+services:
+# ...
+    twig.extension.cupon:
+        class: Just2\FrontendBundle\Twig\Extension\UtilExtension
+        tags:
+            - { name: twig.extension }
 
+parameters:
+    Just2.MinimunRangeBids: '5'

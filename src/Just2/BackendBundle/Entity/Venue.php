@@ -70,10 +70,10 @@ class Venue {
     /** @ORM\Column(type="string", length=255, nullable=false) */
     private $details;
 
-    /** @ORM\Column(type="float") */
+    /** @ORM\Column(type="decimal", scale=6) */
     private $lat;
 
-    /** @ORM\Column(type="float") */
+    /** @ORM\Column(type="decimal", scale=6) */
     private $long;
 
     /**

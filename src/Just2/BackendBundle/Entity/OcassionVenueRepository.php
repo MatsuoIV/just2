@@ -4,17 +4,22 @@ namespace Just2\BackendBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
+use Beberlei\Query\Mysql;
 
 class OcassionVenueRepository extends EntityRepository {
     
     public function getVenueSuburbDistance($ocassion_id,$suburb_id,$distance) {
 
-       $q = $this
+       $q = $this            
             ->createQueryBuilder('b')
             ->innerJoin('b.venue', 'v')
-            ->leftJoin('v.suburb', 's')
-            // ->where('b.ocassion = :ocassion_id AND (v.suburb = :suburb_id AND sqrt((s.lat-v.lat)*(s.lat-v.lat)+(s.long-v.long)*(s.long-v.long)) <= :distance )')
-            ->where('b.ocassion = :ocassion_id AND v.suburb = :suburb_id AND DEGREES(ACOS(SIN(RADIANS(v.lat)) * SIN(RADIANS(s.lat)) + COS(RADIANS(v.lat)) * COS(RADIANS(s.lat)) * COS(RADIANS(v.long-s.long)))*111.189576 < :distance')
+            ->leftJoin('v.suburb', 's')                        
+            // ->where('b.ocassion = :ocassion_id 
+            //     AND v.suburb = :suburb_id 
+            //     AND DEGREES( ACOS( SIN(RADIANS(v.lat)) * SIN(RADIANS(s.lat)) + COS(RADIANS(v.lat)) * COS(RADIANS(s.lat)) * COS(RADIANS(v.long-s.long)) ) )*111.189576 <= :distance - 1')
+            ->where('b.ocassion = :ocassion_id 
+                AND v.suburb = :suburb_id 
+                AND DEGREES( ACOS( SIN(RADIANS(v.lat)) * SIN(RADIANS(s.lat)) + COS(RADIANS(v.lat)) * COS(RADIANS(s.lat)) * COS(RADIANS(v.long-s.long)) ) )*111.189576 < :distance')
             ->setParameter('ocassion_id', $ocassion_id)
             ->setParameter('suburb_id', $suburb_id)
             ->setParameter('distance', $distance)
@@ -26,6 +31,14 @@ class OcassionVenueRepository extends EntityRepository {
         }
         
         return $return;        
+    }
+
+    public function getVenueSuburbDistance2() {
+        $stmt = $this->getEntityManager()
+        ->getConnection()
+        ->prepare('select * from product where 1');
+        $stmt->execute();
+        $result = $stmt->fetchAll();
     }
 
     public function getVenueSuburb($ocassion_id,$suburb_id) {

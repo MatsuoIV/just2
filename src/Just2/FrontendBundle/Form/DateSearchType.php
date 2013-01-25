@@ -5,6 +5,7 @@ namespace Just2\FrontendBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\DataTransformer;
 
 class DateSearchType extends AbstractType
 {
@@ -27,15 +28,19 @@ class DateSearchType extends AbstractType
                         ),
                     'required'  =>  true,                    
                 ))
+            //edades
+            ->add('age1','integer')
+            ->add('age2','integer')
         ;
     }
 
-    // public function setDefaultOptions(OptionsResolverInterface $resolver)
-    // {
-    //     $resolver->setDefaults(array(
-    //         'data_class' => ''
-    //     ));
-    // }
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'age1' => 18,
+            'age2' => 19,
+        ));
+    }
 
     public function getName()
     {

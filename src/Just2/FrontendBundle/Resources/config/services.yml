@@ -8,8 +8,9 @@ services:
           - { name: twig.extension }
 
     just2_frontend.twig.extension.test:
-      class: Just2\FrontendBundle\Twig\Extension\TestExtension
+      class: Just2\FrontendBundle\Twig\Extension\DateSearchExtension
       tags:
           - { name: twig.extension }
       arguments:
           manager: "@doctrine.orm.entity_manager"
+          container: "@service_container"

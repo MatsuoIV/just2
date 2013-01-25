@@ -1,3 +1,14 @@
 <h1>lol</h1>
 
-{{ loadDates() }}
+{#{ loadDates() #}
+
+{% for d in date %}
+{{d.id}} - ${%if highestBid(d.id)%}{{highestBid(d.id)+5}}{%else%}{{d.minprice+5}}{%endif%}<br />
+{% endfor %}
+
+
+
+
+{#% for b in highestBid %}
+{{b.price}}<br />
+{% endfor %#}

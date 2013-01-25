@@ -178,10 +178,10 @@ class Ocassion {
     /**
      * Set venue
      *
-     * @param \Acme\DemoBundle\Entity\Venue $venue
+     * @param \Just2\BackendBundle\Entity\Venue $venue
      * @return Ocassion
      */
-    public function setVenue(\Acme\DemoBundle\Entity\Venue $venue = null) {
+    public function setVenue(\Just2\BackendBundle\Entity\Venue $venue = null) {
         $this->venue = $venue;
 
         return $this;
@@ -190,7 +190,7 @@ class Ocassion {
     /**
      * Get venue
      *
-     * @return \Acme\DemoBundle\Entity\Venue
+     * @return \Just2\BackendBundle\Entity\Venue
      */
     public function getVenue() {
         return $this->venue_id;

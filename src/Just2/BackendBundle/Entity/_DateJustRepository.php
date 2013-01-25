@@ -24,24 +24,6 @@ class DateJustRepository extends EntityRepository {
         return $q->getSingleResult();
     }
 
-    public function indexJust() {
-
-
-//        $dates = date('d-m-Y');
-//        
-//        $date=date('Y/m/d H:m:s',strtotime("-1 day"));
-
-
-        $q = $this
-                ->createQueryBuilder('b')
-                ->where('b.estate = 2')   //2 => in bet
-                ->orderBy('b.dateEnd', 'Asc')
-                ->setMaxResults(12)
-                ->getQuery();
-
-        return $q->getResult();
-    }
-
     public function findMemberDate($id, $member) {
 
         $q = $this
@@ -79,6 +61,8 @@ class DateJustRepository extends EntityRepository {
 
         return $return;
     }
+
+
 
 }
 

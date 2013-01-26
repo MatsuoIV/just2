@@ -1,4 +1,51 @@
 ## YAML Template.
+
+
+message:
+    pattern:  /messages
+    defaults: { _controller: Just2FrontendBundle:Message:messages }
+message_new:
+    pattern:  /messages/new/{id}/{for}
+    defaults: { _controller: Just2FrontendBundle:Message:new }
+    
+message_received:
+    pattern:  /messages/received
+    defaults: { _controller: Just2FrontendBundle:Message:received }
+    
+message_sent:
+    pattern:  /messages/sent
+    defaults: { _controller: Just2FrontendBundle:Message:sent }
+
+message_ajax:
+    pattern:  /messages_actions
+    defaults: { _controller: Just2FrontendBundle:Message:ajax }    
+    
+    
+bid_create_for_user:
+    pattern:  /bid/create
+    defaults: { _controller: Just2FrontendBundle:Bid:bid }
+    
+bids_date:
+    pattern:  /date/view/{id}
+    defaults: { _controller: Just2FrontendBundle:User:adminDateBids }
+    
+date_finished:
+    pattern:  /date/view/finished/{id}
+    defaults: { _controller: Just2FrontendBundle:User:adminDateFinished } 
+date_finished_payment:
+    pattern:  /date/view/finished/payment/{id}
+    defaults: { _controller: Just2FrontendBundle:User:datePaimentAuction } 
+    
+bids_date_acepted:
+    pattern:  /date/view/{id}/acepted
+    defaults: { _controller: Just2FrontendBundle:User:adminDateBidsAcepted }
+    
+bids_date_rejectered:
+    pattern:  /date/view/{id}/rejectered
+    defaults: { _controller: Just2FrontendBundle:User:adminDateBidsRejectered }
+
+    
+    
 user_view_show:
     pattern:  /{id}/view
     defaults: { _controller: Just2FrontendBundle:Member:show }
@@ -12,19 +59,3 @@ user_view_update:
     defaults: { _controller: Just2FrontendBundle:Member:update }
     requirements:
         _method: POST
-    
-bid_create_for_user:
-    pattern:  /bid/create
-    defaults: { _controller: Just2FrontendBundle:Bid:bid }
-    
-bids_date:
-    pattern:  /date/view/{id}
-    defaults: { _controller: Just2FrontendBundle:User:adminDateBids }
-    
-bids_date_acepted:
-    pattern:  /date/view/{id}/acepted
-    defaults: { _controller: Just2FrontendBundle:User:adminDateBidsAcepted }
-    
-bids_date_rejectered:
-    pattern:  /date/view/{id}/rejectered
-    defaults: { _controller: Just2FrontendBundle:User:adminDateBidsRejectered }

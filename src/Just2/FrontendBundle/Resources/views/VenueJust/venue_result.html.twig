@@ -32,6 +32,7 @@
 	{% for id in vs %}
 		<div class="row">
 			<table class="table table-bordered">
+				<form action="{{ path('venue_reserve', { 'ocassion_id': id.ocassion.id, 'venue_id': id.venue.id }) }}" method="POST">
 				<tr>
 					<th><label class="checkbox"><input type="checkbox">Add to watch list</label></th>
 				</tr>
@@ -53,19 +54,19 @@
 				<tr>					
 					<td>
 						<div class="span3">When:</div>
-						<div class="span3"><input type="text" class="datepicker span2"></div>
+						<div class="span3"><input type="text" name="venuedate" class="datepicker span2" required></div>
 					</td>
 				</tr>
 				<tr>					
 					<td>
 						<div class="span3">Time:</div>
-						<div class="span3"><input type="text" class="timepicker span2"></div>
+						<div class="span3"><input type="text" name="venuetime" class="timepicker span2" required></div>
 					</td>
 				</tr>
 				<tr>					
 					<td>
 						<div class="span3">Bid Start:</div>
-						<div class="span3"><input type="text" class="datepicker span2"></div>
+						<div class="span3"><input type="text" name="venuebid" class="datepicker span2" required></div>
 					</td>
 				</tr>
 				<tr>					
@@ -84,10 +85,11 @@
 					<td style="text-align: center">
 						<div><a href="{{ path('venue_details', { 'ocassion_id': id.ocassion.id, 'venue_id': id.venue.id }) }}" class="btn btn-primary">More details</a></div>
 					</td>
-					<td>
-						<div class="span3 offset3"><button type="submit" class="btn btn-primary">Reserve</button></div>
+					<td>						
+						<div><input type="submit" class="btn btn-primary" value="Reserve"></div>
 					</td>
 				</tr>
+				</form>
 			</table>
 		</div>	
 	{% endfor %}

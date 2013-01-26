@@ -11,6 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity()
  * @ORM\Entity(repositoryClass="Just2\BackendBundle\Entity\DateJustRepository")
  */
+
 class DateJust {
 
     /**
@@ -51,12 +52,14 @@ class DateJust {
      * @ORM\JoinColumn(name="venue_id", referencedColumnName="id")
      */
     private $venue;
+
     /**
      *  @var datetime $createdAt
      *
-     * @ORM\Column(name="endBid", type="datetime")
+     * @ORM\Column(name="dateEnd", type="datetime")
      */
     private $dateEnd;
+
     /**
      *  @var datetime $createdAt
      *
@@ -110,8 +113,8 @@ class DateJust {
      * @return DateJust
      */
     public function setDetailDate($detailDate) {
-        $this->detailDate = $detailDate;
 
+        $this->detailDate = $detailDate;
         return $this;
     }
 
@@ -132,7 +135,6 @@ class DateJust {
      */
     public function setMinPrice($minPrice) {
         $this->minPrice = $minPrice;
-
         return $this;
     }
 
@@ -152,8 +154,8 @@ class DateJust {
      * @return DateJust
      */
     public function setCreatedAt($createdAt) {
-        $this->createdAt = $createdAt;
 
+        $this->createdAt = $createdAt;
         return $this;
     }
 
@@ -166,6 +168,8 @@ class DateJust {
         return $this->createdAt;
     }
 
+
+
     /**
      * Set updatedAt
      *
@@ -173,8 +177,8 @@ class DateJust {
      * @return DateJust
      */
     public function setUpdatedAt($updatedAt) {
-        $this->updatedAt = $updatedAt;
 
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 
@@ -183,9 +187,12 @@ class DateJust {
      *
      * @return \DateTime 
      */
+
     public function getUpdatedAt() {
         return $this->updatedAt;
     }
+
+
 
     /**
      * Set estate
@@ -193,9 +200,9 @@ class DateJust {
      * @param integer $estate
      * @return DateJust
      */
+
     public function setEstate($estate) {
         $this->estate = $estate;
-
         return $this;
     }
 
@@ -216,7 +223,6 @@ class DateJust {
      */
     public function setMember(\Just2\BackendBundle\Entity\Member $member = null) {
         $this->member = $member;
-
         return $this;
     }
 
@@ -235,10 +241,12 @@ class DateJust {
      * @param \Just2\BackendBundle\Entity\Ocassion $ocassion
      * @return DateJust
      */
-    public function setOcassion(\Just2\BackendBundle\Entity\Ocassion $ocassion = null) {
-        $this->ocassion = $ocassion;
 
+    public function setOcassion(\Just2\BackendBundle\Entity\Ocassion $ocassion = null) {
+
+        $this->ocassion = $ocassion;
         return $this;
+
     }
 
     /**
@@ -246,8 +254,11 @@ class DateJust {
      *
      * @return \Just2\BackendBundle\Entity\Ocassion 
      */
+
     public function getOcassion() {
+
         return $this->ocassion;
+
     }
 
     /**
@@ -256,9 +267,10 @@ class DateJust {
      * @param \Just2\BackendBundle\Entity\Venue $venue
      * @return DateJust
      */
-    public function setVenue(\Just2\BackendBundle\Entity\Venue $venue = null) {
-        $this->venue = $venue;
 
+    public function setVenue(\Just2\BackendBundle\Entity\Venue $venue = null) {
+
+        $this->venue = $venue;
         return $this;
     }
 
@@ -267,6 +279,7 @@ class DateJust {
      *
      * @return \Just2\BackendBundle\Entity\Venue 
      */
+
     public function getVenue() {
         return $this->venue;
     }
@@ -277,9 +290,9 @@ class DateJust {
      * @param \Just2\BackendBundle\Entity\Bid $bids
      * @return DateJust
      */
+
     public function addBid(\Just2\BackendBundle\Entity\Bid $bids) {
         $this->bids[] = $bids;
-
         return $this;
     }
 
@@ -288,20 +301,26 @@ class DateJust {
      *
      * @param \Just2\BackendBundle\Entity\Bid $bids
      */
+
     public function removeBid(\Just2\BackendBundle\Entity\Bid $bids) {
+
         $this->bids->removeElement($bids);
+
     }
+
+
 
     /**
      * Get bids
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
+
     public function getBids() {
+
         return $this->bids;
+
     }
-
-
 
     /**
      * Set dateEnd
@@ -309,10 +328,10 @@ class DateJust {
      * @param \DateTime $dateEnd
      * @return DateJust
      */
-    public function setDateEnd($dateEnd)
-    {
+
+    public function setDateEnd($dateEnd){
+
         $this->dateEnd = $dateEnd;
-    
         return $this;
     }
 
@@ -321,8 +340,9 @@ class DateJust {
      *
      * @return \DateTime 
      */
-    public function getDateEnd()
-    {
+
+    public function getDateEnd(){
         return $this->dateEnd;
     }
+
 }

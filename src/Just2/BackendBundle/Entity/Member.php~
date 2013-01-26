@@ -1,0 +1,136 @@
+<?php
+
+namespace Just2\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
+use JVJ\UserBundle\Entity\User;
+
+/**
+ * @ORM\Table(name="member")
+ * @ORM\Entity()
+ */
+class Member {
+
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="DateJust", mappedBy="member")
+     */
+    protected $dateJusts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Bid", mappedBy="member")
+     */
+    protected $bids;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $firstName;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $lastName;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $street;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="JVJ\UtilBundle\Entity\Department")
+     */
+    private $state;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $postCode;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="JVJ\UtilBundle\Entity\Country")
+     */
+    private $country;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $phone;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $mobile;
+
+    /** @ORM\Column(type="datetime") 
+     * 
+     * @Assert\DateTime
+     */
+    private $dateOfBirth;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $gender;
+
+    /**
+     * @ORM\OneToOne(targetEntity="\JVJ\UserBundle\Entity\User", mappedBy="member")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+   /** @ORM\Column(type="integer") */
+    private $height;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $eyeColour;
+
+    /** @ORM\Column(type="string", length=255) */
+    private $hairColour;
+
+    /**
+     * @var string $datePreference
+     *
+     * @ORM\Column(name="datePreference", type="string", length=255)
+     */
+    private $datePreference;
+
+    /**
+     * @var string $smoker
+     *
+     * @ORM\Column(name="smoker", type="string", length=255)
+     */
+    private $smoker;
+
+    /**
+     * @var string $children
+     *
+     * @ORM\Column(name="children", type="string", length=255)
+     */
+    private $children;
+
+    /**
+     * @var string $relationship
+     *
+     * @ORM\Column(name="relationship", type="string", length=255)
+     */
+    private $relationship;
+
+    /**
+     * @var string $profession
+     *
+     * @ORM\Column(name="profession", type="string", length=255)
+     */
+    private $profession;
+
+    /**
+     * @var string $personality
+     *
+     * @ORM\Column(name="personality", type="text")
+     */
+    private $personality;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Just2\BackendBundle\Entity\Interest")
+     */
+    private $interest;
+    
+    public function __toString() {
+        return $this->getFirstName();
+    }
+
+
+}

@@ -28,6 +28,7 @@
                     </div>
                     <div class="row" style="text-align:center">
                         <p>ID: {{ entity.id }}</p>
+                        <a class="btn btn-success" href="{{ path('message') }}"><i class="icon-envelope icon-white"></i> Mailbox</a>
                     </div>
                 </div>
                 <div class="span9">
@@ -116,9 +117,9 @@
                         <div class="row">
                             <div class="span2" style="text-align: right">Interests</div>
                             <div class="span4">
-                                {#% for i in interest %#}
-                                    {# entity.interest.name }}<br />
-                                {#% endfor %#}
+                                {#% for i in interest %}
+                                    {{ i.interest }}<br />
+                                {% endfor %#}
                             </div><br /><br />
                         </div>
                         <div class="row">

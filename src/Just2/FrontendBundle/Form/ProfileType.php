@@ -16,8 +16,8 @@ class ProfileType extends AbstractType{
             ->add('dateOfBirth', 'date', array('years' => range(1920, date('Y'))))
             ->add('gender','choice',array(
                     'choices'   =>  array(
-                        'm' =>  'Male',
-                        'f' =>  'Female',
+                        'male' =>  'Male',
+                        'female' =>  'Female',
                         'nope' =>  "Don't specify"                        
                         ),
                     'required'  =>  true,
@@ -56,13 +56,7 @@ class ProfileType extends AbstractType{
                         ),
                     'required'  =>  true,
                 ))
-            ->add('datePreference','choice',array(
-                    'choices'   =>  array(
-                        'm' =>  'Men',
-                        'f' =>  'Women',                        
-                        ),
-                    'required'  =>  true,                    
-                ))
+            ->add('datePreference')
             ->add('smoker','choice',array(
                     'choices' => array(
                         'yes' => 'Yes',

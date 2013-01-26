@@ -7,12 +7,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use JVJ\UserBundle\Entity\User;
-use Just2\BackendBundle\Entity\Interest;
 
 /**
  * @ORM\Table(name="member")
- * @ORM\Entity(repositoryClass="Just2\BackendBundle\Entity\MemberRepository")
- * @ORM\HasLifecycleCallbacks 
+ * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks
  */
 class Member {
 
@@ -123,10 +122,6 @@ class Member {
 
     /**
      * @ORM\ManyToMany(targetEntity="Just2\BackendBundle\Entity\Interest")
-     * @ORM\JoinTable(name="member_interest",
-     *      joinColumns={@ORM\JoinColumn(name="member_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="interest_id", referencedColumnName="id")}
-     *      )
      */
     private $interest;
 
@@ -162,7 +157,6 @@ class Member {
         $this->dates = new \Doctrine\Common\Collections\ArrayCollection();
         $this->bids = new \Doctrine\Common\Collections\ArrayCollection();
         $this->auctions = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->interest = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

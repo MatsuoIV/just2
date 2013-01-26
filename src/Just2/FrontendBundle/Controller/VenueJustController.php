@@ -6,8 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Just2\BackendBundle\Entity\Ocassion;
 use Just2\BackendBundle\Entity\OcassionVenue;
+use Just2\BackendBundle\Entity\DateJust;
+use Just2\BackendBundle\Entity\Bid;
+use Just2\BackendBundle\Entity\Reservation;
 use Just2\BackendBundle\Form\OcassionType;
 use Just2\FrontendBundle\Form\VenueSearchType;
+use Just2\FrontendBundle\Form\VenueReserveType;
 
 class VenueJustController extends Controller {
 
@@ -50,9 +54,11 @@ class VenueJustController extends Controller {
                         $repo = $em->getRepository('Just2BackendBundle:OcassionVenue')->getVenueSuburbDistance($form["ocassion"]->getData()->getId(),$form["suburb"]->getData()->getId(),$form["distance"]->getData()); 
                     }
                 }
+                //formulario
+                // $reserveForm = $this->createForm(new VenueReserveType());
 
                 return $this->render('Just2FrontendBundle:VenueJust:venue_result.html.twig', array(                
-                    'vs'    => $repo,
+                    'vs'    => $repo,                    
                 ));
             } else {
                 // Redirect
@@ -81,13 +87,88 @@ class VenueJustController extends Controller {
             'od'    => $ocassion,
             'vd'    => $venue
         ));
+        
+    }
+
+    public function reserveAction($ocassion_id, $venue_id){
+
+        if ($this->get('security.context')->isGranted('ROLE_USER')) {
+
+            $em = $this->getDoctrine()->getEntityManager();
+            
+            $ocassion = $em->getRepository('Just2BackendBundle:Ocassion')->findBy(array(
+                'id' => $ocassion_id
+                ));
+
+            $venue = $em->getRepository('Just2BackendBundle:Venue')->findBy(array(
+                'id' => $venue_id
+                ));
+
+            $dateJust = new DateJust();
+            $bid = new Bid();
+            $reservation = new Reservation();
+
+            $dateReserve = new \DateTime($_POST["venuedate"]);
+            $dateReserve->modify("-1 day");
+
+            $dateEnd = new \DateTime($_POST["venuedate"]);
+
+            $dateBid = new \DateTime($_POST["venuebid"]);
+
+
+            $dateJust
+                ->setMember($this->get('security.context')->getToken()->getUser()->getMember())
+                ->setOcassion($ocassion[0])
+                ->setVenue($venue[0])
+                ->setDetailDate($ocassion[0]->getName())
+                ->setMinPrice($ocassion[0]->getPrice())
+                ->setCreatedAt(new \DateTime('now'))
+                ->setUpdatedAt(new \DateTime('now'))
+                ->setDateEnd($dateReserve)
+                ->setEstate(1)                    
+                ;
+
+            $bid
+                ->setPrice($ocassion[0]->getPrice())
+                ->setMember($this->get('security.context')->getToken()->getUser()->getMember())
+                ->setEstate(1)
+                ->setCreatedAt($dateBid)
+                ->setDateJust($dateJust)
+                ;
+
+            $reservation
+                ->setVenue($venue[0])
+                ->setDateJust($dateJust)
+                ->setOcassion($ocassion[0])
+                ->setCodeReservation(rand(100000,999999))
+                ->setByDate($dateEnd)
+                ->setEstate(1)
+                ;
+
+            $data = array(
+                'venuedate' => $_POST["venuedate"],
+                'venuetime' => $_POST["venuetime"],
+                'venuebid' => $_POST["venuebid"],
+                );
+
+            $em->persist($dateJust);
+            $em->persist($bid);
+            $em->persist($reservation);
+
+            $em->flush();
+
+
+
+            return $this->render('Just2FrontendBundle:VenueJust:venue_reserve.html.twig',array(
+                    'data' => $data
+                ));
+
+        } else {
+            return $this->redirect($this->generateUrl('usuario_login'));
+        }
     }
 
 
 }
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 ?>

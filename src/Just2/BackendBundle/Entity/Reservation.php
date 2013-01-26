@@ -9,6 +9,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * @ORM\Table(name="reservation")
  * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Just2\BackendBundle\Entity\ReservationRepository")
+ * 
  */
 Class Reservation {
 
@@ -30,7 +32,14 @@ Class Reservation {
      */
     private $dateJust;
     
-
+    /**
+     * @ORM\ManyToOne(targetEntity="Ocassion")
+     * @ORM\JoinColumn(name="ocassion_id", referencedColumnName="id")
+     */
+    private $ocassion;
+    
+    
+    
     /** @ORM\Column(type="string", length=255, nullable=false) */
     private $codeReservation;
 
@@ -45,7 +54,10 @@ Class Reservation {
     private $estate;
 
 
-
+    public function __toString() {
+        return $this->getEstate()
+        ;
+    }
 
     /**
      * Get id
@@ -193,5 +205,28 @@ Class Reservation {
     public function getDateJust()
     {
         return $this->dateJust;
+    }
+
+    /**
+     * Set ocassion
+     *
+     * @param \Just2\BackendBundle\Entity\Ocassion $ocassion
+     * @return Reservation
+     */
+    public function setOcassion(\Just2\BackendBundle\Entity\Ocassion $ocassion = null)
+    {
+        $this->ocassion = $ocassion;
+    
+        return $this;
+    }
+
+    /**
+     * Get ocassion
+     *
+     * @return \Just2\BackendBundle\Entity\Ocassion 
+     */
+    public function getOcassion()
+    {
+        return $this->ocassion;
     }
 }

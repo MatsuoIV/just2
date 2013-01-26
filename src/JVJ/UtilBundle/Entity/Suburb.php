@@ -24,10 +24,10 @@ class Suburb {
      */
     private $name;
 
-    /** @ORM\Column(type="decimal", scale=6) */
+    /** @ORM\Column(type="float") */
     private $lat;
 
-    /** @ORM\Column(type="decimal", scale=6) */
+    /** @ORM\Column(type="float") */
     private $long;
 
     /**

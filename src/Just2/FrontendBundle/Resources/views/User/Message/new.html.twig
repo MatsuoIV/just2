@@ -1,0 +1,64 @@
+{# register.html.twig #}
+
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+{% block title %}View Ended Date Just{% endblock %}
+
+
+
+
+{% block content %}
+<script src="{{ asset('bundles/just2frontend/js/message.js') }}"></script>
+<div class="row">
+    <div class="span2" style="text-align: center">
+    {%if  app.user.face%}
+
+            <img src="/images_user/{{app.user.face}}"  style="padding-top: 20px;" />
+
+        {%else%}
+            <img src="/images_user/default.png"  style="padding-top: 20px;" />
+        {%endif%}
+
+
+        </div>
+
+
+        <div class="span10">
+            <h3>New Message</h3>
+            <form action="{{ path('message_new', { 'id': entity.dateJust.id, 'for':entity.memberFor.id }) }}" method="post" {{ form_enctype(form) }}>
+
+
+
+                    					{{ form_widget(form.memberFor, { 'attr': {
+			
+						'style' : 'display:none',
+						} }) }}	
+                    {{ form_widget(form.dateJust, { 'attr': {
+				
+						'style' : 'display:none',
+						} }) }}	
+                    
+                         {{ form_rest(form) }}
+                    
+                    
+                    <p>
+                        <button class="btn btn-success" type="submit">Create</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+

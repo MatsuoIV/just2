@@ -1,0 +1,8 @@
+## YAML Template.
+
+date_view:
+    pattern:  /view/{id}
+    defaults: { _controller: Just2FrontendBundle:DateJust:view}
+ #   requirements:
+#      _method:  GET
+      

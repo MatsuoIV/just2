@@ -14,14 +14,14 @@
         <div class="span3 form-inline"><label style="padding:3px">Current bid:</label> 
             <b>{%if highestBid(d.id)%}{{highestBid(d.id)}}{%else%}{{d.minprice}}{%endif%}</b>
         </div>
-        <div class="span3">
-            {#<form class="form-inline" action="{{ path('bid_create_for_user') }}" method="post" {{ form_enctype(formBid(d)) }}>#}
+        <div class="span4">
+            <form class="form-inline" action="{{ path('bid_create_for_user') }}" method="post" {{ form_enctype(formBid(d)) }}>
 
-                <label>Enter your bid (${%if highestBid(d.id)%}{{highestBid(d.id)+5}}{%else%}{{d.minprice+5}}{%endif%} or more):</label>{#{ form_widget(formBid(d).price, { 'attr': {'class' : 'span1'} }) }#}
+                <label>Enter your bid (${%if highestBid(d.id)%}{{highestBid(d.id)+5}}{%else%}{{d.minprice+5}}{%endif%} or more):</label>${{ form_widget(formBid(d).price, { 'attr': {'class' : 'span1'} }) }}
+                <button type="submit" class="btn">Place bid</button>
 
-            <!-- </form> -->
+            </form>
         </div>
-        <div class="span2"><a href="{{ path('date_view', { 'id': d.id } ) }}" class="btn">Place bid</a></div>
     </div>
     <div class="row">
         <div class="span3" style="padding:3px"> Venue</div>
@@ -47,10 +47,6 @@
     <div class="row">
         <div class="span3" style="padding:3px"> Bids</div>
         <div class="span4">: {{totalbidsfordate(d.id)}}</div>
-    </div>
-    <div class="row">
-        <div class="span3" style="padding:3px"> Profile</div>
-        <div class="span4">: <a href="{{ path('user_view_show', {'id': d.member.id }) }} ">See {{d.member.firstName}} profile</a></div>
     </div>
 </div>
 

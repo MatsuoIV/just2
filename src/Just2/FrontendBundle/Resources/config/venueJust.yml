@@ -9,3 +9,9 @@ venue_results:
 venue_details:
     pattern:  /{ocassion_id}/{venue_id}/details
     defaults: { _controller: Just2FrontendBundle:VenueJust:detail}
+
+venue_reserve:
+    pattern:  /{ocassion_id}/{venue_id}/reserve
+    defaults: { _controller: Just2FrontendBundle:VenueJust:reserve}
+    requirements:
+        _method: POST

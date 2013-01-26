@@ -1,0 +1,412 @@
+@charset "utf-8";
+* {
+	margin: 0px;
+	padding: 0px;
+}
+body {
+	height: auto;
+	width: 950px;
+	margin-right: auto;
+	margin-left: auto;
+	background-image: url(/bundles/just2frontend/images/fondo.jpg);
+	background-repeat: repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+#wrap {
+	height: auto;
+	width: 950px;
+	margin: 0 auto;
+}
+#allnavigation {
+	height: 170px;
+	width: 950px;
+}
+#navigation0 {
+	background-image: url(/bundles/just2frontend/images/menufirst.gif);
+	height: 29px;
+	width: 950px;
+}
+
+#navigation0 ul{
+	list-style-type:none;
+	}
+
+#navigation0 li{
+	float: right;
+	}
+
+#navigation0 li a{
+	font-size: 14px;
+	color: #333;
+	padding-top: 8px;
+	padding-right: 16px;
+	padding-bottom: 5px;
+	padding-left: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+	display: block;
+	text-decoration: none;
+	}
+
+#navigation0 li a:hover{
+	color: #742DE4;
+
+	}
+
+
+
+#navigation1 {
+	background-image: url(/bundles/just2frontend/images/barra-menu2.png);
+	height: 36px;
+	width: 396px;
+	margin-left: 555px;
+}
+
+
+#navigation1 ul{
+	list-style-type:none;
+	}
+
+#navigation1 li{
+	float:left;
+	}
+
+#navigation1 li a{
+	font-size: 14px;
+	color: #333;
+	padding-top: 8px;
+	padding-right: 16px;
+	padding-bottom: 5px;
+	padding-left: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+	display: block;
+	text-decoration: none;
+	}
+
+#navigation1 li a:hover{
+	color: #FFFFFF;
+
+	}
+
+
+#menu {
+	height: 130px;
+	width: 950px;
+	position: relative;
+	background-image: url(/bundles/just2frontend/images/backmenu.png);
+}
+#logo {
+	background-image: url(/bundles/just2frontend/images/logo.png);
+	height: 130px;
+	width: 166px;
+	position: absolute;
+	margin-top: 0px;
+	margin-left: 0px;
+}
+
+#nav {
+	background-image: url(/bundles/just2frontend/images/menu-1.png);
+	height: 31px;
+	width: 524px;
+	position: absolute;
+	top: 79px;
+	right: 0px;
+}
+
+#nav ul{
+	list-style-type:none;
+	}
+
+#nav li{
+	float:left;
+	}
+
+#nav li a{
+	font-size: 14px;
+	color: #333;
+	padding-top: 8px;
+	padding-right: 16px;
+	padding-bottom: 5px;
+	padding-left: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+	display: block;
+	text-decoration: none;
+	}
+
+#nav li a:hover{
+	color: #333333;
+	background-color: #FFAED7;
+
+	}
+	
+
+#contenido {
+	height: auto;
+	width: 950px;
+	margin-bottom: 5px;
+}
+#index {
+	height: 369px;
+	width: 950px;
+	margin-top: 25px;
+}
+.image {
+	height: 339px;
+	width: auto;
+	float: left;
+	margin-top: 20px;
+	margin-right: 15px;
+	margin-bottom: 10px;
+}
+
+.image1 {
+	height: 339px;
+	width: 405px;
+	float: left;
+	margin-top: 20px;
+	margin-right: 15px;
+	margin-bottom: 10px;
+}
+
+.image2 {
+	height: 339px;
+	width: 258px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	float: left;
+}
+.limpiar{
+	clear::both;
+	}
+#steps {
+	width: 750px;
+	height: 85px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 6px;
+	}
+	
+#steps h1{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	text-align: center;
+	color: #9966FF;
+	
+	
+	}
+#top {
+	height: 220px;
+	width: 935px;
+	background-color: #F4F4F4;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 5px;
+}
+.top1 {
+	background-color: #666;
+	height: 100px;
+	width: 99px;
+	float: left;
+	margin-right: 9px;
+	margin-top: 29px;
+	margin-left: 8px;
+	text-decoration: none;
+}
+
+.top1 p{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#333;
+	padding-top:10px;
+	text-align:center;
+	
+	}
+	
+.top1 h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	color: #C6C;
+	width: 95px;
+	height: 29px;
+	text-align: center;
+	margin-top: 2px;
+	margin-bottom: 5px;
+	background-image: url(/bundles/just2frontend/images/boton.gif);
+	padding-top: 2px;
+	}
+a img {border:0}
+
+.top1 h2{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #F90;
+	padding-top: 7px;
+	}
+#banner{
+	width: 950px;
+	height: 87px;
+	background-color: #CF9;
+	margin-top: 15px;
+}
+
+#downnav{
+	width: 940px;
+	margin-top: 9px;
+	height: 65px;
+	}
+
+#downnav ul{
+	list-style-type:none;
+	}
+
+#downnav li{
+	float:left;
+	}
+
+#downnav li a{
+	font-size: 12px;
+	color: #016AA1;
+	padding-top: 5px;
+	padding-right: 2px;
+	padding-bottom: 3px;
+	padding-left: 2px;
+	font-family: Arial, Helvetica, sans-serif;
+	display: block;
+	}
+
+#downnav li a:hover{
+	color: #9966FF;
+
+	}
+	
+/* INDEX 2 */
+
+
+#searchfemale{
+	width: 428px;
+	height: auto;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 38px;
+	background-image: url(/bundles/just2frontend/images/fondo-form-search.gif);
+	margin-bottom: 25px;
+	}
+	
+
+#form1 div{
+	padding-top: 3px;
+	padding-right: 3px;
+	padding-bottom: 3px;
+	padding-left: 30px;
+	
+	}
+	
+#form1 label{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #555;
+	float: left;
+	width: 190px;
+	margin-top: 3px;
+	}
+#form1 {
+	padding-top: 50px;
+}
+
+#form1 button{
+	margin-left: 300px;
+	background-image: url(/bundles/just2frontend/images/boton-morado2.gif);
+	height: 19px;
+	width: 69px;
+	}
+
+
+/*TERCER index estilo */
+
+#searchmas{
+	width: 450px;
+	height: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 38px;
+	margin-bottom: 25px;
+	background-image: url(/bundles/just2frontend/images/bg-search-mas.gif);
+	}
+.bid {
+	height: 250px;
+	width: 750px;
+	background-color: #FFF;
+	margin-top: 50px;
+	margin-bottom: 10px;
+	background-image: url(/bundles/just2frontend/images/bg-bids.gif);
+}
+
+#form2{
+	height: 30px;
+	background-image: url(/bundles/just2frontend/images/back-search-2_38.gif);
+	padding-top: 7px;
+	padding-left: 20px;
+}
+
+#form3{
+	background-color: #96F;
+	color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding: 5px;
+	width: 570px;
+	margin-left: 170px;
+	}
+	
+.bid img{
+	padding-left: 35px;
+	padding-top: 12px;
+	float: left;
+}
+
+.bid p{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-top: 10px;
+	margin-left: 55px;
+	float: left;
+	line-height: 1.8em;
+
+	}
+#form4{
+	width: 480px;
+	margin-left: 190px;
+	height: auto;
+	margin-top: 57px;
+}
+#myprofile{
+	width: 184px;
+	height: 560px;
+	background-image: url(/bundles/just2frontend/images/bg-profile.gif);
+	background-repeat: repeat;
+	background-position: right top;
+	background-color: #FFF;
+	margin-right: 15px;
+	
+	}
+
+#myprofile p{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	line-height: 2.9em;
+	margin-left:18px;
+	}
+
+#myprofile h1{
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	color:#333;	
+	margin-left:18px;
+	}
+#about{
+	width: 350px;
+	height: 200px;
+	background-color: #999;
+	
+	}

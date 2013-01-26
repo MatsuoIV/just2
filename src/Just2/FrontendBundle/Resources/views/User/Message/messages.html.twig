@@ -1,0 +1,124 @@
+{# register.html.twig #}
+
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+{% block title %}View Ended Date Just{% endblock %}
+
+
+
+
+{% block content %}
+<script src="{{ asset('bundles/just2frontend/js/message.js') }}"></script>
+<div class="row">
+    <div class="span2" style="text-align: center">
+    {%if  app.user.face%}
+
+            <img src="/images_user/{{app.user.face}}"  style="padding-top: 20px;" />
+
+        {%else%}
+            <img src="/images_user/default.png"  style="padding-top: 20px;" />
+        {%endif%}
+            
+
+        </div>
+
+
+        <div class="span5">
+            <h3>Received Message</h3>
+
+            <table class="table table-bordered table-message" style="font-size: 12px" >
+                <thead>
+                    <tr>
+
+                        <th>Member</th>
+                        <th>Message</th>
+
+                        <th>Action</th>
+
+                    </tr>
+                </thead><tbody>
+     {%for message in messagesIn%}           
+
+                        <tr  id="tr_{{message.id}}"   {%if message.estate == 1 %} class="message_new"{%else%} class="message_read"{%endif%}>
+                            <td>{{message.memberOf}}</td>
+                            <td class="messege_body_td" onClick="readMessageIndex('{{message.subject}}','{{message.bodyMessage}}',{{message.id}},{{message.estate}})">
+                                <div class="mesagge_title">{{message.subject(40)}}</div>
+                                <div class="message_body">{{message.bodyMessage(20)}} => {{message.createdAt|time_ago}}</div></td>
+                            <td>
+                                <a href="{{ path('message_new', { 'id': message.dateJust, 'for': message.memberOf.id })}}" title="Reply" class="btn btn-mini btn-info tooltips">
+                                    <i class="icon-share-alt icon-white"></i>
+                                </a>
+                                    {%if message.estate == 1 %}
+                                <a href="?action=1&message={{message.id}}"  title="Mark as Read" class="btn btn-mini btn-success  tooltips">
+                                    <i class="icon-check icon-white"></i>
+                                </a>
+                                    {%endif%}
+                                <a title="Delete" onclick="deleteMessageIndex({{message.id}},'{{message.subject}}')" class="btn btn-mini btn-danger tooltips">
+                                    <i class="icon-trash icon-white"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                   {%endfor%}</tbody>
+                </table>
+             {%if messagesIn|length == 5 %}
+
+            <a class="btn btn-primary right" href="{{ path('message_received') }}">
+                    Ver Mas...
+                </a>
+            {%endif%}
+
+            </div>
+            <div class="span5">
+                <h3>Send's Message</h3>
+
+                <table class="table table-bordered table-message" style="font-size: 12px" >
+                    <thead>
+                        <tr>
+
+                            <th>Member</th>
+                            <th>Message</th>
+
+                            <th>Action</th>
+
+                        </tr>
+                    </thead><tbody>
+     {%for message in messagesOut%}           
+
+                            <tr {%if message.estate == 1 %} class="message_new"{%else%} class="message_read"{%endif%}>
+                                <td>{{message.memberOf}}</td>
+                                <td onClick="readMessage('{{message.subject}}','{{message.bodyMessage}}')" ><div class="mesagge_title">{{message.subject}}</div><div class="message_body">{{message.bodyMessage(20)}} => {{message.createdAt|time_ago}}</div></td>
+                                <td>
+                                    <a href="?action=2&message={{message.id}}" title="Resent"  class="btn btn-mini btn-info">
+                                        <i class="icon-share icon-white tooltips"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                   {%endfor%}</tbody>
+                    </table>
+
+                                {%if messagesOut|length > 5%}
+                    <a href="{{ path('message_sent') }}">
+                        Ver Mas...
+                    </a>
+            {%endif%}
+
+                </div>
+            </div>
+
+            <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">Modal header</h3>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <p>One fine body…</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+{%endblock%}
+

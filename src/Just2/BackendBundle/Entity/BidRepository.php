@@ -75,7 +75,8 @@ class BidRepository extends EntityRepository {
                 ->where('(z.dateJust= :date AND z.member=:member) AND z.estate=3')
                 ->setParameter('date', $dateId)
                 ->setParameter('member', $memberId)
-                ->getQuery();
+                ->getQuery()
+;
         
         
         try {

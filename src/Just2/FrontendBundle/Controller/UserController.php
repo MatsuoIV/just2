@@ -132,6 +132,84 @@ class UserController extends Controller {
         }
     }
 
+    public function adminDateFinishedAction($id) {
+        $date = $this->getDoctrine()
+                ->getRepository('Just2BackendBundle:DateJust')
+                ->find($id);
+
+        $auction = $this->getDoctrine()
+                ->getRepository('Just2BackendBundle:Auction')
+                ->findOneByDateJust($date);
+
+
+        $totalbidsfordate = $this->getDoctrine()
+                ->getRepository('Just2BackendBundle:Bid')
+                ->countBidsForDate($date->getId());
+
+
+        $request = $this->getRequest();
+        $info = $request->query->get('info');
+
+        switch ($date->getEstate()) {
+            case 3:
+                return  $this->render('Just2FrontendBundle:User:DateJust/pendingPayment.html.twig', array(
+                    'date' => $date,
+                    'totalbids' => $totalbidsfordate,
+                    'auction' => $auction,
+                    'info' => $info
+                ));
+                
+            case 4:
+                return $this->render('Just2FrontendBundle:User:DateJust/paid.html.twig', array(
+                    'date' => $date,
+                    'totalbids' => $totalbidsfordate,
+                    'auction' => $auction,
+                    'info' => $info
+                ));
+            case 5:
+                return $this->render('Just2FrontendBundle:User:/DateJust/without.html.twig', array(
+                    'date' => $date,
+                    'totalbids' => $totalbidsfordate,
+                    'auction' => $auction,
+                    'info' => $info
+                ));
+            case 6:
+                return $this->render('Just2FrontendBundle:User:DateJust/finished.html.twig', array(
+                    'date' => $date,
+                    'totalbids' => $totalbidsfordate,
+                    'auction' => $auction,
+                    'info' => $info
+                ));
+        }
+
+
+
+
+//        $return = $this->render('Just2FrontendBundle:DateJust:justEnd.html.twig', array(
+//            'date' => $date,
+//            'totalbids' => $totalbidsfordate,
+//            'mybiddate' => $memberBidsForDate,
+//            'auction' => $auction,
+//            'info' => $info
+//                ));
+//        return $return;
+    }
+
+    public function datePaimentAuctionAction($id) {
+        $date = $this->getDoctrine()
+                ->getRepository('Just2BackendBundle:DateJust')
+                ->find($id);
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $date = $em->getRepository('Just2BackendBundle:DateJust')
+                ->find($id);
+        $date->setEstate(4);
+        $em->persist($date);
+        $em->flush();
+        
+        return $this->adminDateFinishedAction($id);
+    }
+
     public function adminDateBidsAction($id) {
         $date = $this->getDoctrine()
                 ->getRepository('Just2BackendBundle:DateJust')
@@ -150,7 +228,7 @@ class UserController extends Controller {
                 ->getRepository('Just2BackendBundle:Bid')
                 ->countBidsForDate($id);
 
-        return $this->render('Just2FrontendBundle:User:bidsDate.html.twig', array(
+        return $this->render('Just2FrontendBundle:User:DateJust/bidsDate.html.twig', array(
                     'date' => $date,
                     'bids' => $bids,
                     'highestBid' => $highestBid,

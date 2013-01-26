@@ -1,0 +1,144 @@
+ <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ asset('bundles/just2frontend/css/bootstrap.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/just2frontend/css/docs.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/just2frontend/css/message.css') }}" />
+        <title>{% block title %}{% endblock %} - Just2</title>
+        <style>
+                .navbar-inner{
+                    min-height:0;
+                }
+                .navbar-inner.nav-one li a {
+                    padding: 5px 10px;
+                }
+                .title_row{
+                    font-weight: bold
+                }
+
+            </style>
+
+            
+        <script src="{{ asset('bundles/just2frontend/js/jquery.js') }}"></script>
+        <script src="{{ asset('bundles/just2frontend/js/bootstrap.min.js') }}"></script>
+        {% block script %}
+        {% endblock %}
+        </head>
+        <body style="background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#D29EFA), to(white)); background-image: linear-gradient(to bottom, #D29EFA, #fff); min-height: 800px">
+	{# header #}
+                <div class="navbar navbar-fixed-top" style="position:absolute">
+                    <div class="navbar-inner nav-one">
+                        <div class="container" > 
+                            <div class="pull-right">				
+                                <ul class="nav">
+                                    <li><a href="#">Categories</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Jobs</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Site Map</a></li>
+                                </ul>
+                            </div>		
+                        </div>
+                    </div>
+
+                </div> 
+                <div class="container" style="padding-top: 35px; position: relative;">           
+
+                    <header>
+
+                        <div class="navbar" style="position: absolute;top: 27px;right: 0px;">
+                            <div class="navbar-inner" style="background: rgb(255, 188, 87)">			
+                                <div class="pull-right navbar-text ">
+                            {% if app.user %}
+                                        <ul class="nav">
+                                            <li>
+                                                <a href="{{ path('user_view_show', { 'id': app.user.member.id }) }}">Welcome! {{app.user}} </a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('usuario_logout') }}">
+                                                    Logout
+                                                </a>
+                                            </li>
+                                        </ul>
+                                {%else%}
+                                        <ul class="nav">
+                                            <li><a href="{{ path('usuario_login') }}">Member Login</a></li>
+                                            <li><a href="{{ path('usuario_register') }}">Register</a></li>
+                                        </ul>
+                                {%endif%}
+                                    </div>
+                                    <div class="navbar-text pull-right">1,129,978 members</div> 
+                                </div>
+                            </div>
+                        </header>
+
+	{# end header #}
+
+	{# container #}
+
+		{# banner #}
+                        <div class="row " style="margin-bottom: 15px">
+                            <div class="span2" style="text-align: right">
+                                <img src="{{ asset( '/bundles/just2frontend/images/logo.png' ) }}" height="120" width="120" />
+                            </div>
+                            <div class="span8">
+                                <div class="row">
+                                    <div class="span10" style="padding-top: 30px"><h1 style="color: rgb(255, 255, 255);">Date someone real Have Fun</h1></div>
+                                </div>
+                                <div class="row">
+                                    <div class="span10">
+                                        <div class="navbar">
+                                            <div class="navbar-inner  nav-one pull-right">
+                                                <ul class="nav">						
+                                                    <li><a href="/">Home</a></li>
+                                                    <li><a href="{{ path('date_search') }}">Date Search</a></li>
+                                                    <li><a href="{{ path('venue_search') }}">Venue Search</a></li>
+
+                                                    {% if app.user %}
+                                                    <li><a href="{{ path('user_view_show', { 'id': app.user.member.id }) }}">My Account</a></li>
+                                                    {% endif %}
+
+
+
+
+
+
+                                                        <li><a href="#">Dating Service</a></li>				  			
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>	
+                                    </div>
+                                </div>
+                            </div>
+		{# end banner #}
+
+
+		{# content #}
+		{% block content %}{% endblock %}
+		{# end content #}
+
+
+
+	{# end container #}
+
+	{# advertisement #}
+	{% block advertisement %}{% endblock %}
+	{# end advertisement #}
+
+	{# footer #}
+
+                            <footer>
+                                <div class="row span12">			
+                                    <a href="#">Register</a> | <a href="#">My Account</a> | <a href="#">Community</a> | <a href="#">Terms & Conditions</a> | <a href="#">Profile</a> | <a href="#">Quick date search</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Home</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Search shortlist</a> | <a href="#">Pending Acceptance</a> | <a href="#">Pending Acceptance</a> | <a href="#">Bid Declined</a> | <a href="#">Member Login</a> | <a href="#">id Accepted</a> | <a href="#">Winning bid</a> | <a href="#">Winning bid</a>
+                                </div>
+                            </footer>
+
+                        </div>
+	{# end footer #}
+
+
+  
+                    </body>
+                </html>

@@ -1,0 +1,75 @@
+{# register.html.twig #}
+
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+{% block title %}View Ended Date Just {{date.id}}{% endblock %}
+
+
+{% block content %}
+{%if info%}
+<div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Info!</strong> 
+{{info}}
+
+</div>{%endif%}
+
+
+<div class="row">
+    <div class="span2" style="text-align: center">
+    {%if date.member.user.face%}
+
+        <img src="/images_user/{{date.member.user.face}}"  style="padding-top: 20px;" />
+
+        {%else%}
+            <img src="/images_user/default.png"  style="padding-top: 20px;" />
+        {%endif%}
+
+        </div>
+
+        <div class="span8" style="background: rgba(255, 255, 255, 0.39); margin-bottom: 15px" >
+            <div class="row  " style="margin-top:5px">
+                <div class="span3 form-inline"><label style="padding:3px">Current bid:</label> 
+                    <b>{{auction.winningBid}}</b>
+                </div>
+                <div class="span4">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="span3 title_row" style="padding:3px"> Venue :</div>
+                    <div class="span4"> {{date.venue}}</div>
+                </div>
+                <div class="row">
+                    <div class="span3 title_row" style="padding:3px"> Occasion :</div>
+                    <div class="span4"> {{date.ocassion.name}}</div>
+                </div>
+                <div class="row">
+                    <div class="span3 title_row"  style="padding:3px"> When :</div>
+                    <div class="span4"> {{date.dateEnd | date()}}</div>
+                </div>
+                <div class="row">
+                    <div class="span3 title_row" style="padding:3px"> <b>Bid end date :</b></div>
+                    <div class="span4"> <b>Finished</b></div>
+                </div> 
+
+                <div class="row">
+                    <div class="span3 title_row" style="padding:3px"> Location :</div>
+                    <div class="span4"> {{date.venue.country.name}}, {{date.venue.department.name}}</div>
+                </div>         
+                <div class="row">
+                    <div class="span3 title_row" style="padding:3px"> Bids :</div>
+                    <div class="span4"> {{totalbids}}</div>
+                </div>          
+            </div>
+
+
+            <div class="span2" >
+                <div style="margin-top:10">
+                    <a href="" class="btn btn-success"> Print Confirmation</a><br>
+                    <a href="" class="btn btn-success"> Send Message</a>
+                </div>
+            </div>
+
+        </div>
+{%endblock%}
+

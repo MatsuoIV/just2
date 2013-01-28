@@ -20,10 +20,10 @@
                         <p>{{ entity.firstName }} {{ entity.lastName }}</p>
                     </div>
                     <div class="row" style="text-align:center">
-                        {% if entity.path == "" %}
-                            <img src="/images_user/user.png">
+                        {% if entity.user.face %}
+                            <img src="/images_user/{{entity.user.face}}png" width="100" height="100" />
                         {% else %}
-                            <img src="/images_user/{{ entity.path }}">
+                            <img src="/images_user/default.png"  style="padding-top: 20px;" />
                         {% endif %}
                     </div>
                     <div class="row" style="text-align:center">

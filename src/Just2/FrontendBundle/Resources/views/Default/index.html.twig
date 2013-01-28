@@ -1,32 +1,15 @@
 {% extends 'Just2FrontendBundle::Theme/base.html.twig' %}
 
-{% block titulo %}Index{% endblock %}
+{% block title %}Welcome{% endblock %}
 
 {% block content %}
-
+<br><br><br>
 <div id="index">
     <div class="image"><img src="/bundles/just2frontend/images/3images_15.gif" width="256" height="339"  /></div>
     <div class="image1"><img src="/bundles/just2frontend/images/3images_17.gif" width="409" height="345" /></div>
     <div class="image2"><img src="/bundles/just2frontend/images/3images_19.gif" width="258" height="341" /></div>
     <div class="limpiar"></div>
 </div>
-<div id="steps">
-    <h1>3 EASY STEPS TO DATING:<br>1 STEP. FIND A DATE   2 STEP. BID THE DATE TO WIN</h1>
-    <h1>3 STEP. GO DATING</h1>
-</div>
-
-<div id="top">
-    {% for date in dates %}
-    <div class="top1">
-        <img src="/images_user/{{date.member.user.face}}png" />
-        <p>{{date.member.user}}</p>
-        <a href="{{ path('date_view', { 'id': date.id }) }}">
-            <img src="/bundles/just2frontend/images/boton2.gif" width="95" height="30" />
-        </a>
-        <h2>{{date.dateEnd|time_ago }}</h2>
-    </div>
-    {% endfor %}
-    <div class="limpiar"></div>
-</div>
 
 {% endblock %}
+

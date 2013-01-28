@@ -14,3 +14,10 @@ services:
       arguments:
           manager: "@doctrine.orm.entity_manager"
           container: "@service_container"
+
+    just2_frontend.twig.extension.index:
+      class: Just2\FrontendBundle\Twig\Extension\IndexExtension
+      tags:
+          - { name: twig.extension }
+      arguments:
+          manager: "@doctrine.orm.entity_manager"

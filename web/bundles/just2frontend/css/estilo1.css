@@ -313,7 +313,7 @@ a img {border:0}
 	padding-top: 50px;
 }
 
-#form1 button{
+#form1 .enviar{
 	margin-left: 300px;
 	background-image: url(/bundles/just2frontend/images/boton-morado2.gif);
 	height: 19px;

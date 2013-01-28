@@ -4,36 +4,67 @@
 {% block title %}Date Search {{ parent() }}{% endblock %}
 
 {% block content %}
-<form {{ form_enctype(form) }} action="" method='post'>
-	<fieldset>
-		<legend>Dates</legend>
-		<div class="span5">
-			<legend>Date Search:</legend>
-			<div class="row">
-				<div class="span1">
-					<label>I am a</label>
-					{{ form_widget(form.interested, { 'attr': {
-						'class' : 'input-small',
-						} }) }}
-				</div>
-				<div class="span2">
-					<label>Seeking</label>
-					{{ form_widget(form.gender, { 'attr': {
-						'class' : 'input-small',
-						} }) }}
-				</div>
-			</div>
-			<div class="row">
-				<div class="span5"><p>{{ message }}</p></div>
-			</div>
-			{{ form_widget(form._token) }}
-			<div class="row">
-				<div class="span5 form-actions" style="text-align: right">
-					<input type="submit" value="Submit" class="btn btn-danger">
-				</div>
-			</div>
+
+<div id="searchfemale">
+	<form id="form1" {{ form_enctype(form) }} action="" method='post'>
+    	<!-- Título del formulario -->
+    	<div><h1></h1></div>
+    
+    	<!-- Campo de texto: Nombre -->
+    	<div>
+      		<label for="iam">I am: </label>
+      		{{ form_widget(form.interested, { 'attr': {
+				'id' : 'iam',
+				} }) }}
+    	</div>
+    
+    	<!-- Campo de texto: Email -->
+    	<div>
+       		<label for="seeking">Seeking: </label>
+      		{{ form_widget(form.gender, { 'attr': {
+				'id' : 'iam',
+				} }) }}
+    	</div>
+    
+    	<!-- Campo de texto: Sitio Web -->
+    	<div>
+       		<label for="aged">Aged: </label>
+			<select name="aged" id="aged">
+				<option>18</option>
+				<option>19</option>
+			</select>
+			To 
+			<select name="aged2" id="aged2">
+				<option>25</option>
+				<option>26</option>
+			</select>
 		</div>
-    </fieldset>
-	
-</form>
+
+	    <!-- Área de texto: Mensaje -->
+	    <div>
+			<label for="allstates">All States: </label>
+			<select name="allstates" id="allstates">
+				<option>Arkansas</option>
+				<option>California</option>
+			</select>
+		</div>
+	    
+	    <div>
+			<label for="allstates">  Include international dates </label>
+			<input name="allstates1" type="checkbox" disabled="disabled" value="Included" checked="checked" />
+		</div>
+	    
+	    <div><a href="#">+ Advanced Search</a></div>
+
+	    {{ form_widget(form._token) }}
+	    
+	    <!-- Botón de enviar -->
+	    <div><input type="submit" class="enviar" value="Submit"></div>
+
+	</form>
+
+</div>
+
+{{message}}
+
 {% endblock %}

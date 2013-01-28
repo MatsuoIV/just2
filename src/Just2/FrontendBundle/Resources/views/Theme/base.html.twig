@@ -52,10 +52,28 @@
                 </div>      
             </div>
         </div>
-        <div id="contenido">
-            <br><br><br>
+        <div id="contenido">            
             {% block content %}{% endblock %}
-            
+
+            <div id="steps">
+                <h1>3 EASY STEPS TO DATING:<br>1 STEP. FIND A DATE   2 STEP. BID THE DATE TO WIN</h1>
+                <h1>3 STEP. GO DATING</h1>
+            </div>
+
+            <div id="top">
+                {% for date in dates() %}
+                <div class="top1">
+                    <img src="/images_user/{{date.member.user.face}}png" />
+                    <p>{{date.member.firstName}}</p>
+                    <a href="{{ path('date_view', { 'id': date.id }) }}">
+                        <img src="/bundles/just2frontend/images/boton2.gif" width="95" height="30" />
+                    </a>
+                    <h2>{{date.dateEnd|time_ago }}</h2>
+                </div>
+                {% endfor %}
+                <div class="limpiar"></div>
+            </div>
+
             <div id="banner"><img src="{{ asset( '/bundles/just2frontend/images/banner.jpg' ) }}" width="950" height="87" /></div>
             <div id="downnav">
                 <ul>

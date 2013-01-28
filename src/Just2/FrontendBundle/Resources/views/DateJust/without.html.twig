@@ -6,68 +6,43 @@
 
 
 {% block content %}
-{%if info%}
-<div class="alert alert-info">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>Info!</strong> 
-{{info}}
 
-</div>{%endif%}
+<div class="bid">
+    {%if info%}
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>Info!</strong> 
+        {{info}}
+    </div>
+    {%endif%}
 
-<div class="row">
-    <div class="span2" style="text-align: center">
-    {%if date.member.user.face%}
-
-            <img src="/images_user/{{date.member.user.face}}"  style="padding-top: 20px;" />
-
-        {%else%}
-            <img src="/images_user/default.png"  style="padding-top: 20px;" />
-        {%endif%}
-
-        </div>
-
-        <div class="span8" style="background: rgba(255, 255, 255, 0.39); margin-bottom: 15px" >
-            <div class="row  " style="margin-top:5px">
-                <div class="span3 form-inline"><label style="padding:3px">Current bid:</label> 
-                    
-                </div>
-            </div>
-            <div class="row">
-                <div class="span3" style="padding:3px"> Venue</div>
-                <div class="span4">: {{date.venue.name}}</div>
-            </div>
-            <div class="row">
-                <div class="span3" style="padding:3px"> Occasion</div>
-                <div class="span4">: {{date.ocassion.name}}</div>
-            </div>
-            <div class="row">
-                <div class="span3" style="padding:3px"> When</div>
-                <div class="span4">: {{date.dateEnd | date()}}</div>
-            </div>
-            <div class="row">
-                <div class="span3" style="padding:3px"> Bid end date</div>
-                <div class="span4">: Ended</div>
-            </div> 
-
-            <div class="row">
-                <div class="span3" style="padding:3px"> Location</div>
-                <div class="span4">: {{date.venue.country.name}}, {{date.venue.department.name}}</div>
-            </div>         
-            <div class="row">
-                <div class="span3" style="padding:3px"> Bids</div>
-                <div class="span4">: 0 </div>
-            </div>          
-        </div>
-
-
-
-        <div class="span2" >
-            <div style="margin-top:10">
-                
-            </div>
-        </div>
-
+    <!-- Título del formulario -->
+    <div id="form2">
+        <input name="watchlist" type="checkbox" value="yes" />
+        Add to watchlist | {{date.member.firstName}} <a href="{{ path('user_view_show', {'id': date.member.id }) }} ">see profile</a>
+    </div>
+    
+    <!-- Título del formulario -->
+    <div id="form3">
+        Current Bid: AU $ -            
     </div>
 
+    {% if date.member.user.face %}
+        <img src="/images_user/{{date.member.user.face}}png" width="100" height="100" />
+    {% else %}
+        <img src="/images_user/default.png"  style="padding-top: 20px;" />
+    {% endif %}
 
-{%endblock%}
+    <p>
+        Venue: {{date.venue.name}} <br>
+        When: {{date.dateEnd | date()}}<br>
+        Occasion: {{date.ocassion.name}}<br>
+        Bid end date: Ended<br>
+        Time remaining: {{date.dateEnd|time_ago }} <br>
+        Location: {{date.venue.country.name}}, {{date.venue.department.name}} <br>
+        Number of bids: 0 <br>
+    </p>
+
+</div>
+
+{% endblock %}

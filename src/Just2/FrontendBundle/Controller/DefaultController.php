@@ -10,8 +10,7 @@ class DefaultController extends Controller {
     public function indexAction() {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $miembros = $em->getRepository('Just2BackendBundle:Member')->findAll();
-        $dateJust = $em->getRepository('Just2BackendBundle:DateJust')->indexJust();
+        $miembros = $em->getRepository('Just2BackendBundle:Member')->findAll();        
         $ocassion = $em->getRepository('Just2BackendBundle:Ocassion')->findAll();
 
         $dateJustRand = array_rand($ocassion);
@@ -25,8 +24,7 @@ class DefaultController extends Controller {
         return $this->render('Just2FrontendBundle:Default:index.html.twig', array(
                     'faceMale' => $faceMale,
                     'faceFemale' => $faceFemale,
-                    'ocassionImage' => $ocassionImage,
-                    'dates' => $dateJust,
+                    'ocassionImage' => $ocassionImage,                    
                         )
         );
     }

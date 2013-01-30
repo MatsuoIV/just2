@@ -17,53 +17,35 @@ class VenueJustController extends Controller {
 
     // aca va de argumento $id
     public function indexAction() {
-              
-        // $em = $this->getDoctrine()->getEntityManager();
-        // $ocassion = new Ocassion();
-        // $form = $this->createForm(new OcassionType(), $ocassion);
-        // $request = $this->getRequest();
 
         $form = $this->createForm(new VenueSearchType());
         $request = $this->getRequest();
 
-        // $formSearch->bindRequest($peticion);
-
-        // $formData = $peticion->request->get('just2_backendbundle_ocassiontype');        
-        //var_dump($peticion->request->all());
-
         if ($request->isMethod('POST')) {            
             $form->bindRequest($request);           
 
-            if (!$form->isValid()) {                
-
-                // $params = $this->getRequest()->request->all();
-                // $my_params = $params['just2_backendbundle_ocassiontype'];
-                // $my_id = (int) $my_params['name'];
+            if (!$form->isValid()) {
 
                 $em = $this->getDoctrine()->getEntityManager();
+                $ocassion = $em->getRepository('Just2BackendBundle:Ocassion')->find($form["ocassion"]->getData()->getId());
 
-                // $repo = $em->getRepository('Just2BackendBundle:OcassionVenue')->findBy(array(
-                //     'ocassion' => $my_id
-                //     ));
                 if($form["suburb"]->getData() == NULL){
-                    $repo = $em->getRepository('Just2BackendBundle:OcassionVenue')->getVenueNoSuburb($form["ocassion"]->getData()->getId());
+                    $vs = $em->getRepository('Just2BackendBundle:Venue')->getVenueNoSuburb($form["ocassion"]->getData()->getId());
                 } else {
                     if($form["distance"]->getData() == NULL){
-                        $repo = $em->getRepository('Just2BackendBundle:OcassionVenue')->getVenueSuburb($form["ocassion"]->getData()->getId(),$form["suburb"]->getData()->getId()); 
+                        $vs = $em->getRepository('Just2BackendBundle:Venue')->getVenueSuburb($form["ocassion"]->getData()->getId(),$form["suburb"]->getData()->getId()); 
                     } else {                        
-                        $repo = $em->getRepository('Just2BackendBundle:OcassionVenue')->getVenueSuburbDistance($form["ocassion"]->getData()->getId(),$form["suburb"]->getData()->getId(),$form["distance"]->getData()); 
+                        $vs = $em->getRepository('Just2BackendBundle:Venue')->getVenueSuburbDistance($form["ocassion"]->getData()->getId(),$form["suburb"]->getData()->getId(),$form["distance"]->getData()); 
                     }
-                }
-                //formulario
-                // $reserveForm = $this->createForm(new VenueReserveType());
+                }               
 
                 return $this->render('Just2FrontendBundle:VenueJust:venue_result.html.twig', array(                
-                    'vs'    => $repo,                    
+                    'vs'    => $vs,
+                    'ocassion' => $ocassion
                 ));
             } else {
                 // Redirect
             }
-
         }
         return $this->render('Just2FrontendBundle:VenueJust:venue_search.html.twig', array(
             'form'    => $form->createView()
@@ -93,17 +75,13 @@ class VenueJustController extends Controller {
     public function reserveAction($ocassion_id, $venue_id){
 
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
-
-            $em = $this->getDoctrine()->getEntityManager();
-            
+            $em = $this->getDoctrine()->getEntityManager();            
             $ocassion = $em->getRepository('Just2BackendBundle:Ocassion')->findBy(array(
                 'id' => $ocassion_id
                 ));
-
             $venue = $em->getRepository('Just2BackendBundle:Venue')->findBy(array(
                 'id' => $venue_id
                 ));
-
             $dateJust = new DateJust();
             $bid = new Bid();
             $reservation = new Reservation();
@@ -166,6 +144,33 @@ class VenueJustController extends Controller {
         } else {
             return $this->redirect($this->generateUrl('usuario_login'));
         }
+    }
+
+    public function printAction($ocassion_id, $venue_id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $ocassion = $em->getRepository('Just2BackendBundle:Ocassion')->findBy(array(
+            'id' => $ocassion_id
+            ));
+
+        $venue = $em->getRepository('Just2BackendBundle:Venue')->findBy(array(
+            'id' => $venue_id
+            ));
+
+        $html = $this->renderView('Just2FrontendBundle:VenueJust:venue_details.html.twig', array(
+            'od'    => $ocassion,
+            'vd'    => $venue
+        ));
+
+        return new Response(
+            $this->get('venue_details.pdf')->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+            )
+        );
     }
 
 

@@ -40,19 +40,19 @@ class ProfileType extends AbstractType{
             ->add('height')            
             ->add('eyeColour','choice',array(
                     'choices'   =>  array(
-                        'black' =>  'Black',
-                        'brown' =>  'Brown',
-                        'blue' =>  'Blue',
-                        'green' =>  'Green',
+                        'Black' =>  'Black',
+                        'Brown' =>  'Brown',
+                        'Blue' =>  'Blue',
+                        'Green' =>  'Green',
                         ),
                     'required'  =>  true,
                 ))
             ->add('hairColour','choice',array(
                     'choices'   =>  array(
-                        'black' =>  'Black',
-                        'brown' =>  'Brown',
-                        'blond' =>  'Blond',
-                        'red' =>  'Red',
+                        'Black' =>  'Black',
+                        'Brown' =>  'Brown',
+                        'Blond' =>  'Blond',
+                        'Red' =>  'Red',
                         ),
                     'required'  =>  true,
                 ))
@@ -66,7 +66,8 @@ class ProfileType extends AbstractType{
                     'required' => true,
                 ))
             ->add('children','choice',array(
-                    'choices' => array('yes' => 'Yes',
+                    'choices' => array(
+                        'yes' => 'Yes',
                         'no' => 'No',
                         'tba' => "To be announced"
                         ),
@@ -74,11 +75,11 @@ class ProfileType extends AbstractType{
                 ))
             ->add('relationship','choice',array(
                     'choices' => array(
-                        'single' => 'Single',
-                        'engaged' => 'Engaged',
-                        'married' => 'Married',
-                        'divorced' => 'Divorced',
-                        'widowed' => 'Widowed'
+                        'Single' => 'Single',
+                        'Engaged' => 'Engaged',
+                        'Married' => 'Married',
+                        'Divorced' => 'Divorced',
+                        'Widowed' => 'Widowed'
                         ),
                     'required' => true,
                 ))

@@ -26,29 +26,26 @@
 
 
 {% block content %}
-
-
-
-	{% for id in vs %}
+	{% for venue in vs %}
 		<div class="row">
 			<table class="table table-bordered">
-				<form action="{{ path('venue_reserve', { 'ocassion_id': id.ocassion.id, 'venue_id': id.venue.id }) }}" method="POST">
+				<form action="{{ path('venue_reserve', { 'ocassion_id': ocassion.id, 'venue_id': venue.id }) }}" method="POST">
 				<tr>
 					<th><label class="checkbox"><input type="checkbox">Add to watch list</label></th>
 				</tr>
 				<tr>
 					<td rowspan="7" class="span6" style="text-align: center">
-						<img src="/img/venues/{{ id.venue.image }}">
+						<img src="/img/venues/{{ venue.image }}">
 					</td>
 					<td>
 						<div class="span3">Venue:</div>
-						<div class="span3">{{ id.venue.name }}</div>
+						<div class="span3">{{ venue.name }}</div>
 					</td>
 				</tr>
 				<tr>					
 					<td>
 						<div class="span3">Occasion:</div>
-						<div class="span3">{{ id.ocassion.name }}</div>
+						<div class="span3">{{ ocassion.name }}</div>
 					</td>
 				</tr>
 				<tr>					
@@ -72,23 +69,25 @@
 				<tr>					
 					<td>
 						<div class="span3">Location:</div>
-						<div class="span3">{{ id.venue.address }}</div>
+						<div class="span3">{{ venue.address }}</div>
 					</td>
 				</tr>
 				<tr>					
 					<td>
 						<div class="span3">Seat price:</div>
-						<div class="span3">${{ id.ocassion.price }} AU</div>
+						<div class="span3">${{ ocassion.price }} AU</div>
 					</td>
 				</tr>				
 				<tr>					
-					<td style="text-align: center">
-						<div><a href="{{ path('venue_details', { 'ocassion_id': id.ocassion.id, 'venue_id': id.venue.id }) }}" class="btn btn-primary">More details</a></div>
+					<td style="text-align: center">						
 					</td>
 					<td>						
 						<div><input type="submit" class="btn btn-primary" value="Reserve"></div>
 					</td>
 				</tr>
+				</form>
+				<form name="details" action="{{ path('venue_details', { 'ocassion_id': ocassion.id, 'venue_id': venue.id }) }}" method="POST">
+					<div><button class="btn btn-primary">More details</button></div>
 				</form>
 			</table>
 		</div>	

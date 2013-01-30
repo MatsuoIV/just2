@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="venue")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Just2\BackendBundle\Entity\VenueRepository")
  */
 class Venue {
 
@@ -75,6 +75,11 @@ class Venue {
 
     /** @ORM\Column(type="decimal", scale=6) */
     private $long;
+
+    /**     
+     * @ORM\ManyToMany(targetEntity="Ocassion", mappedBy="venue")
+     */
+    private $ocassion;
 
     /**
      * Constructor

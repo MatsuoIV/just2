@@ -10,7 +10,7 @@ security:
     providers:
         # Usuarios del frontend
         usuarios:
-           entity: { class: JVJUserBundle:User,  }
+           entity: { class: JVJUserBundle:User, }
 
     firewalls:
         usuario:
@@ -37,4 +37,5 @@ security:
 #        - { path: ^/usuario/new/*,  roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN, ROLE_NUEVO] }       
 #        - { path: ^/usuario/*,         roles: [ROLE_USER, ROLE_ADMIN, ROLE_SUPER_ADMIN, ROLE_NUEVO] } 
         - { path: ^/admin/*,         roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/user/*,         roles: [ROLE_USER] }
         

@@ -1,0 +1,6 @@
+[submodule "vendor/bundles/Knp/Bundle/SnappyBundle"]
+	path = vendor/bundles/Knp/Bundle/SnappyBundle
+	url = https://github.com/KnpLabs/KnpSnappyBundle.git
+[submodule "vendor/snappy"]
+	path = vendor/snappy
+	url = https://github.com/KnpLabs/snappy.git

@@ -93,7 +93,10 @@
 				</form>
 				<tr>
 					<td colspan="2" style="text-align: center"><img src="/img/venues/{{ venue.details }}"></td>
-				</tr>				
+				</tr>
+				<tr>
+					<form method="POST" action="{{ path('venue_print', { 'ocassion_id': ocassion.id, 'venue_id': venue.id }) }}"><td colspan="2">Print details</td></form>
+				</tr>		
 			</table>
 		</div>	
 

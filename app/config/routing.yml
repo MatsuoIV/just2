@@ -1,5 +1,7 @@
 
-
+just_venue:
+    resource: "@Just2FrontendBundle/Resources/config/venueJust.yml"
+    prefix:   /venue/
 
 #
 #  User ROLE_USER
@@ -11,10 +13,6 @@ just_user_role:
 just_date:
     resource: "@Just2FrontendBundle/Resources/config/dateJust.yml"
     prefix:   /date/
-
-just_venue:
-    resource: "@Just2FrontendBundle/Resources/config/venueJust.yml"
-    prefix:   /venue/
 
 bid:
     resource: "@Just2FrontendBundle/Resources/config/bid.yml"

@@ -8,7 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Table(name="interest")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Just2\BackendBundle\Entity\InterestRepository")
  */
 class Interest
 {
@@ -23,6 +23,12 @@ class Interest
      * @ORM\Column(type="string", length=200)
      */
     private $name;
+
+    /**     
+     * @ORM\ManyToMany(targetEntity="Just2\BackendBundle\Entity\Member", mappedBy="interest")
+     */
+
+    private $member;
     
     public function __toString()
     {
@@ -60,5 +66,28 @@ class Interest
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set member
+     *
+     * @param \Just2\BackendBundle\Entity\Member $member
+     * @return Interest
+     */
+    public function setMember(\Just2\BackendBundle\Entity\Member $member = null)
+    {
+        $this->member = $member;
+    
+        return $this;
+    }
+
+    /**
+     * Get member
+     *
+     * @return \Just2\BackendBundle\Entity\Member 
+     */
+    public function getMember()
+    {
+        return $this->member;
     }
 }

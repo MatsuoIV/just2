@@ -37,17 +37,18 @@
                         <!--gender-->
                         <div class="row">
                             <div class="span2" style="text-align: right">Gender</div>
-                            <div class="span3">{{ entity.gender }}</div><br /><br />
+                            {#<div class="span3">{{ entity.gender }}</div><br /><br />#}
+                            <div class="span3">{{ getGender(entity.gender) }}</div><br /><br />
                         </div>
                         <!--DOB-->
                         <div class="row">
                             <div class="span2" style="text-align: right">DOB</div>
-                            <div class="span3">{{ entity.dateOfBirth|date('Y-m-d H:i:s') }}</div><br /><br />   
+                            <div class="span3">{{ entity.dateOfBirth|date() }}</div><br /><br />   
                         </div>
                         <!--age-->
                         <div class="row">
                             <div class="span2" style="text-align: right">Age</div>
-                            <div class="span3">38</div><br /><br />
+                            <div class="span3">{{ getAge(entity.dateOfBirth|date('Y-m-d H:i:s')) }}</div><br /><br />
                         </div>
                         <!--height-->
                         <div class="row">
@@ -86,17 +87,17 @@
                         <!--date preference-->
                         <div class="row">
                             <div class="span2" style="text-align: right">Date preference</div>
-                            <div class="span3">{{ entity.datePreference }}</div><br /><br />
+                            <div class="span3">{{ getDatePreference(entity.datePreference) }}</div><br /><br />
                         </div>
                         <!--smoker-->
                         <div class="row">
                             <div class="span2" style="text-align: right">Smoker</div>
-                            <div class="span3">{{ entity.smoker }}</div><br /><br />
+                            <div class="span3">{{ getParams(entity.smoker) }}</div><br /><br />
                         </div>
                         <!--children-->
                         <div class="row">
                             <div class="span2" style="text-align: right">Children</div>
-                            <div class="span3">{{ entity.children }}</div><br /><br />
+                            <div class="span3">{{ getParams(entity.children) }}</div><br /><br />
                         </div>
                         <!--relationship-->
                         <div class="row">
@@ -117,7 +118,9 @@
                         <div class="row">
                             <div class="span2" style="text-align: right">Interests</div>
                             <div class="span4">
-                                {#dump(interest.interest)#}
+                            {% for i in interest %}
+                                {{ i }}<br>
+                            {% endfor %}
                             </div><br /><br /><br /><br />
                         </div>
                         

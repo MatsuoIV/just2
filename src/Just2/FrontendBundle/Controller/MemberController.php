@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Just2\BackendBundle\Entity\Member;
+use Just2\BackendBundle\Entity\Interest;
 use Just2\FrontendBundle\Form\ProfileType;
 
 class MemberController extends Controller {
@@ -15,12 +16,7 @@ class MemberController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         
         $entity = $em->getRepository('Just2BackendBundle:Member')->find($id);
-        // $interest = $em->getRepository('Just2BackendBundle:Member')->getInterestsByMember($id);
-
-        $interest = $entity->getInterest();
-
-        // echo "<pre>".print_r($em->getRepository('Just2BackendBundle:MemberRepository')->getInterestsByUser($id))."</pre>";
-        
+        $interest = $em->getRepository('Just2BackendBundle:Interest')->getInterestsByMember($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Member entity.');
@@ -39,18 +35,16 @@ class MemberController extends Controller {
 
         return $this->render('Just2FrontendBundle:Member:member_show.html.twig', array(
                             'entity' => $entity,
-                            // 'interest' => $interest
+                            'interest' => $interest
                         ));
     }
 
     public function editAction($id) {
 
         if ($this->get('security.context')->isGranted('ROLE_USER')) {
-
             if($this->get('security.context')->getToken()->getUser()->getMember()->getId() == $id){
 
                 $em = $this->getDoctrine()->getEntityManager();
-
                 $entity = $em->getRepository('Just2BackendBundle:Member')->find($id);
 
                 if (!$entity) {
@@ -58,7 +52,6 @@ class MemberController extends Controller {
                 }
 
                 $editForm = $this->createForm(new ProfileType(), $entity);
-
                 $request = $this->get('request');
 
                 if ($request->isXmlHttpRequest()) {
@@ -73,22 +66,14 @@ class MemberController extends Controller {
                             ));
                 }
             }
-        } 
-        
-        return $this->redirect($this->generateUrl('user_view_show',array('id' => $id)));
-        
+        }         
+        return $this->redirect($this->generateUrl('user_view_show',array('id' => $id)));        
     }
 
     public function updateAction($id) {
         $em = $this->getDoctrine()->getEntityManager();
-
         $entity = $em->getRepository('Just2BackendBundle:Member')->find($id);
-
         $user = $em->getRepository('JVJUserBundle:User')->find($entity->getUser()->getId());
-
-        // if($entity->getImage() == "") {
-        //     $user->setFace($id.'.png');
-        // }
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Member entity.');
@@ -107,8 +92,7 @@ class MemberController extends Controller {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_view_show',array('id' => $id)));
-            
+            return $this->redirect($this->generateUrl('user_view_show',array('id' => $id)));            
         }        
     }
 }

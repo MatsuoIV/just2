@@ -42,6 +42,12 @@ class Ocassion {
     protected $dateJusts;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Venue", inversedBy="ocassion")
+     * @ORM\JoinTable(name="ocassion_venue")
+     */     
+    private $venue;
+
+    /**
      * Constructor
      */
     public function __construct() {

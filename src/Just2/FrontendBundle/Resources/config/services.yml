@@ -21,3 +21,8 @@ services:
           - { name: twig.extension }
       arguments:
           manager: "@doctrine.orm.entity_manager"
+
+    just2_frontend.twig.extension.member:
+      class: Just2\FrontendBundle\Twig\Extension\MemberExtension
+      tags:
+          - { name: twig.extension }

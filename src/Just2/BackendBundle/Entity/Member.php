@@ -121,7 +121,8 @@ class Member {
     private $personality;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Just2\BackendBundle\Entity\Interest")
+     * @ORM\ManyToMany(targetEntity="Just2\BackendBundle\Entity\Interest", inversedBy="member")
+     * @ORM\JoinTable(name="member_interest")
      */
     private $interest;
 

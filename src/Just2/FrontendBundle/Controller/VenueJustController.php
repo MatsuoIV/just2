@@ -21,6 +21,10 @@ class VenueJustController extends Controller {
         $form = $this->createForm(new VenueSearchType());
         $request = $this->getRequest();
 
+        if ($request->isMethod('GET')) {
+            
+        }
+
         if ($request->isMethod('POST')) {            
             $form->bindRequest($request);           
 
@@ -138,7 +142,13 @@ class VenueJustController extends Controller {
 
 
             return $this->render('Just2FrontendBundle:VenueJust:venue_reserve.html.twig',array(
-                    'data' => $data
+                    'venue' => $venue[0]->getName(),
+                    'ocassion' => $ocassion[0]->getName(),
+                    'location' => $venue[0]->getAddress(),
+                    'venuedate' => $_POST["venuedate"],
+                    'venuetime' => $_POST["venuetime"],
+                    'venuebid' => $_POST["venuebid"],
+                    'price' => $ocassion[0]->getPrice()
                 ));
 
         } else {

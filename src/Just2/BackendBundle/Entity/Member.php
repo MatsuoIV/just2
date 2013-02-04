@@ -10,7 +10,7 @@ use JVJ\UserBundle\Entity\User;
 
 /**
  * @ORM\Table(name="member")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Just2\BackendBundle\Entity\MemberRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Member {

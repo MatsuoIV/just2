@@ -1338,7 +1338,7 @@
     "aliases": [
 
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "knplabs/knp-snappy-bundle": 20
     }

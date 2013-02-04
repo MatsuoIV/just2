@@ -45,7 +45,7 @@
                         <li><a href="{{ path('date_search') }}">Date Search</a></li>
                         <li><a href="{{ path('venue_search') }}">Venue Search</a></li>
                         {% if app.user %}
-                        <li><a href="{{ path('user_view_show', { 'id': app.user.member.id }) }}">My account</a></li>
+                        <li><a href="{{ path('panel') }}">My account</a></li>
                         {% endif %}
                         <li><a href="#">Dating Advice</a></li>
                     </ul>

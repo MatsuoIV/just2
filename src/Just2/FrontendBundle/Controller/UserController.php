@@ -331,5 +331,42 @@ class UserController extends Controller {
                 ));
     }
 
+    public function panelAction() {
+        
+        if ($this->get('security.context')->isGranted('ROLE_USER')) {
+
+            $id = $this->get('security.context')->getToken()->getUser()->getMember()->getId();
+
+            $em = $this->getDoctrine()->getEntityManager();
+            $member = $em->getRepository('Just2BackendBundle:Member')->find($id);
+            $date = $em->getRepository('Just2BackendBundle:DateJust')->findOneBy(array(
+                'member' => $id,
+                'estate' => 6
+                ));
+            if($date){
+                $winner = $em->getRepository('Just2BackendBundle:Auction')->findOneBy(array(
+                    'dateJust' => $date->getId()
+                    ));
+                $reservation = $em->getRepository('Just2BackendBundle:Reservation')->find($winner->getReservation());
+            }else{
+                $winner = NULL;
+                $reservation = NULL;
+            }
+            $message = $em->getRepository('Just2BackendBundle:Message')->newMessagesIndex($id);
+            $interests = $em->getRepository('Just2BackendBundle:Interest')->getInterestsByMember($id);
+
+            // echo $interests[0]->getId();return;
+            
+            return $this->render('Just2FrontendBundle:User:Panel/panelView.html.twig',array(
+                'member' => $member,
+                'date'   => $date,
+                'winner' => $winner,
+                'reservation' => $reservation,
+                'message' => $message,
+                'interests' => $interests
+                ));            
+        }        
+    }
+
 //    public function 
 }

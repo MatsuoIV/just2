@@ -50,7 +50,7 @@ class MessageRepository extends EntityRepository {
                 ->getQuery();
 
         return $q->getResult();
-    }
+    }   
 
 }
 

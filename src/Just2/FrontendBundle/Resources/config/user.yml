@@ -21,6 +21,10 @@ message_ajax:
     defaults: { _controller: Just2FrontendBundle:Message:ajax }    
     
     
+panel:
+    pattern:  /panel
+    defaults: { _controller: Just2FrontendBundle:User:panel }
+
 bid_create_for_user:
     pattern:  /bid/create
     defaults: { _controller: Just2FrontendBundle:Bid:bid }

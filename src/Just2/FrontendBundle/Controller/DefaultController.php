@@ -28,4 +28,18 @@ class DefaultController extends Controller {
                         )
         );
     }
+
+    public function pdfAction()
+    {
+        $html = $this->renderView('Just2FrontendBundle:Default:index.html.twig');
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="file.pdf"'
+            )
+        );
+    }
 }

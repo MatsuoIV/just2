@@ -1,6 +1,7 @@
 {
     "name": "symfony/framework-standard-edition",
     "description": "The \"Symfony Standard Edition\" distribution",
+    "minimun-stability" : "dev",
     "autoload": {
         "psr-0": { "": "src/" }
     },
@@ -20,6 +21,7 @@
         "jms/di-extra-bundle": "1.1.*",
         "kriswallsmith/assetic": "1.1.*@dev",
         "beberlei/DoctrineExtensions": "0.1",
+        "innocead/captcha-bundle": "master",
         "knplabs/knp-snappy-bundle": "dev-master"
     },
     "scripts": {

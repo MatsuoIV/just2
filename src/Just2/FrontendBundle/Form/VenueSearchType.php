@@ -11,6 +11,11 @@ class VenueSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            //activity
+            ->add('categoryocassion','entity',array(
+                    'empty_value' => 'Choose an category',
+                    'class' => 'Just2BackendBundle:CategoryOcassion'                    
+                ))
             //ocassion
             ->add('ocassion','entity',array(
                     'class' => 'Just2BackendBundle:Ocassion'                    

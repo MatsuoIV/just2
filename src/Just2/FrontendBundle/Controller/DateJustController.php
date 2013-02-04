@@ -13,25 +13,21 @@ use Just2\FrontendBundle\Form\DateSearchType;
 
 class DateJustController extends Controller {
 
-public function viewAction($id) {
+    public function viewAction($id) {
         $em = $this->getDoctrine()->getEntityManager();
-        $date = $em->getRepository('Just2BackendBundle:DateJust')
-                ->find($id);
+        $date = $em->getRepository('Just2BackendBundle:DateJust')->find($id);
 
         switch ($date->getEstate()) {
             case 1:
                 return $this->estateBooked($date);
             case 2:
                 $toDate = new \DateTime();
-
                 if ($toDate < $date->getDateEnd()) {
                     return $this->estateAuction($date);
                 } else {
-
                     $totalbidsfordate = $this->getDoctrine()
                             ->getRepository('Just2BackendBundle:Bid')
                             ->countBidsForDate($date->getId());
-
                     if ($totalbidsfordate == 0 or $totalbidsfordate == null) {
 
                         $em = $this->getDoctrine()->getEntityManager();
@@ -40,7 +36,6 @@ public function viewAction($id) {
                         $date->setEstate(5);
                         $em->persist($date);
                         $em->flush();
-
                         $this->viewAction($id);
                     } else {
                         $em = $this->getDoctrine()->getEntityManager();
@@ -49,17 +44,14 @@ public function viewAction($id) {
                         $date->setEstate(3);
                         $em->persist($date);
 
-
                         $auction = new Auction();
 
                         $auction->setDateJust($date);
-
 
                         $reservation = $em->getRepository('Just2BackendBundle:Reservation')
                                 ->dateJustReservation($date->getId());
                         $auction->setReservation($reservation->getId());
                         $auction->setState(1);
-
 
                         $highestBid = $this->getDoctrine()
                                 ->getRepository('Just2BackendBundle:Bid')
@@ -78,8 +70,6 @@ public function viewAction($id) {
                         return $this->viewAction($id);
                     }
                 }
-
-
             case 3:
                 return $this->estateBookedEnd($date);
 
@@ -96,12 +86,10 @@ public function viewAction($id) {
                         ->dateJustReservation($id);
 
                 if ($toDate > $reservation->getByDate()) {
-
                     $date = $em->getRepository('Just2BackendBundle:DateJust')
                             ->find($id);
                     $date->setEstate(6);
                     $em->persist($date);
-
 
                     $reservation->setEstate(4);
 
@@ -153,9 +141,8 @@ public function viewAction($id) {
                             ));
                     return $return;
                 }
-
-}
-if ($date->getEstate() == 5) {
+            }
+            if ($date->getEstate() == 5) {
 
                 $request = $this->getRequest();
                 $info = $request->query->get('info');
@@ -165,25 +152,25 @@ if ($date->getEstate() == 5) {
                     'info' => $info,
                         ));
             } 
-                $memberBidsForDate = $this->getDoctrine()->getRepository('Just2BackendBundle:Bid')
-                        ->memberBidsForDate($date->getId(), $this->get('security.context')->getToken()->getUser()->getMember()->getId());
+            $memberBidsForDate = $this->getDoctrine()->getRepository('Just2BackendBundle:Bid')
+                    ->memberBidsForDate($date->getId(), $this->get('security.context')->getToken()->getUser()->getMember()->getId());
 
-                $totalbidsfordate = $this->getDoctrine()
-                        ->getRepository('Just2BackendBundle:Bid')
-                        ->countBidsForDate($date->getId());
+            $totalbidsfordate = $this->getDoctrine()
+                    ->getRepository('Just2BackendBundle:Bid')
+                    ->countBidsForDate($date->getId());
 
 
-                $request = $this->getRequest();
-                $info = $request->query->get('info');
+            $request = $this->getRequest();
+            $info = $request->query->get('info');
 
-                $return = $this->render('Just2FrontendBundle:DateJust:justEnd.html.twig', array(
-                    'date' => $date,
-                    'totalbids' => $totalbidsfordate,
-                    'mybiddate' => $memberBidsForDate,
-                    'auction' => $auction,
-                    'info' => $info
-                        ));
-                return $return;
+            $return = $this->render('Just2FrontendBundle:DateJust:justEnd.html.twig', array(
+                'date' => $date,
+                'totalbids' => $totalbidsfordate,
+                'mybiddate' => $memberBidsForDate,
+                'auction' => $auction,
+                'info' => $info
+                    ));
+            return $return;
             }
         } else {
 
@@ -326,6 +313,11 @@ if ($date->getEstate() == 5) {
             'message' => $message
         ));
 
+    }
+
+    public function pdfAction(){
+        $format = $this->getRequest()->getRequestFormat();
+        return $this->render('Just2FrontendBundle:Default:index.'.$format.'.twig');
     }
 
 

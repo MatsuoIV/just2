@@ -1,5 +1,23 @@
+{% extends 'Just2FrontendBundle:Theme:base.html.twig' %}
+
+{% block content %}
+<br><br><br>
 <h1>Confirmation</h1>
 
-{% for v in data %}
-{{v}}<br />
-{% endfor %}
+<p>Thanks for your preference. Here are your reservation details</p>
+
+<br>
+<div>
+	<ul>
+		<li>Venue: {{venue}}</li>
+		<li>Ocassion: {{ocassion}}</li>
+		<li>Location: {{location}}</li>
+		<li>When: {{venuedate}}</li>
+		<li>Time: {{venuetime}}</li>
+		<li>Bid start: {{venuebid}}</li>
+		<li>Seat Price: AU $ {{price}}</li>
+	</ul>
+</div>
+
+
+{% endblock %}

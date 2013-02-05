@@ -9,9 +9,9 @@
 <p>Thank you for registering with Just 2. You have 30 days to post your job advertisement or access candidate’s profile (excluding VIP ROOM).<br>
 For more information on membership pricing or contact our Customer Service team on 1300 800 800.</p>
 
-<button>Date Search</button>
-<button>Venue Search</button>
-<button>My Profile</button>
+<a class="button" href="{{ path('date_search') }}">Date Search</a>
+<a class="button" href="{{ path('venue_search') }}">Venue Search</a>
+<a class="button" href="{{ path('user_view_show', { 'id': member.id }) }}">My Profile</a>
 <br>
 
 <!-- <h3>Search History</h3>
@@ -33,7 +33,7 @@ For more information on membership pricing or contact our Customer Service team 
 {% else %}
 	<p>You have no unread messages</p>
 {% endif %}
-<button>Mailbox</button>
+<a href="{{ path('message') }}">Mailbox</a>
 
 <h3>Watching</h3>
 

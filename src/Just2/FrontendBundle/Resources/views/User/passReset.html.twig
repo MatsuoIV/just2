@@ -1,0 +1,4 @@
+<form action="{{ path("pass_update") }}" method="post" {{ form_enctype(form) }}>
+	{{ form_widget(form.password) }}
+	<input type="submit" value="submit">
+</form>

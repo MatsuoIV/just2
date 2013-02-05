@@ -20,3 +20,17 @@ usuario_login_check:
 # Ruta para la acción de logout de los usuarios del frontend extranet
 usuario_logout:
     pattern:   /logout
+
+pass_recovery:
+    pattern:  /pass_recovery
+    defaults: { _controller: JVJUserBundle:User:passRecovery}
+
+pass_reset:
+    pattern:  /recover/{email}/{codeActivate}
+    defaults: { _controller: JVJUserBundle:User:passReset}
+
+pass_update:
+    pattern:  /pass_update
+    defaults: { _controller: JVJUserBundle:User:passUpdate}
+    requirements:
+        _method: 'POST'

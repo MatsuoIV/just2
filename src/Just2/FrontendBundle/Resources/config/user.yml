@@ -20,7 +20,6 @@ message_ajax:
     pattern:  /messages_actions
     defaults: { _controller: Just2FrontendBundle:Message:ajax }    
     
-    
 panel:
     pattern:  /panel
     defaults: { _controller: Just2FrontendBundle:User:panel }

@@ -1,0 +1,4 @@
+<form action="{{ path("pass_recovery") }}" method="post" {{ form_enctype(form) }}>
+	{{ form_widget(form.username) }}
+	<input type="submit" value="submit">
+</form>

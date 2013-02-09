@@ -47,6 +47,9 @@ bids_date_rejectered:
     pattern:  /date/view/{id}/rejectered
     defaults: { _controller: Just2FrontendBundle:User:adminDateBidsRejectered }
 
+date_pdf:
+    pattern:  /pdf
+    defaults: { _controller: Just2FrontendBundle:User:pdf}
     
     
 user_view_show:

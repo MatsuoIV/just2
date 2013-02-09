@@ -1,4 +1,5 @@
-<form action="{{ path("pass_update") }}" method="post" {{ form_enctype(form) }}>
+<form name="password" action="{{ path("pass_update") }}" method="post" {{ form_enctype(form) }}>
 	{{ form_widget(form.password) }}
+	<input type="hidden" id="jvj_userbundle_usertype_email" name="jvj_userbundle_usertype[email]" value="{{email}}">
 	<input type="submit" value="submit">
 </form>

@@ -25,7 +25,8 @@ class AppKernel extends Kernel
             new JVJ\UtilBundle\JVJUtilBundle(),
             new Just2\BackendBundle\Just2BackendBundle(),
             new JVJ\UserBundle\JVJUserBundle(),
-            new Just2\FrontendBundle\Just2FrontendBundle()
+            new Just2\FrontendBundle\Just2FrontendBundle(),
+            new WhiteOctober\TCPDFBundle\WhiteOctoberTCPDFBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {            

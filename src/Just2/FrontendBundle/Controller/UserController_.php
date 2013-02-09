@@ -355,7 +355,6 @@ class UserController extends Controller {
             $message = $em->getRepository('Just2BackendBundle:Message')->newMessagesIndex($id);
             $interests = $em->getRepository('Just2BackendBundle:Interest')->getInterestsByMember($id);
 
-
             // echo $interests[0]->getId();return;
             
             return $this->render('Just2FrontendBundle:User:Panel/panelView.html.twig',array(
@@ -369,70 +368,5 @@ class UserController extends Controller {
         }        
     }
 
-    public function pdfAction() {
-        if ($this->get('security.context')->isGranted('ROLE_USER')) {
-
-            $id = $this->get('security.context')->getToken()->getUser()->getMember()->getId();
-
-            $em = $this->getDoctrine()->getEntityManager();
-            $member = $em->getRepository('Just2BackendBundle:Member')->find($id);
-            $date = $em->getRepository('Just2BackendBundle:DateJust')->findOneBy(array(
-                'member' => $id,
-                'estate' => 6
-                ));
-            if($date){
-                $winner = $em->getRepository('Just2BackendBundle:Auction')->findOneBy(array(
-                    'dateJust' => $date->getId()
-                    ));
-                // print_r($winner);return;
-                $reservation = $em->getRepository('Just2BackendBundle:Reservation')->find($winner->getReservation());
-
-                $pdf = $this->container->get("white_october.tcpdf")->create();
-
-                $pdf->setFooterData($tc=array(0,64,0), $lc=array(0,64,128));
-                
-                // set default font subsetting mode
-                $pdf->setFontSubsetting(true);
-
-                $pdf->SetFont('dejavusans', '', 14, '', true);
-
-                // Add a page
-                // This method has several options, check the source code documentation for more information.
-                $pdf->AddPage();
-
-                // set text shadow effect
-                $pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.2, 'depth_h'=>0.2, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
-
-                // Set some content to print
-                $html = '<img src ="/bundles/just2frontend/images/logo.png" style="width: 95px;">
-                <h1>Date Confirmation</h1><br>
-                <div>
-                    <img src="/images_user/'.$member->getUser()->getFace().'png">
-                    Reserved Date: '.$member->getFirstName().' '.$member->getLastName().'<br>
-                    Dating Partner: '.$winner->getWinningMember()->getFirstName().' '.$winner->getWinningMember()->getLastName().'<br>
-                    Confirmation Number: '.$reservation->getCodeReservation().
-                '</div>
-
-                <div>
-                    <img src="/images_user/'.$winner->getWinningMember()->getUser()->getFace().'png">
-                    Dating Partner: '.$winner->getWinningMember()->getFirstName().' '.$winner->getWinningMember()->getLastName().'<br>
-                    Reserved Date: '.$member->getFirstName().' '.$member->getLastName().'<br>
-                    Confirmation Number: '.$reservation->getCodeReservation().
-                '</div>
-                
-                <div>
-                    <img src="/img/venues/'.$reservation->getVenue()->getImage().'" style="width:200">
-                    Venue: '.$reservation->getVenue()->getName().'<br>
-                    Ocassion: '.$reservation->getOcassion()->getName().'<br>
-                    When: '.$date->getDateEnd()->format('M d, Y H:i:s').'<br>
-                    Location: '.$date->getVenue()->getAddress().'<br>
-                    Phone: '.$date->getVenue()->getPhone().'<br>
-                    Confirmation Number: '.$reservation->getCodeReservation().
-                '</div>'
-                ;
-                $pdf->writeHTML($html, true, false, true, false, '');
-                $pdf->Output('confirmation.pdf', 'I');
-            }
-        }
-    }    
+//    public function 
 }

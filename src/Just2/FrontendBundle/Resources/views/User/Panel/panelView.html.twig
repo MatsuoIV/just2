@@ -54,7 +54,8 @@ For more information on membership pricing or contact our Customer Service team 
 	Venue: {{reservation.venue.name}}<br>
 	Confirmation Number: {{reservation.codeReservation}}<br>
 	Ocassion: {{date.detailDate}}<br>
-	<button>Print Confirmation</button>
+	<a href="{{path('bids_date', { 'id': winner.dateJust.id }  )}}">Your date partner</a><br>
+	<a href="{{path('date_pdf')}}">Print Confirmation</a>
 {% else %}
 	<p>You have no confirmed dates</p>
 {% endif %}

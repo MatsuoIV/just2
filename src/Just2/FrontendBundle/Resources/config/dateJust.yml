@@ -9,7 +9,3 @@ date_search:
     defaults: { _controller: Just2FrontendBundle:DateJust:search}
  #   requirements:
 #      _method:  GET
-
-date_pdf:
-    pattern:  /pdf
-    defaults: { _controller: Just2FrontendBundle:DateJust:pdf, _format: PDF}

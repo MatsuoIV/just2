@@ -245,14 +245,12 @@ class UserController extends Controller {
             ));
     }
 
-    public function passResetAction($email, $codeActivate) {
-        
+    public function passResetAction($email, $codeActivate) {        
         
         $em = $this->getDoctrine()->getEntityManager();
         $user = $em->getRepository('JVJUserBundle:User')->userActivation($email, $codeActivate);
-        // print_r($user);return;
         $form = $this->createForm(new UserType(), $user);
-        
+        $email = $user->getEmail();
         return $this->render('Just2FrontendBundle:User:passReset.html.twig',array(
             'form' => $form->createView(),
             'email' => $email
@@ -262,26 +260,30 @@ class UserController extends Controller {
     public function passUpdateAction() {
         $submit = $this->getRequest();
         if($submit->getMethod() == 'POST'){
+            $formData = $submit->get('jvj_userbundle_usertype');
             $em = $this->getDoctrine()->getEntityManager();
-
             $user = $em->getRepository('JVJUserBundle:User')->findOneBy(array(
-                'email' => $submit->get('jvj_userbundle_usertype')['email']
+                'email' => $formData['email']
                 ));
-
-            $user->setSalt(md5(time()));
-            $encoder = $this->get('security.encoder_factory')->getEncoder($user);
-
-            $passwordCodificado = $encoder->encodePassword(
-                    $submit->get('jvj_userbundle_usertype')['password']['first'], 
-                    $user->getSalt());
-
-            $user->setPassword($passwordCodificado);
-            $em->persist($user);
-            $em->flush();
-            return $this->render('Just2FrontendBundle:User:passConfirmation.html.twig',array(
-                'name' => $user->getMember()->getFirstName()
-                ));
-        }
+            if($formData['password']['first'] == $formData['password']['second']){
+                $user->setSalt(md5(time()));
+                $encoder = $this->get('security.encoder_factory')->getEncoder($user);
+                $pass = $formData['password']['first'];
+                $passwordCodificado = $encoder->encodePassword($pass,$user->getSalt());
+                $user->setPassword($passwordCodificado);
+                $em->persist($user);
+                $em->flush();
+                return $this->render('Just2FrontendBundle:User:passConfirmation.html.twig',array(
+                    'name' => $user->getMember()->getFirstName()
+                    ));
+            } else {
+                
+                return $this->render('Just2FrontendBundle:User:passError.html.twig',array(
+                    'email' => $user->getEmail(),
+                    'codeActivate' => $user->getCodeActivation()
+                    ));
+            }
+        }        
     }
 
     public function sendMail($to, $subject, $body, $theme = null) {

@@ -9,51 +9,45 @@
 
 {% block title %}Venue Search {{ parent() }}{% endblock %}
 
-
-
 {% block content %}
 
-<form {{ form_enctype(form) }} action="" method='post'>
-	<fieldset>
-		<legend>Venue Search</legend>
-		<div class="span5">
-			<div class="row">
-				<div class="span3">
-					<!-- <label>Select ocassion:</label> -->
-					{{ form_widget(form.categoryocassion, { 'attr': {
-						'placeholder' : 'Type your name...',
-						'onChange' : 'cargaContenido(this.id)'
-						} }) 
-					}}
-				</div>
-			</div>
-			<div class="row">
-				<div class="span3">
-					<!-- <label>Select ocassion:</label> -->
-					{# form_widget(form.ocassion) #}
-					<select disabled="disabled" name="ocassion" id="ocassion">
-						<option value="0">Select Ocassion...</option>
-					</select>					
-				</div>
-			</div>
-			<div class="row">
-				<div class="span3">
-					<!-- <label>Select ocassion:</label> -->
-					{{ form_widget(form.suburb) }}
-				</div>
+<div id="searchvenue">
+	<form {{ form_enctype(form) }} action="" method='post' id="form1">
+		<!-- Título del formulario -->
+	    <div><h1></h1></div>
 
-				<div class="span2">
-					<!-- <label>Select ocassion:</label> -->
-					{{ form_widget(form.distance) }}
-				</div>
-			</div>
-			{{ form_widget(form._token) }}
-			<div class="row">
-        		<div class="span5 form-actions">            
-            		<input type="submit" value="Submit" class="btn btn-danger">
-        		</div>
-        	</div>
-        </div>
-    </fieldset>
-</form>
+		<!-- Campo de texto: Nombre -->
+	    <div>
+			{{ form_widget(form.categoryocassion, { 'attr': {
+				'placeholder' : 'Type your name...',
+				'onChange' : 'cargaContenido(this.id)',			
+				} }) 
+			}}	    
+	    </div>
+
+	    <div>
+	    	{{ form_widget(form.suburb) }}
+	    </div>
+
+	    <div>
+	    	{{ form_widget(form.distance) }}
+	    	<input name="code" type="text" id="code" value="post code" />
+	    </div>
+	    {{ form_widget(form._token) }}
+
+	    <div>
+			<label for="allstates">  Include international venues </label>
+			<input name="allstates1" type="checkbox" disabled="disabled" value="Included" checked="CHECKED" />
+	    </div>
+
+	    <div><a href="#">+ Advanced Search </a></div>
+
+	    <div>
+	      <button class="enviar" type="submit">SEARCH </button>
+	    </div>
+	</form>
+
+	<img src="/bundles/just2frontend/images/picvenue_29.jpg" width="422" height="225" />
+</div>
+
 {% endblock %}

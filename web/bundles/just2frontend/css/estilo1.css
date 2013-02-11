@@ -404,9 +404,163 @@ a img {border:0}
 	color:#333;	
 	margin-left:18px;
 	}
-#about{
+/*#about{
 	width: 350px;
 	height: 200px;
 	background-color: #999;
 	
 	}
+*/
+
+#botones {
+	height: 100px;
+	padding-left: 180px;
+}
+
+#botones a img {
+	margin-left: 60px;
+	margin-top: 12px;
+}
+
+#botones a{
+	margin-left:50px;
+}
+#next {
+	width: 450px;
+	height: 210px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 12px;
+	margin-bottom: 35px;
+}
+#next p {
+	line-height: 1.8em;
+	color:#666;
+	}
+#next h1{
+	font-size:15px;
+	color:#666;}
+
+#next a img{
+	margin-left:250px;
+	margin-top:25px;}
+
+#print {
+	height: 100px;
+	padding-left: 180px;
+}
+
+#print a img {
+	margin-left: 450px;
+	margin-top: 12px;
+}
+
+
+#frame {
+	width: 650px;
+	height: 500px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #999;
+	
+}
+#searchvenue{
+	width: 420px;
+	height: auto;
+	margin-top: 38px;
+	background-image: url(/bundles/just2frontend/images/venue-search_26.gif);
+	margin-bottom: 25px;
+	background-repeat: no-repeat;
+	}
+#searchvenue img{
+	padding-left: 500px;
+	margin-top: -200px;
+}
+#venue2{
+	width: 600px;
+	height: auto;
+	margin-top: 38px;
+	margin-bottom: 25px;
+	background-repeat: no-repeat;
+	background-image: url(/bundles/just2frontend/images/venue-search_26.gif);
+	}
+#form5{
+	width: 480px;
+	margin-left: 190px;
+	height: auto;
+	margin-top: 80px;
+}
+
+#form5 button{
+	margin-left: 300px;
+	background-image: url(/bundles/just2frontend/images/boton-morado2.gif);
+	height: 19px;
+	width: 69px;
+	}
+
+.bit {
+	height: 250px;
+	width: 750px;
+	background-color: #FFF;
+	margin-top: 50px;
+	margin-bottom: 10px;
+	background-image: url(/bundles/just2frontend/images/back-bid.jpg);
+}
+
+.bit p{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-top: 10px;
+	margin-left: 55px;
+	float: left;
+	line-height: 1.8em;
+
+	}
+.bit img{
+	padding-left: 35px;
+	padding-top: 12px;
+	float: left;
+}
+#account{
+	width: 420px;
+	height: auto;
+	margin-top: 38px;
+	background-image: url(/bundles/just2frontend/images/member-login.gif);
+	margin-bottom: 25px;
+	background-repeat: no-repeat;
+	margin-right: auto;
+	margin-left: auto;
+	}
+#account img{
+	padding-left: 500px;
+	margin-top: -200px;
+}
+#reset{
+	width: 420px;
+	height: auto;
+	margin-top: 38px;
+	background-image: url(/bundles/just2frontend/images/password-reset.gif);
+	margin-bottom: 25px;
+	background-repeat: no-repeat;
+	margin-right: auto;
+	margin-left: auto;
+	}
+#reset img{
+	padding-left: 500px;
+	margin-top: -200px;
+}
+
+#forgot{
+	width: 420px;
+	height: auto;
+	margin-top: 38px;
+	background-image: url(/bundles/just2frontend/images/forgot-id.gif);
+	margin-bottom: 25px;
+	background-repeat: no-repeat;
+	margin-right: auto;
+	margin-left: auto;
+	}
+#forgot img{
+	padding-left: 500px;
+	margin-top: -200px;
+}

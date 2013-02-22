@@ -112,36 +112,32 @@ class DateJustController extends Controller {
                             'id' => $date->getId(),
                         )));
             } else {
-
-
                 $auction = $this->getDoctrine()
                         ->getRepository('Just2BackendBundle:Auction')
                         ->findOneByDateJust($date);
                 if($auction){
+                    if ($auction->getWinningMember()->getId() == $this->get('security.context')->getToken()->getUser()->getMember()->getId()) {                        
+                        $memberBidsForDate = $this->getDoctrine()->getRepository('Just2BackendBundle:Bid')
+                                ->memberBidsForDate($date->getId(), $this->get('security.context')->getToken()->getUser()->getMember()->getId());
 
-                if ($auction->getWinningMember()->getId() == $this->get('security.context')->getToken()->getUser()->getMember()->getId()) {
-                    
-                    $memberBidsForDate = $this->getDoctrine()->getRepository('Just2BackendBundle:Bid')
-                            ->memberBidsForDate($date->getId(), $this->get('security.context')->getToken()->getUser()->getMember()->getId());
+                        $totalbidsfordate = $this->getDoctrine()
+                                ->getRepository('Just2BackendBundle:Bid')
+                                ->countBidsForDate($date->getId());
 
-                    $totalbidsfordate = $this->getDoctrine()
-                            ->getRepository('Just2BackendBundle:Bid')
-                            ->countBidsForDate($date->getId());
+                        $request = $this->getRequest();
+                        $info = $request->query->get('info');
 
-
-                    $request = $this->getRequest();
-                    $info = $request->query->get('info');
-
-                    $return = $this->render('Just2FrontendBundle:User:DateJust/wining.html.twig', array(
-                        'date' => $date,
-                        'totalbids' => $totalbidsfordate,
-                        'mybiddate' => $memberBidsForDate,
-                        'auction' => $auction,
-                        'info' => $info
-                            ));
-                    return $return;
+                        $return = $this->render('Just2FrontendBundle:User:DateJust/wining.html.twig', array(
+                            'date' => $date,
+                            'totalbids' => $totalbidsfordate,
+                            'mybiddate' => $memberBidsForDate,
+                            'auction' => $auction,
+                            'info' => $info
+                                ));
+                        return $return;
                 }
             }
+
             if ($date->getEstate() == 5) {
 
                 $request = $this->getRequest();
@@ -151,7 +147,8 @@ class DateJustController extends Controller {
                     'date' => $date,
                     'info' => $info,
                         ));
-            } 
+            }
+            
             $memberBidsForDate = $this->getDoctrine()->getRepository('Just2BackendBundle:Bid')
                     ->memberBidsForDate($date->getId(), $this->get('security.context')->getToken()->getUser()->getMember()->getId());
 
@@ -297,9 +294,17 @@ class DateJustController extends Controller {
                 $date = $em->getRepository('Just2BackendBundle:DateJust')->searchDates($form["interested"]->getData(), $form["gender"]->getData());                
                 
                 if($date != NULL) {
-                    return $this->render('Just2FrontendBundle:DateJust:date_results.html.twig', array(
-                                'date' => $date,                                
-                            ));                    
+                    if ($this->get('security.context')->isGranted('ROLE_USER')) {
+                        return $this->render('Just2FrontendBundle:DateJust:date_results.html.twig', array(
+                                'date' => $date,
+                                'member' => $this->get('security.context')->getToken()->getUser()->getMember()->getId()
+                            ));
+                    } else {
+                        return $this->render('Just2FrontendBundle:DateJust:date_results.html.twig', array(
+                                'date' => $date,
+                                'member' => NULL                                
+                            ));
+                    }
                 } else {
                     $message = "No results";
                 }

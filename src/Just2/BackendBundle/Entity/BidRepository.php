@@ -49,12 +49,10 @@ class BidRepository extends EntityRepository {
     public function bidsForDate($dateId) {
         $q = $this
                 ->createQueryBuilder('b')
-                ->where('b.dateJust= :id')
-                ->setParameter('id', $dateId)
+                ->where('b.dateJust= :dateId')
+                ->setParameter('dateId', $dateId)
                 ->orderBy('b.createdAt', 'Desc')
                 ->getQuery();
-
-
         try {
             $return = $q->getResult();
         } catch (NoResultException $e) {

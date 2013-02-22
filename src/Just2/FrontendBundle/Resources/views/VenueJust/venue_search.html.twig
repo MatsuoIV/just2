@@ -18,11 +18,15 @@
 
 		<!-- Campo de texto: Nombre -->
 	    <div>
-			{{ form_widget(form.categoryocassion, { 'attr': {
+			{#{ form_widget(form.categoryocassion, { 'attr': {
 				'placeholder' : 'Type your name...',
 				'onChange' : 'cargaContenido(this.id)',			
 				} }) 
-			}}	    
+			}#}	    
+	    </div>
+
+	    <div>
+	    	{{ form_widget(form.ocassion) }}
 	    </div>
 
 	    <div>

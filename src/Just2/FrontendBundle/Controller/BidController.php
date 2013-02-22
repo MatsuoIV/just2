@@ -17,6 +17,10 @@ class BidController extends Controller {
 
         $peticion = $this->getRequest();
         $formData = $peticion->request->get('just2_frontendbundle_bidtype', 'no se obtuvo');
+        
+        
+        
+        
 
         //       return new Response($price['dateJust']);
 

@@ -313,7 +313,7 @@ a img {border:0}
 	padding-top: 50px;
 }
 
-#form1 .enviar{
+#form1 button{
 	margin-left: 300px;
 	background-image: url(/bundles/just2frontend/images/boton-morado2.gif);
 	height: 19px;
@@ -341,6 +341,22 @@ a img {border:0}
 	background-image: url(/bundles/just2frontend/images/bg-bids.gif);
 }
 
+.bid p{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-top: 10px;
+	margin-left: 55px;
+	float: left;
+	line-height: 1.8em;
+
+	}
+	
+.bid img{
+	padding-left: 35px;
+	padding-top: 12px;
+	float: left;
+}
+
 #form2{
 	height: 30px;
 	background-image: url(/bundles/just2frontend/images/back-search-2_38.gif);
@@ -356,22 +372,6 @@ a img {border:0}
 	padding: 5px;
 	width: 570px;
 	margin-left: 170px;
-	}
-	
-.bid img{
-	padding-left: 35px;
-	padding-top: 12px;
-	float: left;
-}
-
-.bid p{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	margin-top: 10px;
-	margin-left: 55px;
-	float: left;
-	line-height: 1.8em;
-
 	}
 #form4{
 	width: 480px;
@@ -404,14 +404,13 @@ a img {border:0}
 	color:#333;	
 	margin-left:18px;
 	}
-/*#about{
+/*.about{
 	width: 350px;
 	height: 200px;
 	background-color: #999;
 	
 	}
 */
-
 #botones {
 	height: 100px;
 	padding-left: 180px;
@@ -457,7 +456,7 @@ a img {border:0}
 
 
 #frame {
-	width: 650px;
+	width: 950px;
 	height: 500px;
 	margin-right: auto;
 	margin-left: auto;
@@ -473,8 +472,8 @@ a img {border:0}
 	background-repeat: no-repeat;
 	}
 #searchvenue img{
-	padding-left: 500px;
 	margin-top: -200px;
+	margin-left: 500px;
 }
 #venue2{
 	width: 600px;
@@ -564,3 +563,37 @@ a img {border:0}
 	padding-left: 500px;
 	margin-top: -200px;
 }
+
+#howto{
+	width: 680px;
+	height: 656px;
+	margin-top: 38px;
+	background-image: url(/bundles/just2frontend/images/bg-how-to-use.gif);
+	margin-bottom: 25px;
+	background-repeat: no-repeat;
+	margin-right: auto;
+	margin-left: auto;
+	}
+#howto img{
+	padding-left: 500px;
+	margin-top: -200px;
+}
+#contactus{
+	width: 386px;
+	height: 165px;
+	margin-top: 38px;
+	background-image: url(/bundles/just2frontend/images/tocontact.jpg);
+	margin-bottom: 35px;
+	background-repeat: no-repeat;
+	margin-right: auto;
+	margin-left: auto;
+	}
+#contactus p{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #FFF;
+	width: 110px;
+	padding-top: 65px;
+	padding-left: 22px;
+	
+	}

@@ -29,77 +29,35 @@
 		
 {% for venue in vd %}
 	{% for ocassion in od %}
-		<div class="row">
-			<table class="table table-bordered">
-				<form action="{{ path('venue_reserve', { 'ocassion_id': ocassion.id, 'venue_id': venue.id }) }}" method="POST">
-				<tr>
-					<th><label class="checkbox"><input type="checkbox">Add to watch list</label></th>
-				</tr>
-				<tr>
-					<td rowspan="8" class="span6" style="text-align: center">
-						<img src="/img/venues/{{ venue.image }}">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="span3">Venue:</div>
-						<div class="span3">{{ venue.name }}</div>
-					</td>
-				</tr>
-				<tr>					
-					<td>
-						<div class="span3">Location:</div>
-						<div class="span3">{{ venue.address }}</div>
-					</td>
-				</tr>
-				<tr>					
-					<td>
-						<div class="span3">Occasion:</div>
-						<div class="span3">{{ ocassion.name }}</div>
-					</td>
-				</tr>
-				<tr>					
-					<td>
-						<div class="span3">Seat price:</div>
-						<div class="span3">${{ ocassion.price }} AU</div>
-					</td>
-				</tr>
-				<tr>					
-					<td>
-						<div class="span3">When:</div>
-						<div class="span3"><input type="text" name="venuedate" class="datepicker span2" required></div>
-					</td>
-				</tr>
-				<tr>					
-					<td>
-						<div class="span3">Time:</div>
-						<div class="span3"><input type="text" name="venuetime" class="timepicker span1" required></div>
-					</td>
-				</tr>
-				<tr>					
-					<td>
-						<div class="span3">Bid Start:</div>
-						<div class="span3"><input type="text" name="venuebid" class="datepicker span2" required></div>
-					</td>
-				</tr>
-				<tr>					
-					<td style="text-align: center">
-						<!-- <div><button type="submit" class="btn btn-primary">More details</button></div> -->
-					</td>
-					<td>
-						<div><input type="submit" class="btn btn-primary" value="Reserve"></div>
-					</td>
-				</tr>
-				</form>
-				<tr>
-					<td colspan="2" style="text-align: center"><img src="/img/venues/{{ venue.details }}"></td>
-				</tr>
-				<tr>
-					<form method="POST" action="{{ path('venue_print', { 'ocassion_id': ocassion.id, 'venue_id': venue.id }) }}"><td colspan="2">Print details</td></form>
-				</tr>		
-			</table>
-		</div>	
-
+		<div class="bit">
+			<div id="form2">
+				<!-- Título del formulario -->
+        		<div>
+           			<input name="watchlist" type="checkbox" value="yes" />Add to watchlist
+           		</div>
+    		</div>
+    		<img src="/img/venues/{{ venue.image }}" width="100" height="100" >
+    		<form action="{{ path('venue_reserve', { 'ocassion_id': ocassion.id, 'venue_id': venue.id }) }}" method="POST">
+	    		<p>
+	    			Venue: {{ venue.name }}<br>
+	    			Ocassion: {{ ocassion.name }}<br>
+					Bid end date: Saturday 8th September 2012 8.00pm<br>
+	      			Location: {{ venue.address }}<br>
+	      			Seat Price: ${{ ocassion.price }} AU<br>
+				
+	      			When: <input type="text" name="venuedate" class="datepicker" required><br>
+	      			Time: <input type="text" name="venuetime" class="timepicker" required><br>
+	      			Bid Start: <input type="text" name="venuebid" class="datepicker" required><br>
+				</p>
+				<input type="submit" class="enviar" value="Reserve">
+			</form>
+		</div>
+		<div id="frame">
+			<div style="text-align: center">
+				<img src="/img/venues/{{ venue.details }}">
+			</div>
+			{#<form method="POST" action="{{ path('venue_print', { 'ocassion_id': ocassion.id, 'venue_id': venue.id }) }}">Print details</form>#}
+		</div>
 	{% endfor %}
 {% endfor %}
 	

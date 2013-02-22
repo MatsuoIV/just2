@@ -90,7 +90,7 @@ class VenueJustController extends Controller {
             $bid = new Bid();
             $reservation = new Reservation();
 
-            $dateReserve = new \DateTime($_POST["venuedate"]);
+            $dateReserve = new \DateTime($_POST["venuedate"].$_POST["venuetime"]);
             $dateReserve->modify("-1 day");
 
             $dateEnd = new \DateTime($_POST["venuedate"]);
@@ -107,7 +107,7 @@ class VenueJustController extends Controller {
                 ->setCreatedAt(new \DateTime('now'))
                 ->setUpdatedAt(new \DateTime('now'))
                 ->setDateEnd($dateReserve)
-                ->setEstate(1)                    
+                ->setEstate(2)                    
                 ;
 
             $bid

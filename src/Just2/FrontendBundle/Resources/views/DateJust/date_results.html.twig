@@ -9,37 +9,44 @@
 
 {% for d in date %}
 
-<div class="bid">
-    <!-- Título del formulario -->
-    <div id="form2">
-        <input name="watchlist" type="checkbox" value="yes" />
-        Add to watchlist | {{d.member.firstName}} <a href="{{ path('user_view_show', {'id': d.member.id }) }} ">see profile</a>
-    </div>
-    
-    <!-- Título del formulario -->
-    <div id="form3">
-        Current Bid: AU ${%if highestBid(d.id)%}{{highestBid(d.id)}}{%else%}{{d.minprice}}{%endif%} |  
-        Enter your bid (${%if highestBid(d.id)%}{{highestBid(d.id)+5}}{%else%}{{d.minprice+5}}{%endif%} or more):
-        <a href="{{ path('date_view', { 'id': d.id } ) }}" id="placebid">Place bid</a>        
-    </div>
+    {% if d.dateEnd|date('Y-m-d') >= "now"|date('Y-m-d') %}
+        {% if d.estate == 2 %}
+            {% if d.member.id != member %}
 
-    {% if d.member.user.face %}
-        <img src="/images_user/{{d.member.user.face}}png" width="100" height="100" />
-    {% else %}
-        <img src="/images_user/default.png"  style="padding-top: 20px;" />
+            <div class="bid">
+                <!-- Título del formulario -->
+                <div id="form2">
+                    <input name="watchlist" type="checkbox" value="yes" />
+                    Add to watchlist | {{d.member.firstName}} <a href="{{ path('user_view_show', {'id': d.member.id }) }} ">see profile</a>
+                </div>
+                
+                <!-- Título del formulario -->
+                <div id="form3">
+                    Current Bid: AU ${%if highestBid(d.id)%}{{highestBid(d.id)}}{%else%}{{d.minprice}}{%endif%} |  
+                    Enter your bid (${%if highestBid(d.id)%}{{highestBid(d.id)+5}}{%else%}{{d.minprice+5}}{%endif%} or more):
+                    <a href="{{ path('date_view', { 'id': d.id } ) }}" id="placebid">Place bid</a>        
+                </div>
+
+                {% if d.member.user.face %}
+                    <img src="/images_user/{{d.member.user.face}}png" width="100" height="100" />
+                {% else %}
+                    <img src="/images_user/default.png"  style="padding-top: 20px;" />
+                {% endif %}
+
+                <p>
+                    Venue: Revealed to winning bidder <br>
+                    When: {{d.dateEnd|date_modify("+1 day")|date()}}<br>
+                    Occasion: {{d.ocassion.name}}<br>
+                    Bid end date: {{d.dateEnd|date()}}<br>
+                    Time remaining: {{d.dateEnd|time_ago }} <br>
+                    Location: {{d.venue.country.name}}, {{d.venue.department.name}} <br>
+                    Number of bids: {{totalbidsfordate(d.id)}} <br>
+                </p>
+
+            </div>
+            {% endif %}
+        {% endif %}
     {% endif %}
-
-    <p>
-        Venue: Revealed to winning bidder <br>
-        When: {{d.dateEnd | date()}}<br>
-        Occasion: {{d.ocassion.name}}<br>
-        Bid end date: {{d.dateEnd | date()}}<br>
-        Time remaining: {{d.dateEnd|time_ago }} <br>
-        Location: {{d.venue.country.name}}, {{d.venue.department.name}} <br>
-        Number of bids: {{totalbidsfordate(d.id)}} <br>
-    </p>
-
-</div>
 
 {% endfor %}
 

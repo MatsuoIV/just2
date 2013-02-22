@@ -42,7 +42,7 @@
 
     <p>
         Venue: Revealed to winning bidder <br>
-        When: {{date.dateEnd | date()}}<br>
+        When: {{date.dateEnd | date_modify("+1 day") | date()}}<br>
         Occasion: {{date.ocassion.name}}<br>
         Bid end date: {{date.dateEnd | date()}}<br>
         Time remaining: {{date.dateEnd|time_ago }} <br>
